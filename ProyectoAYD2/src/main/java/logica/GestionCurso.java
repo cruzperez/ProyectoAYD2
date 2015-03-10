@@ -11,6 +11,7 @@ import acceso.GestionLaboratorio;
  * @author cruz
  */
 public class GestionCurso {
+    
     private GestionLaboratorio lab = new GestionLaboratorio();
     
     public boolean modificarCurso(int id, String curso){
@@ -40,12 +41,20 @@ public class GestionCurso {
         }
     }
     
-    public boolean modificarCurso(int id){
+    public boolean borrarCurso(int id){
         try{
             lab.borrarCurso(id);
             return true;
         }catch(Exception e){
             return false;
+        }
+    }
+    
+    public String obtenerCursos(){
+        try{
+            return lab.retornarCursos();
+        }catch(Exception e){
+            return "error";
         }
     }
 }

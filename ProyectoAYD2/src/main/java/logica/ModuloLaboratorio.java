@@ -50,7 +50,11 @@ public class ModuloLaboratorio {
     }
     
     public String obtenerSalones(){
-        return "";
+        try{
+            return lab.retornarSalones();
+        }catch(Exception e){
+            return "error";
+        }
     }
     
     public boolean reservarLaboratorio(String salon, int dia0, int dia1, 
