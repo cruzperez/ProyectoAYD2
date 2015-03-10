@@ -4,7 +4,7 @@
  */
 package logica;
 
-import acceso.*;
+import acceso.GestionLaboratorio;
 /**
  *
  * @author cruz
@@ -13,21 +13,44 @@ public class ModuloLaboratorio {
     
     private GestionLaboratorio lab = new GestionLaboratorio();
     
-    public boolean reservarSalon(int id, String salon, int capacidad){
+    public boolean modificarSalon(int id, String salon, int capacidad){
         try{
-            
+            lab.modificarSalon(id, salon, capacidad);
             return true;
         }catch(Exception e){
             return false;
         }
     }
     
-    public boolean nuevoSalon(String salon, int capacidad){
+    public boolean nuevoSalon(int id, String salon, int capacidad){
         try{
+            lab.insertarSalon(salon, capacidad);
             return true;
         }catch(Exception e){
             return false;
         }
+    }
+    
+    public boolean borrarSalon(String salon){
+        try{
+            lab.borrarSalon(salon);
+            return true;
+        }catch(Exception e){
+            return false;
+        }
+    }
+    
+    public boolean borrarSalon(int id){
+        try{
+            lab.borrarSalon(id);
+            return true;
+        }catch(Exception e){
+            return false;
+        }
+    }
+    
+    public String obtenerSalones(){
+        return "";
     }
     
     public boolean reservarLaboratorio(String salon, int dia0, int dia1, 
