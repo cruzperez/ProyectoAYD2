@@ -101,6 +101,30 @@ public class GestionLaboratorio {
         }
         nuevaConexion.cierraConn();
     }
+    public String retornarCursos()
+    {
+        nuevaConexion.crearConn();
+        conn=nuevaConexion.getConn();
+        ResultSet rs = null;
+        Statement s = null;
+        String devolver="";
+        try
+        {
+            s = conn.createStatement();
+            //seleccionamos la tabla de la base de datos la cual lleva por nombre trabajadores
+            rs = s.executeQuery("SELECT * FROM  curso");
+            while(rs.next())
+            {
+                devolver+=rs.getString(1)+","+rs.getString(2)+"/";
+            }
+            rs.close();
+        }catch (Exception e)
+        {
+            System.out.println("Problema al consultar la tabla curso de la base de datos "+e);
+        }
+        nuevaConexion.cierraConn();
+        return devolver;
+    }
     public void insertarSalon(String name,int capacidad)
     {
         
@@ -182,5 +206,29 @@ public class GestionLaboratorio {
             System.out.println("Problema al eliminar en tabla salon. "+e);
         }
         nuevaConexion.cierraConn();
+    }
+    public String retornarSalones()
+    {
+        nuevaConexion.crearConn();
+        conn=nuevaConexion.getConn();
+        ResultSet rs = null;
+        Statement s = null;
+        String devolver="";
+        try
+        {
+            s = conn.createStatement();
+            //seleccionamos la tabla de la base de datos la cual lleva por nombre trabajadores
+            rs = s.executeQuery("SELECT * FROM  salon");
+            while(rs.next())
+            {
+                devolver+=rs.getString(1)+","+rs.getString(2)+"/";
+            }
+            rs.close();
+        }catch (Exception e)
+        {
+            System.out.println("Problema al consultar la tabla salon de la base de datos "+e);
+        }
+        nuevaConexion.cierraConn();
+        return devolver;
     }
 }
