@@ -88,5 +88,10 @@ devolver="Se ha producido un error en la conexion a la base de datos Ejemplo! "+
             System.out.println("Problema para cerrar la Conexión a la base de datos" );
         }
     }
+       
+       public String getCadena (String cadena){
+       
+           return "devuelve " + cadena;
+       }
         
 }
