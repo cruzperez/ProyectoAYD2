@@ -61,20 +61,6 @@ page at http://checkstyle.sourceforge.net/config.html -->
       <property name="severity" value="error"/>
     </module>
 	
-	<module name="VariableNameCheck">
-      <!-- Validates static, non-final fields against the supplied
-      expression "^[a-z][a-zA-Z0-9]*_?$". -->
-      <metadata name="altname" value="StaticVariableName"/>
-      <property name="applyToPublic" value="true"/>
-      <property name="applyToProtected" value="true"/>
-      <property name="applyToPackage" value="true"/>
-      <property name="applyToPrivate" value="true"/>
-      <property name="format" value="^[a-z][a-z0-9]*"/>
-	  <message key="name.invalidPattern" 
-					value="La variable ''{0}'' debe contener solo minusculas "/>
-      <property name="severity" value="error"/>
-    </module>	
-	
 	<module name="StaticVariableNameCheck">
       <!-- Validates static, non-final fields against the supplied
       expression "^[a-z][a-zA-Z0-9]*_?$". -->
@@ -88,6 +74,5 @@ page at http://checkstyle.sourceforge.net/config.html -->
 					value="La variable estatica''{0}'' debe contener solo mayusculas "/>
 	  <property name="severity" value="error"/>
     </module>
-
   </module>
 </module>
