@@ -60,7 +60,6 @@ page at http://checkstyle.sourceforge.net/config.html -->
 					value="El metodo ''{0}'' debe comenzar con minuscula "/>
       <property name="severity" value="warning"/>
     </module>
-
-
+	
   </module>
 </module>
