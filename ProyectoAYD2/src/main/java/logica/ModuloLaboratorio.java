@@ -96,7 +96,7 @@ public class ModuloLaboratorio {
         }
     }
     
-    public boolean ReservarLaboratorio(String salon, int dia0, int dia1, 
+    public boolean reservarLaboratorio(String salon, int dia0, int dia1, 
             int mes0, int mes1, int anno0, int anno1, int hora0, int hora1, 
             String encargado){
         try{
