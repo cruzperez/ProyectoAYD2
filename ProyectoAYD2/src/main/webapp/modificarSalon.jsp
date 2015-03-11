@@ -100,21 +100,22 @@
 
         %>
 
-<select>
+    <select  NAME = "item">
    <%  for(int i = 0; i < vecSalones.size(); i++) {
            String option = (String)vecSalones.get(i);
    %>
-   <option value="<%= option %>"><%= option %></option>
+   <option value="<%= option %>" NAME="item1"><%= option %></option>
    <% } %>
    
-    </select>
+    </select>   
    <form method="POST" action="">
    <INPUT TYPE="SUBMIT" NAME="buscar" VALUE="Buscar">
         <%
             if(request.getParameter("buscar") != null)
             {
                 
-                texto = request.getParameter("nombre");
+                texto = request.getParameter("item1").toString() ;
+                
                 
             }
             if(request.getParameter("guardar") != null)
