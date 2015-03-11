@@ -15,7 +15,7 @@
     <%
    //comentario     
         String titulo = "Agregar Curso";
-        ModuloLaboratorio lab = new ModuloLaboratorio();
+        GestionCurso gcurso = new GestionCurso();
     %>
     <head>
         <title>Agregar Curso</title>
@@ -83,7 +83,8 @@
             String texto = "";
             if(request.getParameter("guardar") != null)
             {
-                texto = request.getParameter("nombre");;
+                String nombre = request.getParameter("nombre");
+                gcurso.nuevoCurso(nombre);
             }
             %>
 	   <TABLE BORDER>

@@ -13,11 +13,12 @@
 <!DOCTYPE html>
 <html>
     <%
-        Conexion miconexion = new Conexion();
-        miconexion.crearConn();
    //comentario     
-        String titulo = miconexion.getCadena("hello world! :D");
-        ModuloLaboratorio lab = new ModuloLaboratorio();
+        String titulo = "Modificar Curso";
+        GestionCurso gcurso = new GestionCurso();
+        
+        int idcurso = 0;
+        String nombre = "";
     %>
     <head>
         <title>Modificar Salon</title>
@@ -94,14 +95,15 @@
             al.add("D");
             al.add("F");
             */
-            ArrayList al = lab.obtenerSalones();
+            ArrayList vecCursos = gcurso.obtenerCursos();
+            ArrayList vecNombres = gcurso.obtenerCursosNombre();
             String texto = "";
 
         %>
 
 <select>
-   <%  for(int i = 0; i < al.size(); i++) {
-           String option = (String)al.get(i);
+   <%  for(int i = 0; i < vecCursos.size(); i++) {
+           String option = (String)vecCursos.get(i);
    %>
    <option value="<%= option %>"><%= option %></option>
    <% } %>
@@ -112,24 +114,37 @@
         <%
             if(request.getParameter("buscar") != null)
             {
-                texto = al.get(1).toString();
+                if(request.getParameter("buscar") != null)
+            {
+                
+                idcurso = Integer.parseInt(request.getParameter("idcurso"));
+                for (int i=0; i<vecNombres.size(); i++){
+                    if(Integer.parseInt(vecCursos.get(i).toString()) == idcurso){
+                        nombre = vecNombres.get(i).toString();
+                    }
+                }
+                
+            }
             }
             if(request.getParameter("guardar") != null)
             {
-                texto = al.get(0).toString();
+                idcurso = Integer.parseInt(request.getParameter("idcurso"));                
+                nombre = request.getParameter("nombre");
+                gcurso.modificarCurso(idcurso, nombre);
             }
         %>
-    </form>
+        <INPUT ENGINE=TEXTBOX NAME="idcurso" SIZE="5" VALUE="<%= idcurso%>">
+    
    
                   </TD>
 		</TR>
 		<TR>
 		  <TD><B>Nombre</TD>
-                  <TD><INPUT ENGINE=TEXTBOX NAME="nombre" SIZE="15" VALUE=""></TD>
+                  <TD><INPUT ENGINE=TEXTBOX NAME="nombre" SIZE="15" VALUE="<%= nombre%>"></TD>
 		</TR>
 	   </TABLE>
 	   <P></P>
-           <form method="POST" name="guardar" action="">
+           
                 <INPUT TYPE="SUBMIT" NAME="guardar" VALUE="Guardar">
                 
            </form>
