@@ -104,7 +104,9 @@
 
         %>
 
-    <select  NAME = "item">
+        <form method="POST" action="">
+        
+    <select  NAME = "idsalon">
    <%  for(int i = 0; i < vecSalones.size(); i++) {
            String option = (String)vecSalones.get(i);
    %>
@@ -113,7 +115,7 @@
    
     </select>   
    
-   <form method="POST" action="">
+   
        
    <INPUT TYPE="SUBMIT" NAME="buscar" VALUE="Buscar">
         <%
@@ -137,7 +139,7 @@
                 lab.modificarSalon(idsalon, nombre, capacidad);
             }
         %>
-    <INPUT ENGINE=TEXTBOX NAME="idsalon" SIZE="5" VALUE="<%= idsalon%>">
+    
    
                   </TD>
 		</TR>

@@ -101,7 +101,9 @@
 
         %>
 
-<select>
+        <form method="POST" name="buscar" action="">
+            
+<select name="idcurso">
    <%  for(int i = 0; i < vecCursos.size(); i++) {
            String option = (String)vecCursos.get(i);
    %>
@@ -109,7 +111,7 @@
    <% } %>
    
     </select>
-   <form method="POST" name="buscar" action="">
+   
    <INPUT TYPE="SUBMIT" NAME="buscar" VALUE="Buscar">
         <%
             if(request.getParameter("buscar") != null)
@@ -132,9 +134,7 @@
                 nombre = request.getParameter("nombre");
                 gcurso.modificarCurso(idcurso, nombre);
             }
-        %>
-        <INPUT ENGINE=TEXTBOX NAME="idcurso" SIZE="5" VALUE="<%= idcurso%>">
-    
+        %>  
    
                   </TD>
 		</TR>
