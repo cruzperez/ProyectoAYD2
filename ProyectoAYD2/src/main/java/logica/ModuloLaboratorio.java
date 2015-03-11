@@ -14,7 +14,6 @@ import java.util.Arrays;
 public class ModuloLaboratorio {
     
     private GestionLaboratorio lab = new GestionLaboratorio();
-    private int Hola;
     
     public boolean modificarSalon(int id, String salon, int capacidad){
         try{
