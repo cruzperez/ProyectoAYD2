@@ -94,14 +94,15 @@
             al.add("D");
             al.add("F");
             */
-            ArrayList al = lab.obtenerSalones();
+            ArrayList vecSalones = lab.obtenerSalones();
+            ArrayList vecNombres = lab.obtenerSalonesNombre();
             String texto = "";
 
         %>
 
 <select>
-   <%  for(int i = 0; i < al.size(); i++) {
-           String option = (String)al.get(i);
+   <%  for(int i = 0; i < vecSalones.size(); i++) {
+           String option = (String)vecSalones.get(i);
    %>
    <option value="<%= option %>"><%= option %></option>
    <% } %>
@@ -112,8 +113,9 @@
         <%
             if(request.getParameter("buscar") != null)
             {
-                texto = al.get(1).toString();
+                
                 texto = request.getParameter("nombre");
+                
             }
             if(request.getParameter("guardar") != null)
             {

@@ -86,7 +86,8 @@
             }
             if(request.getParameter("guardar") != null)
             {
-                texto = request.getParameter("nombre");;
+                texto = request.getParameter("capacidad");
+               lab.nuevoSalon(request.getParameter("nombre"), Integer.parseInt(request.getParameter("capacidad")));
             }
             %>
         
@@ -97,7 +98,7 @@
 		</TR>
 		<TR>
 		  <TD><B>Capacidad</TD>
-                  <TD><INPUT ENGINE=TEXTBOX NAME="capacidad" SIZE="10" VALUE="<%=texto%>"></TD>
+                  <TD><INPUT ENGINE=TEXTBOX NAME="capacidad" SIZE="10" VALUE=""></TD>
 		</TR>
 	   </TABLE>
 	   <P></P>
