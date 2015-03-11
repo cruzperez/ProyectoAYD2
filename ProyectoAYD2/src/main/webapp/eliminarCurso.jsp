@@ -13,11 +13,12 @@
 <!DOCTYPE html>
 <html>
     <%
-        Conexion miconexion = new Conexion();
-        miconexion.crearConn();
    //comentario     
-        String titulo = miconexion.getCadena("hello world! :D");
-        ModuloLaboratorio lab = new ModuloLaboratorio();
+        String titulo = "Eliminar Curso";
+        GestionCurso gcurso = new GestionCurso();
+        
+        int idcurso = 0;
+        String nombre = "";
     %>
     <head>
         <title>Eliminar Curso</title>
@@ -94,42 +95,58 @@
             al.add("D");
             al.add("F");
             */
-            ArrayList al = lab.obtenerSalones();
+            ArrayList vecCursos = gcurso.obtenerCursos();
+            ArrayList vecNombres = gcurso.obtenerCursosNombre();
             String texto = "";
 
         %>
 
-<select>
-   <%  for(int i = 0; i < al.size(); i++) {
-           String option = (String)al.get(i);
+        <form method="POST" name="buscar" action="">
+            
+<select name="idcurso">
+   <%  for(int i = 0; i < vecCursos.size(); i++) {
+           String option = (String)vecCursos.get(i);
    %>
    <option value="<%= option %>"><%= option %></option>
    <% } %>
    
     </select>
-   <form method="POST" name="buscar" action="">
+   
+   
+        
+   
    <INPUT TYPE="SUBMIT" NAME="buscar" VALUE="Buscar">
-        <%
+   
+   <%
             if(request.getParameter("buscar") != null)
-            {
-                texto = al.get(1).toString();
+            {                
+                idcurso = Integer.parseInt(request.getParameter("idcurso"));
+                for (int i=0; i<vecNombres.size(); i++){
+                    if(Integer.parseInt(vecCursos.get(i).toString()) == idcurso){
+                        nombre = vecNombres.get(i).toString();
+                    }
+                }
+                
             }
             if(request.getParameter("eliminar") != null)
             {
-                texto = al.get(0).toString();
+                if(request.getParameter("eliminar") != null)
+                {
+                    idcurso = Integer.parseInt(request.getParameter("idcurso"));
+                    gcurso.borrarCurso(idcurso);
+                }
             }
         %>
-    </form>
-   
+          
                   </TD>
 		</TR>
 		<TR>
 		  <TD><B>Nombre</TD>
-                  <TD><INPUT ENGINE=TEXTBOX NAME="nombre" SIZE="15" VALUE=""></TD>
+                  <TD><INPUT ENGINE=TEXTBOX NAME="nombre" SIZE="15" VALUE="<%= nombre%>"></TD>
 		</TR>
 	   </TABLE>
 	   <P></P>
-           <form method="POST" name="eliminar" action="">
+           
                 <INPUT TYPE="SUBMIT" NAME="eliminar" VALUE="Eliminar">
                 
            </form>
@@ -148,4 +165,6 @@
 
 </div>
         
+                
+                
 </html>

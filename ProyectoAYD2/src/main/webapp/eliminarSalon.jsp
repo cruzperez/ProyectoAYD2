@@ -13,17 +13,20 @@
 <!DOCTYPE html>
 <html>
     <%
-        Conexion miconexion = new Conexion();
-        miconexion.crearConn();
+        
    //comentario     
-        String titulo = miconexion.getCadena("hello world! :D");
+        String titulo = "Eliminar Salon";
         ModuloLaboratorio lab = new ModuloLaboratorio();
+        
+        int idsalon = 0;
+        int capacidad = 0;
+        String nombre = "";
     %>
     <head>
-        <title>Eliminar Salon</title>
+        <title><%=titulo%></title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link href="css/style.css" rel="stylesheet" type="text/css">
-        <title><%=titulo%></title>
+        
     </head>
     <body>
                 
@@ -93,52 +96,60 @@
             al.add("B");
             al.add("D");
             al.add("F");
-            */
-            ArrayList al = lab.obtenerSalones();
+            */            
+            ArrayList vecSalones = lab.obtenerSalones();
+            ArrayList vecNombres = lab.obtenerSalonesNombre();
+            ArrayList vecCapacidades = lab.obtenerSalonesCapacidad();
             String texto = "";
 
         %>
 
-<select>
-   <%  for(int i = 0; i < al.size(); i++) {
-           String option = (String)al.get(i);
+        <form method="POST" name="buscar" action="">
+            
+<select name="idsalon">
+   <%  for(int i = 0; i < vecSalones.size(); i++) {
+           String option = (String)vecSalones.get(i);
    %>
    <option value="<%= option %>"><%= option %></option>
    <% } %>
    
     </select>
-   <form method="POST" name="buscar" action="">
+   
    <INPUT TYPE="SUBMIT" NAME="buscar" VALUE="Buscar">
         <%
             if(request.getParameter("buscar") != null)
-            {
-                texto = al.get(1).toString();
+            {                
+                idsalon = Integer.parseInt(request.getParameter("idsalon"));
+                for (int i=0; i<vecNombres.size(); i++){
+                    if(Integer.parseInt(vecSalones.get(i).toString()) == idsalon){
+                        nombre = vecNombres.get(i).toString();
+                        capacidad = Integer.parseInt(vecCapacidades.get(i).toString());
+                    }
+                }
+                
             }
             if(request.getParameter("eliminar") != null)
             {
-                texto = al.get(0).toString();
+                idsalon = Integer.parseInt(request.getParameter("idsalon"));
+                lab.borrarSalon(idsalon);
             }
-        %>
-    </form>
+        %> 
    
                   </TD>
 		</TR>
 		<TR>
 		  <TD><B>Nombre</TD>
-                  <TD><INPUT ENGINE=TEXTBOX NAME="nombre" SIZE="15" VALUE=""></TD>
+                  <TD><INPUT ENGINE=TEXTBOX NAME="nombre" SIZE="15" VALUE="<%= nombre %>"></TD>
 		</TR>
 		<TR>
 		  <TD><B>Capacidad</TD>
-                  <TD><INPUT ENGINE=TEXTBOX NAME="capacidad" SIZE="10" VALUE="<%= texto %>"></TD>
+                  <TD><INPUT ENGINE=TEXTBOX NAME="capacidad" SIZE="10" VALUE="<%= capacidad %>"></TD>
 		</TR>
 	   </TABLE>
-	   <P></P>
-           <form method="POST" name="eliminar" action="">
+	   <P></P>           
                 <INPUT TYPE="SUBMIT" NAME="eliminar" VALUE="Eliminar">
-                
-           </form>
 	   <HR></HR>
-         
+         </form>
         
         </div>
       
