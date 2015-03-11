@@ -114,7 +114,7 @@
             if(request.getParameter("buscar") != null)
             {
                 
-                texto = request.getParameter("item1").toString() ;
+                texto = request.getParameter("item1") ;
                 
                 
             }
