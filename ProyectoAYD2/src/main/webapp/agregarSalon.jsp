@@ -100,6 +100,10 @@
 		  <TD><B>Capacidad</TD>
                   <TD><INPUT ENGINE=TEXTBOX NAME="capacidad" SIZE="10" VALUE=""></TD>
 		</TR>
+                <TR>
+		  <TD><B>Nombre catedratico</TD>
+                  <TD><INPUT ENGINE=TEXTBOX NAME="catedratico" SIZE="10" VALUE=""></TD>
+		</TR>
 	   </TABLE>
 	   <P></P>
                 <INPUT TYPE="SUBMIT" NAME="guardar" VALUE="Guardar">

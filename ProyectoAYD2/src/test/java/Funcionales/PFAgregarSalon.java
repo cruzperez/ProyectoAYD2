@@ -35,8 +35,8 @@ public class PFAgregarSalon extends SeleneseTestBase {
 		selenium.waitForPageToLoad("30000");
 		selenium.click("link=Agregar Salon");
 		selenium.waitForPageToLoad("30000");
-		selenium.type("name=nombre", "Korea center");
-		selenium.type("name=capacidad", "50");
+		selenium.type("name=nombre", "Korea center2");
+		selenium.type("name=capacidad", "20");
 		selenium.click("name=guardar");
 		selenium.waitForPageToLoad("30000");
 	}

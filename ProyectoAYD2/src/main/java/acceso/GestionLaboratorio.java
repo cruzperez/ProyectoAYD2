@@ -145,6 +145,26 @@ public class GestionLaboratorio {
         nuevaConexion.cierraConn();
 
     }
+    public void insertarSalon(String name,int capacidad,String nombre)
+    {
+        
+        nuevaConexion.crearConn();
+        conn=nuevaConexion.getConn();
+         Statement s = null;
+        try
+        {
+            s = conn.createStatement();
+            //seleccionamos la tabla de la base de datos la cual lleva por nombre trabajadores
+            //System.out.println("INSERT INTO curso values(default,'"+name+"');");
+            s.executeUpdate("INSERT INTO salon values(default,'"+name+"',"+capacidad+",'"+nombre+"');");
+            
+        }catch (Exception e)
+        {
+            System.out.println("Problema al insertar en salon. "+e);
+        }
+        nuevaConexion.cierraConn();
+
+    }
     public void modificarSalon(int id,String name,int capacidad)
     {
         
