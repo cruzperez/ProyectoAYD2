@@ -66,6 +66,21 @@ public class ModuloLaboratorio {
         }
     }
     
+    public ArrayList obtenerSalonesNombre(){
+        try{
+            String[] salones = lab.retornarSalones().split("/");
+            ArrayList ids = new ArrayList();
+            for (int i = 0; i<salones.length;i++){
+                ids.add(salones[i].split(",")[1]);
+            }
+            return ids;
+        }catch(Exception e){
+            ArrayList fail = new ArrayList();
+            fail.add("- no items -");
+            return fail;
+        }
+    }
+    
     public boolean reservarLaboratorio(String salon, int dia0, int dia1, 
             int mes0, int mes1, int anno0, int anno1, int hora0, int hora1, 
             String encargado){
