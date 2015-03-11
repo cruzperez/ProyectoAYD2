@@ -33,6 +33,21 @@ page at http://checkstyle.sourceforge.net/config.html -->
           value="${com.puppycrawl.tools.checkstyle.checks.sizes.LineLength.ignorePattern}"
           default="^(package .*;\s*)|(import .*;\s*)|( *\* *https?://.*)$"/>
     </module>
+	
+	<module name="ConstantNameCheck">
+      <!-- Validates non-private, static, final fields against the supplied
+      public/package final fields "^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$". -->
+      <!--metadata name="altname" value="ConstantName"/-->
+      <property name="applyToPublic" value="true"/>
+      <property name="applyToProtected" value="true"/>
+      <property name="applyToPackage" value="true"/>
+      <property name="applyToPrivate" value="true"/>
+      <property name="format" value="^([a-z][a-z0-9]+(_[A-Z0-9]+)*)"/>
+      <message key="name.invalidPattern"
+               value="La variable ''{0}'' debe contener mas de una letra, estar en minusculas y sustituir \"ñ\" por nn "."/>
+      <property name="severity" value="warning"/>
+    </module>
+
 
   </module>
 </module>
