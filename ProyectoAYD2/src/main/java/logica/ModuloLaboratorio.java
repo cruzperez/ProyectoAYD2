@@ -58,7 +58,7 @@ public class ModuloLaboratorio {
             return ids;
         }catch(Exception e){
             ArrayList fail = new ArrayList();
-            fail.add("- no items -");
+            //fail.add("- no items -");
             return fail;
         }
     }
