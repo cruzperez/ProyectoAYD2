@@ -61,14 +61,5 @@ page at http://checkstyle.sourceforge.net/config.html -->
       <property name="severity" value="warning"/>
     </module>
 	
-	<module name="ClassNameCheck">
-      <!-- Validates identifiers for method names. -->
-      <metadata name="altname" value="ClassName"/>
-      <property name="format" value="^[A-Z][a-zA-Z0-9]*\(\)"/>
-	   <message key="name.invalidPattern" 
-					value="El nombre de la clase ''{0}'' debe comenzar con mayuscula y no debe contener guiones "/>
-      <property name="severity" value="warning"/>
-    </module>
-
   </module>
 </module>
