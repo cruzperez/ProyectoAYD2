@@ -5,6 +5,8 @@
 package logica;
 
 import acceso.GestionLaboratorio;
+import java.util.ArrayList;
+import java.util.Arrays;
 /**
  *
  * @author cruz
@@ -49,11 +51,15 @@ public class ModuloLaboratorio {
         }
     }
     
-    public String obtenerSalones(){
+    public ArrayList obtenerSalones(){
         try{
-            return lab.retornarSalones();
+            String[] salones = lab.retornarSalones().split("/");
+            ArrayList ids = new ArrayList(Arrays.asList(salones[0].split(",")));
+            return ids;
         }catch(Exception e){
-            return "error";
+            ArrayList fail = new ArrayList();
+            fail.add("- no items -");
+            return fail;
         }
     }
     
