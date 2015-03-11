@@ -18,6 +18,10 @@
    //comentario     
         String titulo = miconexion.getCadena("hello world! :D");
         ModuloLaboratorio lab = new ModuloLaboratorio();
+        
+        int idsalon = 0;
+        int capacidad = 0;
+        String nombre = "";
     %>
     <head>
         <title>Modificar Salon</title>
@@ -96,6 +100,7 @@
             */
             ArrayList vecSalones = lab.obtenerSalones();
             ArrayList vecNombres = lab.obtenerSalonesNombre();
+            ArrayList vecCapacidades = lab.obtenerSalonesCapacidad();
             String texto = "";
 
         %>
@@ -110,21 +115,27 @@
     </select>   
    
    <form method="POST" action="">
-       <INPUT ENGINE=TEXTBOX NAME="idsalon" SIZE="5" VALUE="">
+       <INPUT ENGINE=TEXTBOX NAME="idsalon" SIZE="5" VALUE="<%= idsalon%>">
    <INPUT TYPE="SUBMIT" NAME="buscar" VALUE="Buscar">
         <%
             if(request.getParameter("buscar") != null)
             {
                 
                 texto = request.getParameter("idsalon") ;
-                
+                for (int i=0; i<vecNombres.size(); i++){
+                    if(vecSalones.get(i).toString().equals(idsalon)){
+                        nombre = vecNombres.get(i).toString();
+                        capacidad = Integer.parseInt(vecNombres.get(i).toString());
+                    }
+                }
                 
             }
             if(request.getParameter("guardar") != null)
             {
-                int idsalon = Integer.parseInt(request.getParameter("idsalon"));
-                String capacidad = request.getParameter("nombre");
-                //lab.modificarSalon(, salon, capacidad)
+                idsalon = Integer.parseInt(request.getParameter("idsalon"));
+                capacidad = Integer.parseInt(request.getParameter("capacidad"));
+                nombre = request.getParameter("nombre");
+                lab.modificarSalon(idsalon, nombre, capacidad);
             }
         %>
     
@@ -133,11 +144,11 @@
 		</TR>
 		<TR>
 		  <TD><B>Nombre</TD>
-                  <TD><INPUT ENGINE=TEXTBOX NAME="nombre" SIZE="15" VALUE=""></TD>
+                  <TD><INPUT ENGINE=TEXTBOX NAME="nombre" SIZE="15" VALUE="<%= nombre%>"></TD>
 		</TR>
 		<TR>
 		  <TD><B>Capacidad</TD>
-                  <TD><INPUT ENGINE=TEXTBOX NAME="capacidad" SIZE="10" VALUE="<%= texto %>"></TD>
+                  <TD><INPUT ENGINE=TEXTBOX NAME="capacidad" SIZE="10" VALUE="<%= capacidad%>"></TD>
 		</TR>
 	   </TABLE>
 	   <P></P>
