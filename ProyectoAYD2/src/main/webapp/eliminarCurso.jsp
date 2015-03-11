@@ -20,7 +20,7 @@
         ModuloLaboratorio lab = new ModuloLaboratorio();
     %>
     <head>
-        <title>Eliminar Salon</title>
+        <title>Eliminar Curso</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link href="css/style.css" rel="stylesheet" type="text/css">
         <title><%=titulo%></title>
@@ -59,9 +59,9 @@
         <h1>Menu Principal</h1>
         <div class="box">
           <ul>
-            <li><a href="http://localhost:8084/ProyectoAYD2/agregarSalon.html">Agregar Salon</a></li>
-            <li><a href="http://localhost:8084/ProyectoAYD2/modificarSalon.jsp">Modificar Salon</a></li>
-            <li><a href="http://localhost:8084/ProyectoAYD2/eliminarSalon.jsp">Eliminar Salon</a></li>
+            <li><a href="http://localhost:8084/ProyectoAYD2/agregarCurso.html">Agregar Curso</a></li>
+            <li><a href="http://localhost:8084/ProyectoAYD2/modificarCurso.jsp">Modificar Curso</a></li>
+            <li><a href="http://localhost:8084/ProyectoAYD2/eliminarCurso.jsp">Eliminar Curso</a></li>
           </ul>
         </div>
       </div>
@@ -77,12 +77,12 @@
 
     <div class="right_section">
       <div class="common_content">
-        <h2>Eliminar Salon</h2>
+        <h2>Eliminar Curso</h2>
         <hr>
         
         <TABLE BORDER>
                <TR>
-		  <TD><B>Id Salon</TD>
+		  <TD><B>Id Curso</TD>
 		  <TD>
         <%
             /*
@@ -126,10 +126,6 @@
 		<TR>
 		  <TD><B>Nombre</TD>
                   <TD><INPUT ENGINE=TEXTBOX NAME="nombre" SIZE="15" VALUE=""></TD>
-		</TR>
-		<TR>
-		  <TD><B>Capacidad</TD>
-                  <TD><INPUT ENGINE=TEXTBOX NAME="capacidad" SIZE="10" VALUE="<%= texto %>"></TD>
 		</TR>
 	   </TABLE>
 	   <P></P>

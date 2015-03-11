@@ -45,7 +45,7 @@
         <li><a href="http://localhost:8084/ProyectoAYD2">Home</a></li>
         <li><a href="http://localhost:8084/ProyectoAYD2/salones.html">Salones</a></li>
         <li><a href="#">Programas</a></li>
-        <li><a href="#">Cursos</a></li>
+        <li><a href="http://localhost:8084/ProyectoAYD2/cursos.html">Cursos</a></li>
         <li><a href="#">Recursos</a></li>
         <li><a href="#">Asignacion Programas</a></li>
         <li><a href="#">Reservaciones</a></li>
@@ -59,7 +59,7 @@
         <h1>Menu Principal</h1>
         <div class="box">
           <ul>
-            <li><a href="http://localhost:8084/ProyectoAYD2/agregarSalon.html">Agregar Salon</a></li>
+            <li><a href="http://localhost:8084/ProyectoAYD2/agregarSalon.jsp">Agregar Salon</a></li>
             <li><a href="http://localhost:8084/ProyectoAYD2/modificarSalon.jsp">Modificar Salon</a></li>
             <li><a href="http://localhost:8084/ProyectoAYD2/eliminarSalon.jsp">Eliminar Salon</a></li>
           </ul>
@@ -107,19 +107,20 @@
    <% } %>
    
     </select>
-   <form method="POST" name="buscar" action="">
+   <form method="POST" action="">
    <INPUT TYPE="SUBMIT" NAME="buscar" VALUE="Buscar">
         <%
             if(request.getParameter("buscar") != null)
             {
                 texto = al.get(1).toString();
+                texto = request.getParameter("nombre");
             }
             if(request.getParameter("guardar") != null)
             {
-                texto = al.get(0).toString();
+                texto = request.getParameter("nombre");;
             }
         %>
-    </form>
+    
    
                   </TD>
 		</TR>
@@ -133,12 +134,11 @@
 		</TR>
 	   </TABLE>
 	   <P></P>
-           <form method="POST" name="guardar" action="">
                 <INPUT TYPE="SUBMIT" NAME="guardar" VALUE="Guardar">
                 
-           </form>
 	   <HR></HR>
-         
+         </form>          
+           
         
         </div>
       

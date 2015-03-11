@@ -24,8 +24,8 @@ import acceso.Conexion;
  *
  * @author cruz
  */
-@WebServlet(name = "AgregarSalon", urlPatterns = {"/AgregarSalon"})
-public class AgregarSalon extends HttpServlet {
+@WebServlet(name = "AgregarCurso", urlPatterns = {"/AgregarCurso"})
+public class AgregarCurso extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
 
@@ -49,7 +49,7 @@ public class AgregarSalon extends HttpServlet {
 		pw.close();
             */
             //String dire=req.getParameter("direccion");
-            res.sendRedirect("http://localhost:8084/ProyectoAYD2/agregarSalon.jsp");
+            res.sendRedirect("http://localhost:8084/ProyectoAYD2/agregarCurso.jsp");
 	}
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>

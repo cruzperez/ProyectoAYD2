@@ -1,12 +1,30 @@
+<%-- 
+    Document   : modificarSalon
+    Created on : Mar 10, 2015, 4:07:38 PM
+    Author     : cruz
+--%>
+
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.Vector"%>
+<%@page import="acceso.Conexion"%>
+<%@page import="vista.*"%>
+<%@page import="logica.*"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
+    <%
+   //comentario     
+        String titulo = "Agregar Curso";
+        ModuloLaboratorio lab = new ModuloLaboratorio();
+    %>
     <head>
-        <title>Cursos</title>
+        <title>Agregar Curso</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link href="css/style.css" rel="stylesheet" type="text/css">
+        <title><%=titulo%></title>
     </head>
     <body>
-        
+                
         <div id="wrapper"> 
 
   <div id="header"> 
@@ -39,7 +57,7 @@
         <h1>Menu Principal</h1>
         <div class="box">
           <ul>
-            <li><a href="http://localhost:8084/ProyectoAYD2/agregarCurso.jsp">Agregar Curso</a></li>
+            <li><a href="http://localhost:8084/ProyectoAYD2/agregarCurso.html">Agregar Curso</a></li>
             <li><a href="http://localhost:8084/ProyectoAYD2/modificarCurso.jsp">Modificar Curso</a></li>
             <li><a href="http://localhost:8084/ProyectoAYD2/eliminarCurso.jsp">Eliminar Curso</a></li>
           </ul>
@@ -50,16 +68,36 @@
         <h1>Bienvenido!</h1>
         <div class="box">
           <p>Bienvenido al panel administrativo del sistema, en el cual puede modificar
-          las configuraciones de los laboratorios.</p>
-        </div>
+          las configuraciones de labori      </div>
       </div>
 
     </div>
 
     <div class="right_section">
       <div class="common_content">
-        <h2>Gestion de Cursos</h2>
+        <h2>Agregar Curso</h2>
         <hr>
+        
+        <FORM NAME="FORM1" METHOD="POST" ACTION="">
+            <%
+            String texto = "";
+            if(request.getParameter("guardar") != null)
+            {
+                texto = request.getParameter("nombre");;
+            }
+            %>
+	   <TABLE BORDER>
+		<TR>
+		  <TD><B>Nombre</TD>
+		  <TD><INPUT ENGINE=TEXTBOX NAME="nombre" SIZE="15" VALUE=""></TD>
+		</TR>
+	   </TABLE>
+	   <P></P>
+                <INPUT TYPE="SUBMIT" NAME="guardar" VALUE="Guardar">
+	   <HR></HR>
+         </FORM>
+	   <HR></HR>
+         
         
         </div>
       
@@ -73,5 +111,4 @@
 
 </div>
         
-    </body>
 </html>
