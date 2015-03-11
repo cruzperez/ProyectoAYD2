@@ -73,5 +73,27 @@ catch(SQLException e) {
             System.out.println("Problema para cerrar la Conexión a la base de datos" );
         }
     }
+       
+       public String getCadena (String cadena){
+       
+           return "/" + cadena;
+       }
+       
+       public ResultSet getSalones()
+    {
+        ResultSet rs = null;
+        Statement s = null;
+        try
+        {
+            s = conn.createStatement();
+            //seleccionamos la tabla de la base de datos la cual lleva por nombre trabajadores
+            rs = s.executeQuery("SELECT * FROM  Alumnos");
+        }catch (Exception e)
+        {
+            System.out.println("Problema al consultar la base de datos "+e);
+        }
+        return rs;
+    }
+       
         
 }
