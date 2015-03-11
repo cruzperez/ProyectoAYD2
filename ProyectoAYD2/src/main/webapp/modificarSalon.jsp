@@ -13,10 +13,9 @@
 <!DOCTYPE html>
 <html>
     <%
-        Conexion miconexion = new Conexion();
-        miconexion.crearConn();
+        
    //comentario     
-        String titulo = miconexion.getCadena("hello world! :D");
+        String titulo = "Modificar Salon";
         ModuloLaboratorio lab = new ModuloLaboratorio();
         
         int idsalon = 0;
@@ -24,10 +23,10 @@
         String nombre = "";
     %>
     <head>
-        <title>Modificar Salon</title>
+        <title><%=titulo%></title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link href="css/style.css" rel="stylesheet" type="text/css">
-        <title><%=titulo%></title>
+        
     </head>
     <body>
                 
@@ -106,8 +105,8 @@
         %>
 
     <select  NAME = "item">
-   <%  for(int i = 0; i < vecCapacidades.size(); i++) {
-           String option = (String)vecCapacidades.get(i);
+   <%  for(int i = 0; i < vecSalones.size(); i++) {
+           String option = (String)vecSalones.get(i);
    %>
    <option value="<%= option %>" NAME="item1"><%= option %></option>
    <% } %>
@@ -115,7 +114,7 @@
     </select>   
    
    <form method="POST" action="">
-       <INPUT ENGINE=TEXTBOX NAME="idsalon" SIZE="5" VALUE="<%= idsalon%>">
+       
    <INPUT TYPE="SUBMIT" NAME="buscar" VALUE="Buscar">
         <%
             if(request.getParameter("buscar") != null)
@@ -138,7 +137,7 @@
                 lab.modificarSalon(idsalon, nombre, capacidad);
             }
         %>
-    
+    <INPUT ENGINE=TEXTBOX NAME="idsalon" SIZE="5" VALUE="<%= idsalon%>">
    
                   </TD>
 		</TR>
