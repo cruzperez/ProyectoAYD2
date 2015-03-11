@@ -21,9 +21,9 @@ private Connection conn;
     public void crearConn()
     {
         String driver = "org.postgresql.Driver"; // el nombre de nuestro driver Postgres.
-        String connectString = "jdbc:postgresql://localhost:5433/ProyectoAYD2"; // llamamos nuestra bd
+        String connectString = "jdbc:postgresql://localhost:5432/ProyectoAYD2"; // llamamos nuestra bd
         String user = "postgres"; // usuario postgres
-        String password = "root"; // no tiene password nuestra bd.
+        String password = "cruz"; // no tiene password nuestra bd.
         //String devolver="";
         
         try {

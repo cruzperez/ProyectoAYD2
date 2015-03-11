@@ -20,7 +20,7 @@
         ModuloLaboratorio lab = new ModuloLaboratorio();
     %>
     <head>
-        <title>Modificar Salon</title>
+        <title>Eliminar Salon</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link href="css/style.css" rel="stylesheet" type="text/css">
         <title><%=titulo%></title>
@@ -77,7 +77,7 @@
 
     <div class="right_section">
       <div class="common_content">
-        <h2>Modificar Salon</h2>
+        <h2>Eliminar Salon</h2>
         <hr>
         
         <TABLE BORDER>
