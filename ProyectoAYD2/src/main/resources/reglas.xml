@@ -75,10 +75,10 @@ page at http://checkstyle.sourceforge.net/config.html -->
 	  <property name="severity" value="error"/>
     </module>
 	
-	<module name="VariableNameCheck">
+	<module name="LocalVariableNameCheck">
       <!-- Validates static, non-final fields against the supplied
       expression "^[a-z][a-zA-Z0-9]*_?$". -->
-      <metadata name="altname" value="VariableName"/>
+      <metadata name="altname" value="LocalVariableName"/>
       <property name="applyToPublic" value="true"/>
       <property name="applyToProtected" value="true"/>
       <property name="applyToPackage" value="true"/>
