@@ -54,7 +54,10 @@ public class ModuloLaboratorio {
     public ArrayList obtenerSalones(){
         try{
             String[] salones = lab.retornarSalones().split("/");
-            ArrayList ids = new ArrayList(Arrays.asList(salones[0].split(",")));
+            ArrayList ids = new ArrayList();
+            for (int i = 0; i<salones.length;i++){
+                ids.add(salones[i].split(","));
+            }
             return ids;
         }catch(Exception e){
             ArrayList fail = new ArrayList();
