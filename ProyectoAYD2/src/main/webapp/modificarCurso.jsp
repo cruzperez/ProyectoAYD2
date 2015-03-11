@@ -13,11 +13,12 @@
 <!DOCTYPE html>
 <html>
     <%
-        Conexion miconexion = new Conexion();
-        miconexion.crearConn();
    //comentario     
-        String titulo = miconexion.getCadena("hello world! :D");
-        ModuloLaboratorio lab = new ModuloLaboratorio();
+        String titulo = "Modificar Curso";
+        GestionCurso gcurso = new GestionCurso();
+        
+        int idcurso = 0;
+        String nombre = "";
     %>
     <head>
         <title>Modificar Salon</title>
@@ -94,7 +95,7 @@
             al.add("D");
             al.add("F");
             */
-            ArrayList al = lab.obtenerSalones();
+            ArrayList al = gcurso.obtenerCursos();
             String texto = "";
 
         %>
