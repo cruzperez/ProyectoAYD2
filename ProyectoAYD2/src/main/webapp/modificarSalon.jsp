@@ -12,7 +12,7 @@
     <%
         Conexion miconexion = new Conexion();
         miconexion.crearConn();
-        
+   //comentario     
    String titulo = miconexion.getCadena("hello world! :D");
     %>
     <head>
