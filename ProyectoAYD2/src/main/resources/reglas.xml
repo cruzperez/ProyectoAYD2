@@ -37,7 +37,7 @@ page at http://checkstyle.sourceforge.net/config.html -->
 	<module name="ConstantNameCheck">
       <!-- Validates non-private, static, final fields against the supplied
       public/package final fields "^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$". -->
-      <!--metadata name="altname" value="ConstantName"/-->
+      <metadata name="altname" value="ConstantName"/>
       <property name="applyToPublic" value="true"/>
       <property name="applyToProtected" value="true"/>
       <property name="applyToPackage" value="true"/>
