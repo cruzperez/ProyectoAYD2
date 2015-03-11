@@ -4,6 +4,8 @@
     Author     : cruz
 --%>
 
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.Vector"%>
 <%@page import="acceso.Conexion"%>
 <%@page import="vista.*"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -76,34 +78,64 @@
         <h2>Modificar Salon</h2>
         <hr>
         
-        <FORM NAME="FORM1" METHOD="POST"
-		ACTION="http://localhost:8084/ProyectoAYD2/AgregarSalon">
-	   <TABLE BORDER>
+        <TABLE BORDER>
                <TR>
 		  <TD><B>Id Salon</TD>
-		  <TD><jsp:useBean id="obj1" class="vista.ComboValues" scope="page"> </jsp:useBean>
-                  <jsp:useBean id="obj2" class="vista.Input" scope="page"> </jsp:useBean>
-                    <select>
-                        <option selected value="SELECT">SELECT</option>
-                            <c:forEach var="item" items="${obj1.getValues(obj2)}">
-                                <option>${item}</option>
-                            </c:forEach>
-                    </select>
+		  <TD>
+        <%
+
+            ArrayList al = new ArrayList();
+            al.add("C");
+            al.add("A");
+            al.add("E");
+            al.add("B");
+            al.add("D");
+            al.add("F");
+            
+            String texto = "";
+
+        %>
+
+<select>
+   <%  for(int i = 0; i < al.size(); i++) {
+           String option = (String)al.get(i);
+   %>
+   <option value="<%= option %>"><%= option %></option>
+   <% } %>
+   
+    </select>
+   <form method="POST" name="buscar" action="">
+   <INPUT TYPE="SUBMIT" NAME="buscar" VALUE="Buscar">
+        <%
+            if(request.getParameter("buscar") != null)
+            {
+                texto = al.get(3).toString();
+            }
+            if(request.getParameter("guardar") != null)
+            {
+                texto = al.get(0).toString();
+            }
+        %>
+    </form>
+   
                   </TD>
 		</TR>
 		<TR>
 		  <TD><B>Nombre</TD>
-		  <TD><INPUT ENGINE=TEXTBOX NAME="nombre" SIZE="15" VALUE=""></TD>
+                  <TD><INPUT ENGINE=TEXTBOX NAME="nombre" SIZE="15" VALUE=""></TD>
 		</TR>
 		<TR>
 		  <TD><B>Capacidad</TD>
-		  <TD><INPUT ENGINE=TEXTBOX NAME="capacidad" SIZE="10" VALUE=""></TD>
+                  <TD><INPUT ENGINE=TEXTBOX NAME="capacidad" SIZE="10" VALUE="<%=texto%>"></TD>
 		</TR>
 	   </TABLE>
 	   <P></P>
-	   <INPUT TYPE="SUBMIT" VALUE="Guardar">
+           <form method="POST" name="guardar" action="">
+                <INPUT TYPE="SUBMIT" NAME="guardar" VALUE="Guardar">
+                
+           </form>
 	   <HR></HR>
-         </FORM>
+         
         
         </div>
       
