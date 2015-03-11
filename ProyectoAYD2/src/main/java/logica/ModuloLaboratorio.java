@@ -24,7 +24,7 @@ public class ModuloLaboratorio {
         }
     }
     
-    public boolean nuevoSalon(int id, String salon, int capacidad){
+    public boolean nuevoSalon(String salon, int capacidad){
         try{
             lab.insertarSalon(salon, capacidad);
             return true;
