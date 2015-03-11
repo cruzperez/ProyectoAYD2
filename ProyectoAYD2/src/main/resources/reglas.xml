@@ -42,9 +42,9 @@ page at http://checkstyle.sourceforge.net/config.html -->
       <property name="applyToProtected" value="true"/>
       <property name="applyToPackage" value="true"/>
       <property name="applyToPrivate" value="true"/>
-      <property name="format" value="^([a-z][a-z0-9]+(_[a-z0-9]+)*)"/>
+      <property name="format" value="^([A-Z][A-Z0-9]+(_[A-Z0-9]+)*)"/>
       <message key="name.invalidPattern" 
-					value="La variable ''{0}'' debe contener mas de una letra, estar en minusculas y sustituir 'ñ' por 'nn' "/>
+					value="La variable ''{0}'' debe contener mas de una letra, estar en mayuscula y sustituir 'ñ' por 'nn' "/>
       <property name="severity" value="warning"/>
     </module>
 
