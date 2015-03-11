@@ -56,7 +56,22 @@ public class ModuloLaboratorio {
             String[] salones = lab.retornarSalones().split("/");
             ArrayList ids = new ArrayList();
             for (int i = 0; i<salones.length;i++){
-                ids.add(salones[i].split(","));
+                ids.add(salones[i].split(",")[0]);
+            }
+            return ids;
+        }catch(Exception e){
+            ArrayList fail = new ArrayList();
+            fail.add("- no items -");
+            return fail;
+        }
+    }
+    
+    public ArrayList obtenerSalonesNombre(){
+        try{
+            String[] salones = lab.retornarSalones().split("/");
+            ArrayList ids = new ArrayList();
+            for (int i = 0; i<salones.length;i++){
+                ids.add(salones[i].split(",")[1]);
             }
             return ids;
         }catch(Exception e){
