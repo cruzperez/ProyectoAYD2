@@ -108,19 +108,23 @@
    <% } %>
    
     </select>   
+   
    <form method="POST" action="">
+       <INPUT ENGINE=TEXTBOX NAME="idsalon" SIZE="5" VALUE="">
    <INPUT TYPE="SUBMIT" NAME="buscar" VALUE="Buscar">
         <%
             if(request.getParameter("buscar") != null)
             {
                 
-                texto = request.getParameter("item1") ;
+                texto = request.getParameter("idsalon") ;
                 
                 
             }
             if(request.getParameter("guardar") != null)
             {
-                texto = request.getParameter("nombre");;
+                int idsalon = Integer.parseInt(request.getParameter("idsalon"));
+                String capacidad = request.getParameter("nombre");
+                //lab.modificarSalon(, salon, capacidad)
             }
         %>
     
