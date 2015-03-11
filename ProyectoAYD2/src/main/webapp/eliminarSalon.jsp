@@ -104,7 +104,9 @@
 
         %>
 
-<select>
+        <form method="POST" name="buscar" action="">
+            
+<select name="idsalon">
    <%  for(int i = 0; i < vecSalones.size(); i++) {
            String option = (String)vecSalones.get(i);
    %>
@@ -112,7 +114,7 @@
    <% } %>
    
     </select>
-   <form method="POST" name="buscar" action="">
+   
    <INPUT TYPE="SUBMIT" NAME="buscar" VALUE="Buscar">
         <%
             if(request.getParameter("buscar") != null)
@@ -131,9 +133,7 @@
                 idsalon = Integer.parseInt(request.getParameter("idsalon"));
                 lab.borrarSalon(idsalon);
             }
-        %>
-        <INPUT ENGINE=TEXTBOX NAME="idsalon" SIZE="5" VALUE="<%= idsalon%>">
-    
+        %> 
    
                   </TD>
 		</TR>
