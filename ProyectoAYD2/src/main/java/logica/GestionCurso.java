@@ -5,6 +5,7 @@
 package logica;
 
 import acceso.GestionLaboratorio;
+import java.util.ArrayList;
 
 /**
  *
@@ -50,11 +51,33 @@ public class GestionCurso {
         }
     }
     
-    public String obtenerCursos(){
+    public ArrayList obtenerCursos(){
         try{
-            return lab.retornarCursos();
+            String[] salones = lab.retornarCursos().split("/");
+            ArrayList ids = new ArrayList();
+            for (int i = 0; i<salones.length;i++){
+                ids.add(salones[i].split(",")[0]);
+            }
+            return ids;
         }catch(Exception e){
-            return "error";
+            ArrayList fail = new ArrayList();
+            fail.add("- no items -");
+            return fail;
+        }
+    }
+    
+    public ArrayList obtenerCursosNombre(){
+        try{
+            String[] salones = lab.retornarCursos().split("/");
+            ArrayList ids = new ArrayList();
+            for (int i = 0; i<salones.length;i++){
+                ids.add(salones[i].split(",")[1]);
+            }
+            return ids;
+        }catch(Exception e){
+            ArrayList fail = new ArrayList();
+            fail.add("- no items -");
+            return fail;
         }
     }
 }
