@@ -37,14 +37,27 @@ page at http://checkstyle.sourceforge.net/config.html -->
 	<module name="ConstantNameCheck">
       <!-- Validates non-private, static, final fields against the supplied
       public/package final fields "^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$". -->
-      <!--metadata name="altname" value="ConstantName"/-->
+      <metadata name="altname" value="ConstantName"/>
       <property name="applyToPublic" value="true"/>
       <property name="applyToProtected" value="true"/>
       <property name="applyToPackage" value="true"/>
       <property name="applyToPrivate" value="true"/>
-      <property name="format" value="^([a-z][a-z0-9]+(_[a-z0-9]+)*)"/>
+      <property name="format" value="^([A-Z][A-Z0-9]+(_[A-Z0-9]+)*)"/>
       <message key="name.invalidPattern" 
-					value="La variable ''{0}'' debe contener mas de una letra, estar en minusculas y sustituir 'ñ' por 'nn' "/>
+					value="La variable ''{0}'' debe contener mas de una letra, estar en mayuscula y sustituir 'ñ' por 'nn' "/>
+      <property name="severity" value="warning"/>
+    </module>
+
+	<module name="RedundantImport">
+      <property name="severity" value="error"/>
+    </module>
+	
+	<module name="MethodNameCheck">
+      <!-- Validates identifiers for method names. -->
+      <metadata name="altname" value="MethodName"/>
+      <property name="format" value="^[a-z][a-zA-Z0-9]*(_[A-Z][a-zA-Z0-9]+)*"/>
+	  <message key="name.invalidPattern" 
+					value="El metodo ''{0}'' debe comenzar con minuscula "/>
       <property name="severity" value="warning"/>
     </module>
 
