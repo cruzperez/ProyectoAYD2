@@ -106,8 +106,8 @@
         %>
 
     <select  NAME = "item">
-   <%  for(int i = 0; i < vecSalones.size(); i++) {
-           String option = (String)vecSalones.get(i);
+   <%  for(int i = 0; i < vecCapacidades.size(); i++) {
+           String option = (String)vecCapacidades.get(i);
    %>
    <option value="<%= option %>" NAME="item1"><%= option %></option>
    <% } %>
@@ -121,11 +121,11 @@
             if(request.getParameter("buscar") != null)
             {
                 
-                texto = request.getParameter("idsalon") ;
+                idsalon = Integer.parseInt(request.getParameter("idsalon"));
                 for (int i=0; i<vecNombres.size(); i++){
-                    if(vecSalones.get(i).toString().equals(idsalon)){
+                    if(Integer.parseInt(vecSalones.get(i).toString()) == idsalon){
                         nombre = vecNombres.get(i).toString();
-                        capacidad = Integer.parseInt(vecNombres.get(i).toString());
+                        capacidad = Integer.parseInt(vecCapacidades.get(i).toString());
                     }
                 }
                 
