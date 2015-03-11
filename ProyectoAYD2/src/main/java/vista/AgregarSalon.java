@@ -24,26 +24,32 @@ import acceso.Conexion;
  *
  * @author cruz
  */
-@WebServlet(name = "Salones", urlPatterns = {"/Salones"})
-public class Salones extends HttpServlet {
+@WebServlet(name = "AgregarSalon", urlPatterns = {"/AgregarSalon"})
+public class AgregarSalon extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
 
 	public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		// Obtenemos un objeto Print Writer para enviar respuesta
+            
             Conexion miconexion = new Conexion();
             
+            /*
 		res.setContentType("text/html");
 		PrintWriter pw = res.getWriter();
 		pw.println("<HTML><HEAD><TITLE>Leyendo parámetros</TITLE></HEAD>");
 		pw.println("<BODY BGCOLOR=\"#CCBBAA\">");
 		pw.println("<H2>Leyendo parámetros desde un formulario html</H2><P>");
 		pw.println("<UL>\n");
-		pw.println("Te llamas " + req.getParameter("NOM") + "<BR>");
-		pw.println("y tienes "  + req.getParameter("EDA") + " años<BR>");
-                pw.println("Respuesta: " + miconexion.getCadena(req.getParameter("NOM")) +" - " + miconexion.getCadena(req.getParameter("EDA")));
+		pw.println("Salon de " + req.getParameter("nombre") + "<BR>");
+		pw.println("con capacidad de "  + req.getParameter("capacidad") + " personas<BR>");
+                pw.println("Respuesta: " + miconexion.getCadena(req.getParameter("nombre") + req.getParameter("capacidad")));
+                pw.println("<a href = \"http://localhost:8084/ProyectoAYD2/agregarSalon.html\">Regresar</a>");
 		pw.println("</BODY></HTML>");
 		pw.close();
+            */
+            //String dire=req.getParameter("direccion");
+            res.sendRedirect("http://localhost:8084/ProyectoAYD2" + miconexion.getCadena("agregarSalon.html"));
 	}
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -81,6 +87,13 @@ public class Salones extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        // TODO Auto-generated method stub
+        
+    }
+    
+    /*
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {

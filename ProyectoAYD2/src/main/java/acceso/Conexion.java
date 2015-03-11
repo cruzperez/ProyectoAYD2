@@ -91,7 +91,24 @@ devolver="Se ha producido un error en la conexion a la base de datos Ejemplo! "+
        
        public String getCadena (String cadena){
        
-           return "devuelve " + cadena;
+           return "/" + cadena;
        }
+       
+       public ResultSet getSalones()
+    {
+        ResultSet rs = null;
+        Statement s = null;
+        try
+        {
+            s = conn.createStatement();
+            //seleccionamos la tabla de la base de datos la cual lleva por nombre trabajadores
+            rs = s.executeQuery("SELECT * FROM  Alumnos");
+        }catch (Exception e)
+        {
+            System.out.println("Problema al consultar la base de datos "+e);
+        }
+        return rs;
+    }
+       
         
 }
