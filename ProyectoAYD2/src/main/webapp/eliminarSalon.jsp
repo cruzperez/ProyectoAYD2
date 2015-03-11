@@ -13,17 +13,16 @@
 <!DOCTYPE html>
 <html>
     <%
-        Conexion miconexion = new Conexion();
-        miconexion.crearConn();
+        
    //comentario     
-        String titulo = miconexion.getCadena("hello world! :D");
+        String titulo = "Eliminar Salon";
         ModuloLaboratorio lab = new ModuloLaboratorio();
     %>
     <head>
-        <title>Eliminar Salon</title>
+        <title><%=titulo%></title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link href="css/style.css" rel="stylesheet" type="text/css">
-        <title><%=titulo%></title>
+        
     </head>
     <body>
                 

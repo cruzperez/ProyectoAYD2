@@ -221,7 +221,7 @@ public class GestionLaboratorio {
             rs = s.executeQuery("SELECT * FROM  salon");
             while(rs.next())
             {
-                devolver+=rs.getString(1)+","+rs.getString(2)+"/";
+                devolver+=rs.getString(1)+","+rs.getString(2)+","+rs.getString(3)+"/";
             }
             rs.close();
         }catch (Exception e)
