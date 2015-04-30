@@ -17,7 +17,7 @@
         String titulo = "Modificar Programa";
         GestionCurso gcurso = new GestionCurso();
 
-        int idcurso = 0;
+        int idprograma = 0;
         String nombre = "";
     %>
     <head>
@@ -78,7 +78,7 @@
 
                 <div class="right_section">
                     <div class="common_content">
-                        <h2>Modificar Curso</h2>
+                        <h2>Modificar Programa</h2>
                         <hr>
 
                         <TABLE BORDER>
@@ -86,7 +86,7 @@
                                 <TD><B>Id Curso</TD>
                                 <TD>
                                     <%
-                                        ArrayList vecCursos = gcurso.obtenerCursos();
+                                        ArrayList vecProgramas = gcurso.obtenerCursos();
                                         ArrayList vecNombres = gcurso.obtenerCursosNombre();
                                         String texto = "";
 
@@ -94,9 +94,9 @@
 
                                     <form method="POST" name="buscar" action="">
 
-                                        <select name="idcurso">
-                                            <%  for (int i = 0; i < vecCursos.size(); i++) {
-                                                    String option = (String) vecCursos.get(i);
+                                        <select name="idprograma">
+                                            <%  for (int i = 0; i < vecProgramas.size(); i++) {
+                                                    String option = (String) vecProgramas.get(i);
                                             %>
                                             <option value="<%= option%>"><%= option%></option>
                                             <% } %>
@@ -108,9 +108,9 @@
                                             if (request.getParameter("buscar") != null) {
                                                 if (request.getParameter("buscar") != null) {
 
-                                                    idcurso = Integer.parseInt(request.getParameter("idcurso"));
+                                                    idprograma = Integer.parseInt(request.getParameter("idprograma"));
                                                     for (int i = 0; i < vecNombres.size(); i++) {
-                                                        if (Integer.parseInt(vecCursos.get(i).toString()) == idcurso) {
+                                                        if (Integer.parseInt(vecProgramas.get(i).toString()) == idprograma) {
                                                             nombre = vecNombres.get(i).toString();
                                                         }
                                                     }
@@ -118,9 +118,9 @@
                                                 }
                                             }
                                             if (request.getParameter("guardar") != null) {
-                                                idcurso = Integer.parseInt(request.getParameter("idcurso"));
+                                                idprograma = Integer.parseInt(request.getParameter("idprograma"));
                                                 nombre = request.getParameter("nombre");
-                                                gcurso.modificarCurso(idcurso, nombre);
+                                                gcurso.modificarCurso(idprograma, nombre);
                                             }
                                         %>  
 

@@ -26,9 +26,11 @@ public class ModuloProgramas {
 
     public boolean nuevoPrograma(String nombre) {
         try {
+            System.out.println("llego aqui");
             prog.insertarPrograma(nombre);
             return true;
         } catch (Exception e) {
+            System.out.println("trono");
             return false;
         }
     }

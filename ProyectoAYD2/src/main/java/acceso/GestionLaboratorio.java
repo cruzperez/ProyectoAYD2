@@ -285,7 +285,8 @@ public class GestionLaboratorio {
             //System.out.println("INSERT INTO curso values(default,'"+name+"');");
 
             //System.out.println("obtenido "+capac);
-            s.executeUpdate("UPDATE reservacion SET fecha_inicio='" + fechaIni + "',fecha_final='" + fechaFin + "',hora_inicio='" + horaIni + "',hora_final='" + horaFin + "',salon_id=" + id + " WHERE id=" + idR + ";");
+            s.executeUpdate("UPDATE reservacion SET fecha_inicio='" + fechaIni + "',fecha_final='" + fechaFin + "',hora_inicio='" + horaIni + "',hora_final='" + horaFin + 
+                    "',salon_id=" + id + " WHERE id=" + idR + ";");
 
         } catch (Exception e) {
             System.out.println("Problema al modificar en reservacion. " + e);
@@ -308,7 +309,8 @@ public class GestionLaboratorio {
             rs.next();
             int id = Integer.parseInt(rs.getString("id"));
             //System.out.println("obtenido "+capac);
-            s.executeUpdate("UPDATE reservacion SET fecha_inicio='" + fechaIni + "',fecha_final='" + fechaFin + "',hora_inicio='" + horaIni + "',hora_final='" + horaFin + "',salon_id=" + id + " WHERE id=" + idR + ";");
+            s.executeUpdate("UPDATE reservacion SET fecha_inicio='" + fechaIni + "',fecha_final='" + fechaFin + "',hora_inicio='" + horaIni + 
+                    "',hora_final='" + horaFin + "',salon_id=" + id + " WHERE id=" + idR + ";");
 
         } catch (Exception e) {
             System.out.println("Problema al insertar en reservacion. " + e);

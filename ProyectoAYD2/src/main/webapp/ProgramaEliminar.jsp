@@ -83,7 +83,7 @@
 
                         <TABLE BORDER>
                             <TR>
-                                <TD><B>Id Curso</TD>
+                                <TD><B>Id Programa</TD>
                                 <TD>
                                     <%
                                         ArrayList vecNombres = gprograma.obtenerProgramasNombre();
@@ -109,7 +109,7 @@
 
                                         <%
                                             if (request.getParameter("buscar") != null) {
-                                                idprograma = Integer.parseInt(request.getParameter("id"));
+                                                idprograma = Integer.parseInt(request.getParameter("idprograma"));
                                                 for (int i = 0; i < vecNombres.size(); i++) {
                                                     if (Integer.parseInt(vecNombres.get(i).toString()) == idprograma) {
                                                         nombre = vecNombres.get(i).toString();

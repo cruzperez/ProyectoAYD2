@@ -19,12 +19,12 @@ public class GestionPrograma {
     private Connection conn;
 
     public void insertarPrograma(String name) {
-
+        System.out.println("llego aqui 2");
         nuevaConexion.crearConn();
         conn = nuevaConexion.getConn();
         Statement s = null;
         try {
-            System.out.println("llego aqui 2");
+            System.out.println("llego aqui 3");
             s = conn.createStatement();
             s.executeUpdate("INSERT INTO programa values(default,'" + name + "');");
 
@@ -34,7 +34,6 @@ public class GestionPrograma {
         nuevaConexion.cierraConn();
 
     }
-
 
     public void modificarPrograma(int id, String name) {
 
