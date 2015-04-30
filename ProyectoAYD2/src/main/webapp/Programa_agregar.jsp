@@ -15,7 +15,7 @@
     <%
         //comentario     
         String titulo = "Agregar Software";
-        GestionCurso gcurso = new GestionCurso();
+        ModuloProgramas mprogramas = new ModuloProgramas();
     %>
     <head>
         <title>Agregar Curso</title>
@@ -80,10 +80,9 @@
 
                         <FORM NAME="FORM1" METHOD="POST" ACTION="">
                             <%
-                                String texto = "";
                                 if (request.getParameter("guardar") != null) {
-                                    String nombre = request.getParameter("nombre");
-                                    gcurso.nuevoCurso(nombre);
+                                    String nombres = request.getParameter("nombre");
+                                    mprogramas.nuevoPrograma(nombres);
                                 }
                             %>
                             <TABLE BORDER>

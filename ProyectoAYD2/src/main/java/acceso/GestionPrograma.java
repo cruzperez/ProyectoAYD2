@@ -18,25 +18,24 @@ public class GestionPrograma {
     private Conexion nuevaConexion;
     private Connection conn;
 
-    public void insertarPrograma(String name, int capacidad) {
+    public void insertarPrograma(String name) {
 
         nuevaConexion.crearConn();
         conn = nuevaConexion.getConn();
         Statement s = null;
         try {
             s = conn.createStatement();
-            //seleccionamos la tabla de la base de datos la cual lleva por nombre trabajadores
-            //System.out.println("INSERT INTO curso values(default,'"+name+"');");
-            s.executeUpdate("INSERT INTO salon values(default,'" + name + "'," + capacidad + ");");
+            s.executeUpdate("INSERT INTO programa values(default,'" + name + "');");
 
         } catch (Exception e) {
-            System.out.println("Problema al insertar en salon. " + e);
+            System.out.println("Problema al insertar el programa. " + e);
         }
         nuevaConexion.cierraConn();
 
     }
 
-    public void insertarPrograma(String name, int capacidad, String nombre) {
+
+    public void modificarPrograma(int id, String name) {
 
         nuevaConexion.crearConn();
         conn = nuevaConexion.getConn();
@@ -45,28 +44,10 @@ public class GestionPrograma {
             s = conn.createStatement();
             //seleccionamos la tabla de la base de datos la cual lleva por nombre trabajadores
             //System.out.println("INSERT INTO curso values(default,'"+name+"');");
-            s.executeUpdate("INSERT INTO salon values(default,'" + name + "'," + capacidad + ",'" + nombre + "');");
+            s.executeUpdate("UPDATE programa SET nombre='" + name + "' WHERE id=" + id + ";");
 
         } catch (Exception e) {
-            System.out.println("Problema al insertar en salon. " + e);
-        }
-        nuevaConexion.cierraConn();
-
-    }
-
-    public void modificarPrograma(int id, String name, int capacidad) {
-
-        nuevaConexion.crearConn();
-        conn = nuevaConexion.getConn();
-        Statement s = null;
-        try {
-            s = conn.createStatement();
-            //seleccionamos la tabla de la base de datos la cual lleva por nombre trabajadores
-            //System.out.println("INSERT INTO curso values(default,'"+name+"');");
-            s.executeUpdate("UPDATE salon SET nombre='" + name + "', capacidad=" + capacidad + " WHERE id=" + id + ";");
-
-        } catch (Exception e) {
-            System.out.println("Problema al modificar en tabla salon. " + e);
+            System.out.println("Problema al modificar en tabla programa. " + e);
         }
         nuevaConexion.cierraConn();
 
@@ -79,12 +60,10 @@ public class GestionPrograma {
         Statement s = null;
         try {
             s = conn.createStatement();
-            //seleccionamos la tabla de la base de datos la cual lleva por nombre trabajadores
-            //System.out.println("INSERT INTO curso values(default,'"+name+"');");
-            s.executeUpdate("DELETE FROM salon  WHERE id=" + id + ";");
+            s.executeUpdate("DELETE FROM programa WHERE id=" + id + ";");
 
         } catch (Exception e) {
-            System.out.println("Problema al eliminar en tabla salon. " + e);
+            System.out.println("Problema al eliminar en tabla programa. " + e);
         }
         nuevaConexion.cierraConn();
     }
@@ -97,15 +76,13 @@ public class GestionPrograma {
         ResultSet rs = null;
         try {
             s = conn.createStatement();
-            rs = s.executeQuery("SELECT id FROM salon WHERE nombre='" + name + "';");
+            rs = s.executeQuery("SELECT id FROM programa WHERE nombre='" + name + "';");
             rs.next();
             int id = Integer.parseInt(rs.getString("id"));
-            //seleccionamos la tabla de la base de datos la cual lleva por nombre trabajadores
-            //System.out.println("INSERT INTO curso values(default,'"+name+"');");
-            s.executeUpdate("DELETE FROM curso  WHERE id=" + id + ";");
+            s.executeUpdate("DELETE FROM programa WHERE id=" + id + ";");
 
         } catch (Exception e) {
-            System.out.println("Problema al eliminar en tabla salon. " + e);
+            System.out.println("Problema al eliminar en tabla programa. " + e);
         }
         nuevaConexion.cierraConn();
     }
@@ -119,13 +96,13 @@ public class GestionPrograma {
         try {
             s = conn.createStatement();
             //seleccionamos la tabla de la base de datos la cual lleva por nombre trabajadores
-            rs = s.executeQuery("SELECT * FROM  salon");
+            rs = s.executeQuery("SELECT * FROM  programas");
             while (rs.next()) {
                 devolver += rs.getString(1) + "," + rs.getString(2) + "," + rs.getString(3) + "/";
             }
             rs.close();
         } catch (Exception e) {
-            System.out.println("Problema al consultar la tabla salon de la base de datos " + e);
+            System.out.println("Problema al consultar la tabla programa de la base de datos " + e);
         }
         nuevaConexion.cierraConn();
         return devolver;

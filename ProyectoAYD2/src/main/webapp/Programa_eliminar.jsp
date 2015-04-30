@@ -4,6 +4,7 @@
     Author     : cruz
 --%>
 
+<%@page import="acceso.GestionPrograma"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.Vector"%>
 <%@page import="acceso.Conexion"%>
@@ -15,9 +16,8 @@
     <%
         //comentario     
         String titulo = "Eliminar Curso";
-        GestionCurso gcurso = new GestionCurso();
-
-        int idcurso = 0;
+        ModuloProgramas gprograma = new ModuloProgramas();
+        int idprograma = 0;
         String nombre = "";
     %>
     <head>
@@ -86,26 +86,16 @@
                                 <TD><B>Id Curso</TD>
                                 <TD>
                                     <%
-                                        /*
-                                         ArrayList al = new ArrayList();
-                                         al.add("C");
-                                         al.add("A");
-                                         al.add("E");
-                                         al.add("B");
-                                         al.add("D");
-                                         al.add("F");
-                                         */
-                                        ArrayList vecCursos = gcurso.obtenerCursos();
-                                        ArrayList vecNombres = gcurso.obtenerCursosNombre();
+                                        ArrayList vecNombres = gprograma.obtenerProgramasNombre();
                                         String texto = "";
 
                                     %>
 
                                     <form method="POST" name="buscar" action="">
 
-                                        <select name="idcurso">
-                                            <%  for (int i = 0; i < vecCursos.size(); i++) {
-                                                    String option = (String) vecCursos.get(i);
+                                        <select name="idprograma">
+                                            <%  for (int i = 0; i < vecNombres.size(); i++) {
+                                                    String option = (String) vecNombres.get(i);
                                             %>
                                             <option value="<%= option%>"><%= option%></option>
                                             <% } %>
@@ -119,9 +109,9 @@
 
                                         <%
                                             if (request.getParameter("buscar") != null) {
-                                                idcurso = Integer.parseInt(request.getParameter("idcurso"));
+                                                idprograma = Integer.parseInt(request.getParameter("id"));
                                                 for (int i = 0; i < vecNombres.size(); i++) {
-                                                    if (Integer.parseInt(vecCursos.get(i).toString()) == idcurso) {
+                                                    if (Integer.parseInt(vecNombres.get(i).toString()) == idprograma) {
                                                         nombre = vecNombres.get(i).toString();
                                                     }
                                                 }
@@ -129,8 +119,8 @@
                                             }
                                             if (request.getParameter("eliminar") != null) {
                                                 if (request.getParameter("eliminar") != null) {
-                                                    idcurso = Integer.parseInt(request.getParameter("idcurso"));
-                                                    gcurso.borrarCurso(idcurso);
+                                                    idprograma = Integer.parseInt(request.getParameter("idprograma"));
+                                                    gprograma.borrarPrograma(idprograma);
                                                 }
                                             }
                                         %>
