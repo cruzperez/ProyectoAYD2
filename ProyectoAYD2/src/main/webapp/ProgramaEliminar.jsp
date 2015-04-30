@@ -4,6 +4,7 @@
     Author     : cruz
 --%>
 
+<%@page import="acceso.GestionPrograma"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.Vector"%>
 <%@page import="acceso.Conexion"%>
@@ -14,14 +15,13 @@
 <html>
     <%
         //comentario     
-        String titulo = "Modificar Programa";
-        GestionCurso gcurso = new GestionCurso();
-
-        int idcurso = 0;
+        String titulo = "Eliminar Programa";
+        ModuloProgramas gprograma = new ModuloProgramas();
+        int idprograma = 0;
         String nombre = "";
     %>
     <head>
-        <title>Modificar Programa</title>
+        <title>Eliminar Programa</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link href="css/style.css" rel="stylesheet" type="text/css">
         <title><%=titulo%></title>
@@ -71,14 +71,14 @@
                         <h1>Bienvenido!</h1>
                         <div class="box">
                             <p>Bienvenido al panel administrativo del sistema, en el cual puede modificar
-                                las configuraciones del software     </div>
+                                las configuraciones de software</div>
                     </div>
 
                 </div>
 
                 <div class="right_section">
                     <div class="common_content">
-                        <h2>Modificar Curso</h2>
+                        <h2>Eliminar Curso</h2>
                         <hr>
 
                         <TABLE BORDER>
@@ -86,43 +86,44 @@
                                 <TD><B>Id Curso</TD>
                                 <TD>
                                     <%
-                                        ArrayList vecCursos = gcurso.obtenerCursos();
-                                        ArrayList vecNombres = gcurso.obtenerCursosNombre();
+                                        ArrayList vecNombres = gprograma.obtenerProgramasNombre();
                                         String texto = "";
 
                                     %>
 
                                     <form method="POST" name="buscar" action="">
 
-                                        <select name="idcurso">
-                                            <%  for (int i = 0; i < vecCursos.size(); i++) {
-                                                    String option = (String) vecCursos.get(i);
+                                        <select name="idprograma">
+                                            <%  for (int i = 0; i < vecNombres.size(); i++) {
+                                                    String option = (String) vecNombres.get(i);
                                             %>
                                             <option value="<%= option%>"><%= option%></option>
                                             <% } %>
 
                                         </select>
 
+
+
+
                                         <INPUT TYPE="SUBMIT" NAME="buscar" VALUE="Buscar">
+
                                         <%
                                             if (request.getParameter("buscar") != null) {
-                                                if (request.getParameter("buscar") != null) {
-
-                                                    idcurso = Integer.parseInt(request.getParameter("idcurso"));
-                                                    for (int i = 0; i < vecNombres.size(); i++) {
-                                                        if (Integer.parseInt(vecCursos.get(i).toString()) == idcurso) {
-                                                            nombre = vecNombres.get(i).toString();
-                                                        }
+                                                idprograma = Integer.parseInt(request.getParameter("id"));
+                                                for (int i = 0; i < vecNombres.size(); i++) {
+                                                    if (Integer.parseInt(vecNombres.get(i).toString()) == idprograma) {
+                                                        nombre = vecNombres.get(i).toString();
                                                     }
+                                                }
 
+                                            }
+                                            if (request.getParameter("eliminar") != null) {
+                                                if (request.getParameter("eliminar") != null) {
+                                                    idprograma = Integer.parseInt(request.getParameter("idprograma"));
+                                                    gprograma.borrarPrograma(idprograma);
                                                 }
                                             }
-                                            if (request.getParameter("guardar") != null) {
-                                                idcurso = Integer.parseInt(request.getParameter("idcurso"));
-                                                nombre = request.getParameter("nombre");
-                                                gcurso.modificarCurso(idcurso, nombre);
-                                            }
-                                        %>  
+                                        %>
 
                                         </TD>
                                         </TR>
@@ -133,7 +134,7 @@
                         </TABLE>
                         <P></P>
 
-                        <INPUT TYPE="SUBMIT" NAME="guardar" VALUE="Guardar">
+                        <INPUT TYPE="SUBMIT" NAME="eliminar" VALUE="Eliminar">
 
                         </form>
                         <HR></HR>
@@ -150,5 +151,7 @@
             </div>
 
         </div>
+
+
 
 </html>
