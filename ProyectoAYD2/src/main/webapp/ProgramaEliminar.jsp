@@ -60,9 +60,9 @@
                         <h1>Menu Principal</h1>
                         <div class="box">
                             <ul>
-                                <li><a href="http://localhost:8084/ProyectoAYD2/Programa_agregar.jsp">Agregar Software</a></li>
-                                <li><a href="http://localhost:8084/ProyectoAYD2/Programa_eliminar.jsp">Modificar Software</a></li>
-                                <li><a href="http://localhost:8084/ProyectoAYD2/Programa_modificar.jsp">Eliminar Software</a></li>
+                                <li><a href="http://localhost:8084/ProyectoAYD2/ProgramaAgregar.jsp">Agregar Software</a></li>
+                                <li><a href="http://localhost:8084/ProyectoAYD2/ProgramaEliminar.jsp">Modificar Software</a></li>
+                                <li><a href="http://localhost:8084/ProyectoAYD2/ProgramaModificar.jsp">Eliminar Software</a></li>
                             </ul>
                         </div>
                     </div>
