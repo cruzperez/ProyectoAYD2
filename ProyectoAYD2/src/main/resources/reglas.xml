@@ -16,64 +16,64 @@ page at http://checkstyle.sourceforge.net/config.html -->
 
     LENGTH and CODING CHECKS
 
-    -->
+        -->
 
-    <module name="LineLength">
-      <!-- Checks if a line is too long. -->
-      <property name="max" value="${com.puppycrawl.tools.checkstyle.checks.sizes.LineLength.max}" default="200"/>
-      <property name="severity" value="error"/>
+        <module name="LineLength">
+            <!-- Checks if a line is too long. -->
+            <property name="max" value="${com.puppycrawl.tools.checkstyle.checks.sizes.LineLength.max}" default="200"/>
+            <property name="severity" value="error"/>
 
-      <!--
-        The default ignore pattern exempts the following elements:
-          - import statements
-          - long URLs inside comments
-      -->
+            <!--
+              The default ignore pattern exempts the following elements:
+                - import statements
+                - long URLs inside comments
+            -->
 
-      <property name="ignorePattern"
-          value="${com.puppycrawl.tools.checkstyle.checks.sizes.LineLength.ignorePattern}"
-          default="^(package .*;\s*)|(import .*;\s*)|( *\* *https?://.*)$"/>
-    </module>
+            <property name="ignorePattern"
+                value="${com.puppycrawl.tools.checkstyle.checks.sizes.LineLength.ignorePattern}"
+                default="^(package .*;\s*)|(import .*;\s*)|( *\* *https?://.*)$"/>
+        </module>
 	
-	<module name="ConstantNameCheck">
-      <!-- Validates non-private, static, final fields against the supplied
-      public/package final fields "^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$". -->
-      <metadata name="altname" value="ConstantName"/>
-      <property name="applyToPublic" value="true"/>
-      <property name="applyToProtected" value="true"/>
-      <property name="applyToPackage" value="true"/>
-      <property name="applyToPrivate" value="true"/>
-      <property name="format" value="^([A-Z][A-Z0-9]+(_[A-Z0-9]+)*)"/>
-      <message key="name.invalidPattern" 
-					value="La variable ''{0}'' debe contener mas de una letra, estar en mayuscula y sustituir 'ñ' por 'nn' "/>
-      <property name="severity" value="error"/>
-    </module>
+        <module name="ConstantNameCheck">
+            <!-- Validates non-private, static, final fields against the supplied
+            public/package final fields "^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$". -->
+            <metadata name="altname" value="ConstantName"/>
+            <property name="applyToPublic" value="true"/>
+            <property name="applyToProtected" value="true"/>
+            <property name="applyToPackage" value="true"/>
+            <property name="applyToPrivate" value="true"/>
+            <property name="format" value="^([A-Z][A-Z0-9]+(_[A-Z0-9]+)*)"/>
+            <message key="name.invalidPattern" 
+               value="La variable ''{0}'' debe contener mas de una letra, estar en mayuscula y sustituir 'ñ' por 'nn' "/>
+            <property name="severity" value="error"/>
+        </module>
 
-	<module name="RedundantImport">
-      <property name="severity" value="error"/>
-    </module>
+        <module name="RedundantImport">
+            <property name="severity" value="error"/>
+        </module>
 	
-	<module name="MethodNameCheck">
-      <!-- Validates identifiers for method names. -->
-      <metadata name="altname" value="MethodName"/>
-      <property name="format" value="^[a-z][a-zA-Z0-9]*(_[A-Z][a-zA-Z0-9]+)*"/>
-	  <message key="name.invalidPattern" 
-					value="El metodo ''{0}'' debe comenzar con minuscula "/>
-      <property name="severity" value="error"/>
-    </module>
+        <module name="MethodNameCheck">
+            <!-- Validates identifiers for method names. -->
+            <metadata name="altname" value="MethodName"/>
+            <property name="format" value="^[a-z][a-zA-Z0-9]*(_[A-Z][a-zA-Z0-9]+)*"/>
+            <message key="name.invalidPattern" 
+                   value="El metodo ''{0}'' debe comenzar con minuscula "/>
+            <property name="severity" value="error"/>
+        </module>
 	
-	<module name="StaticVariableNameCheck">
-      <!-- Validates static, non-final fields against the supplied
-      expression "^[a-z][a-zA-Z0-9]*_?$". -->
-      <metadata name="altname" value="StaticVariableName"/>
-      <property name="applyToPublic" value="true"/>
-      <property name="applyToProtected" value="true"/>
-      <property name="applyToPackage" value="true"/>
-      <property name="applyToPrivate" value="true"/>
-      <property name="format" value="^[A-Z][A-Z]*"/>
-      <message key="name.invalidPattern" 
-					value="La variable estatica''{0}'' debe contener solo mayusculas "/>
-	  <property name="severity" value="error"/>
-    </module>
+        <module name="StaticVariableNameCheck">
+            <!-- Validates static, non-final fields against the supplied
+            expression "^[a-z][a-zA-Z0-9]*_?$". -->
+            <metadata name="altname" value="StaticVariableName"/>
+            <property name="applyToPublic" value="true"/>
+            <property name="applyToProtected" value="true"/>
+            <property name="applyToPackage" value="true"/>
+            <property name="applyToPrivate" value="true"/>
+            <property name="format" value="^[A-Z][A-Z]*"/>
+            <message key="name.invalidPattern" 
+               value="La variable estatica''{0}'' debe contener solo mayusculas "/>
+            <property name="severity" value="error"/>
+        </module>
 	
-  </module>
+    </module>
 </module>

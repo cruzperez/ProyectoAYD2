@@ -58,8 +58,8 @@
                         <div class="box">
                             <ul>
                                 <li><a href="http://localhost:8084/ProyectoAYD2/ProgramaAgregar.jsp">Agregar Software</a></li>
-                                <li><a href="http://localhost:8084/ProyectoAYD2/ProgramaEliminar.jsp">Modificar Software</a></li>
-                                <li><a href="http://localhost:8084/ProyectoAYD2/ProgramaModificar.jsp">Eliminar Software</a></li>
+                                <li><a href="http://localhost:8084/ProyectoAYD2/ProgramaModificar.jsp">Modificar Software</a></li>
+                                <li><a href="http://localhost:8084/ProyectoAYD2/ProgramaEliminar.jsp">Eliminar Software</a></li>
                             </ul>
                         </div>
                     </div>
@@ -81,8 +81,8 @@
                         <FORM NAME="FORM1" METHOD="POST" ACTION="">
                             <%
                                 if (request.getParameter("guardar") != null) {
-                                    String nombres = request.getParameter("nombre");
-                                    mprogramas.nuevoPrograma(nombres);
+                                    String nombre = request.getParameter("nombre");
+                                    mprogramas.nuevoPrograma(nombre);
                                 }
                             %>
                             <TABLE BORDER>

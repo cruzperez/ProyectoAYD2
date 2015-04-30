@@ -24,6 +24,7 @@ public class GestionPrograma {
         conn = nuevaConexion.getConn();
         Statement s = null;
         try {
+            System.out.println("llego aqui 2");
             s = conn.createStatement();
             s.executeUpdate("INSERT INTO programa values(default,'" + name + "');");
 
