@@ -99,7 +99,8 @@
                                 <TR>
                                     <TD><B>ID Tipo Recurso</TD>
 
-                                    <TD><select name="idtiporecurso">
+                                    <TD>
+                                        <select name="idtiporecurso">
                                             <%  for (int i = 0; i < vecID.size(); i++) {
                                                     String option = (String) vecNombres.get(i);
                                             %>

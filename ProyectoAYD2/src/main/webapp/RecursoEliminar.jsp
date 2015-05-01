@@ -16,8 +16,9 @@
     <%
         //comentario     
         String titulo = "Eliminar Programa";
-        ModuloProgramas gprograma = new ModuloProgramas();
-        int idprograma = 0;
+        ModuloLaboratorio mlab = new ModuloLaboratorio();
+        int idtiporecurso = 0;
+        int id = 0;
         String nombre = "";
     %>
     <head>
@@ -89,14 +90,14 @@
                                 <TD><B>Id Recurso</TD>
                                 <TD>
                                     <%
-                                        ArrayList vecNombres = gprograma.obtenerProgramasNombre();
+                                        ArrayList vecNombres = mlab.obtenerRecursosNombre();
                                         String texto = "";
 
                                     %>
 
                                     <form method="POST" name="buscar" action="">
 
-                                        <select name="idprograma">
+                                        <select name="idrecurso">
                                             <%  for (int i = 0; i < vecNombres.size(); i++) {
                                                     String option = (String) vecNombres.get(i);
                                             %>
@@ -112,9 +113,9 @@
 
                                         <%
                                             if (request.getParameter("buscar") != null) {
-                                                idprograma = Integer.parseInt(request.getParameter("idprograma"));
+                                                id = Integer.parseInt(request.getParameter("idrecurso"));
                                                 for (int i = 0; i < vecNombres.size(); i++) {
-                                                    if (Integer.parseInt(vecNombres.get(i).toString()) == idprograma) {
+                                                    if (Integer.parseInt(vecNombres.get(i).toString()) == id) {
                                                         nombre = vecNombres.get(i).toString();
                                                     }
                                                 }
@@ -122,8 +123,8 @@
                                             }
                                             if (request.getParameter("eliminar") != null) {
                                                 if (request.getParameter("eliminar") != null) {
-                                                    idprograma = Integer.parseInt(request.getParameter("idprograma"));
-                                                    gprograma.borrarPrograma(idprograma);
+                                                    id = Integer.parseInt(request.getParameter("idrecurso"));
+                                                    mlab.borrarRecurso(id);
                                                 }
                                             }
                                         %>

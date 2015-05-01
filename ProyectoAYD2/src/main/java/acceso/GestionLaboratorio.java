@@ -438,7 +438,7 @@ public class GestionLaboratorio {
         try {
             s = conn.createStatement();
             //seleccionamos la tabla de la base de datos la cual lleva por nombre trabajadores
-            rs = s.executeQuery("SELECT * FROM  tipo recurso");
+            rs = s.executeQuery("SELECT * FROM  tipo_recurso");
             while (rs.next()) {
                 devolver += rs.getString(1) + "," + rs.getString(2) + "/";
             }
@@ -449,6 +449,7 @@ public class GestionLaboratorio {
         nuevaConexion.cierraConn();
         return devolver;
     }
+
     public void insertarRecurso(String name, int id2) {
 
         nuevaConexion.crearConn();
@@ -456,12 +457,10 @@ public class GestionLaboratorio {
         Statement s = null;
         try {
             s = conn.createStatement();
-            //seleccionamos la tabla de la base de datos la cual lleva por nombre trabajadores
-            //System.out.println("INSERT INTO curso values(default,'"+name+"');");
-            s.executeUpdate("INSERT INTO tipo_recurso values(default,'" + name + "');");
+            s.executeUpdate("INSERT INTO recurso values(default,'" + name + "','" + id2 + "')");
 
         } catch (Exception e) {
-            System.out.println("Problema al insertar en tipo recurso. " + e);
+            System.out.println("Problema al insertar en recurso. " + e);
         }
         nuevaConexion.cierraConn();
     }
@@ -473,12 +472,10 @@ public class GestionLaboratorio {
         Statement s = null;
         try {
             s = conn.createStatement();
-            //seleccionamos la tabla de la base de datos la cual lleva por nombre trabajadores
-            //System.out.println("INSERT INTO curso values(default,'"+name+"');");
-            s.executeUpdate("UPDATE tipo_recurso SET nombre='" + name + "' WHERE id=" + id + ";");
+            s.executeUpdate("UPDATE recurso SET nombre='" + name + "', tipo_recurso_id ='" + id2 + "' WHERE id=" + id + ";");
 
         } catch (Exception e) {
-            System.out.println("Problema al modificar en tabla tipo recurso. " + e);
+            System.out.println("Problema al modificar en tabla recurso. " + e);
         }
         nuevaConexion.cierraConn();
     }
@@ -490,12 +487,10 @@ public class GestionLaboratorio {
         Statement s = null;
         try {
             s = conn.createStatement();
-            //seleccionamos la tabla de la base de datos la cual lleva por nombre trabajadores
-            //System.out.println("INSERT INTO curso values(default,'"+name+"');");
-            s.executeUpdate("DELETE FROM tipo_recurso WHERE id=" + id + ";");
+            s.executeUpdate("DELETE FROM recurso WHERE id=" + id + ";");
 
         } catch (Exception e) {
-            System.out.println("Problema al eliminar en tabla tipo recurso. " + e);
+            System.out.println("Problema al eliminar en tabla recurso. " + e);
         }
         nuevaConexion.cierraConn();
     }
@@ -508,15 +503,13 @@ public class GestionLaboratorio {
         ResultSet rs = null;
         try {
             s = conn.createStatement();
-            rs = s.executeQuery("SELECT id FROM  WHERE tipo_recurso nombre='" + name + "';");
+            rs = s.executeQuery("SELECT id FROM recurso WHERE nombre='" + name + "';");
             rs.next();
             int id = Integer.parseInt(rs.getString("id"));
-            //seleccionamos la tabla de la base de datos la cual lleva por nombre trabajadores
-            //System.out.println("INSERT INTO curso values(default,'"+name+"');");
-            s.executeUpdate("DELETE FROM tipo_recurso  WHERE id=" + id + ";");
+            s.executeUpdate("DELETE FROM recurso  WHERE id=" + id + ";");
 
         } catch (Exception e) {
-            System.out.println("Problema al eliminar en tabla tipo recurso. " + e);
+            System.out.println("Problema al eliminar en recurso. " + e);
         }
         nuevaConexion.cierraConn();
     }
@@ -530,16 +523,16 @@ public class GestionLaboratorio {
         try {
             s = conn.createStatement();
             //seleccionamos la tabla de la base de datos la cual lleva por nombre trabajadores
-            rs = s.executeQuery("SELECT * FROM  tipo recurso");
+            rs = s.executeQuery("SELECT * FROM recurso");
             while (rs.next()) {
                 devolver += rs.getString(1) + "," + rs.getString(2) + "/";
             }
             rs.close();
         } catch (Exception e) {
-            System.out.println("Problema al consultar la tabla tipo recurso de la base de datos " + e);
+            System.out.println("Problema al consultar la tabla recurso de la base de datos " + e);
         }
         nuevaConexion.cierraConn();
         return devolver;
     }
-    
+
 }
