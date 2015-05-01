@@ -7,103 +7,236 @@ package logica;
 import acceso.GestionLaboratorio;
 import java.util.ArrayList;
 import java.util.Arrays;
+
 /**
  *
  * @author cruz
  */
 public class ModuloLaboratorio {
-    
+
     private GestionLaboratorio lab = new GestionLaboratorio();
-    
-    public boolean modificarSalon(int id, String salon, int capacidad){
-        try{
+
+    public boolean modificarSalon(int id, String salon, int capacidad) {
+        try {
             lab.modificarSalon(id, salon, capacidad);
             return true;
-        }catch(Exception e){
+        } catch (Exception e) {
             return false;
         }
     }
-    
-    public boolean nuevoSalon(String salon, int capacidad){
-        try{
+
+    public boolean nuevoSalon(String salon, int capacidad) {
+        try {
             lab.insertarSalon(salon, capacidad);
             return true;
-        }catch(Exception e){
+        } catch (Exception e) {
             return false;
         }
     }
-    
-    public boolean borrarSalon(String salon){
-        try{
+
+    public boolean borrarSalon(String salon) {
+        try {
             lab.borrarSalon(salon);
             return true;
-        }catch(Exception e){
+        } catch (Exception e) {
             return false;
         }
     }
-    
-    public boolean borrarSalon(int id){
-        try{
+
+    public boolean borrarSalon(int id) {
+        try {
             lab.borrarSalon(id);
             return true;
-        }catch(Exception e){
+        } catch (Exception e) {
             return false;
         }
     }
-    
-    public ArrayList obtenerSalones(){
-        try{
+
+    public ArrayList obtenerSalones() {
+        try {
             String[] salones = lab.retornarSalones().split("/");
             ArrayList ids = new ArrayList();
-            for (int i = 0; i<salones.length;i++){
+            for (int i = 0; i < salones.length; i++) {
                 ids.add(salones[i].split(",")[0]);
             }
             return ids;
-        }catch(Exception e){
+        } catch (Exception e) {
             ArrayList fail = new ArrayList();
             fail.add("- no items -");
             return fail;
         }
     }
-    
-    public ArrayList obtenerSalonesNombre(){
-        try{
+
+    public ArrayList obtenerSalonesNombre() {
+        try {
             String[] salones = lab.retornarSalones().split("/");
             ArrayList ids = new ArrayList();
-            for (int i = 0; i<salones.length;i++){
+            for (int i = 0; i < salones.length; i++) {
                 ids.add(salones[i].split(",")[1]);
             }
             return ids;
-        }catch(Exception e){
+        } catch (Exception e) {
             ArrayList fail = new ArrayList();
             fail.add("- no items -");
             return fail;
         }
     }
-    
-    public ArrayList obtenerSalonesCapacidad(){
-        try{
+
+    public ArrayList obtenerSalonesCapacidad() {
+        try {
             String[] salones = lab.retornarSalones().split("/");
             ArrayList ids = new ArrayList();
-            for (int i = 0; i<salones.length;i++){
+            for (int i = 0; i < salones.length; i++) {
                 ids.add(salones[i].split(",")[2]);
             }
             return ids;
-        }catch(Exception e){
+        } catch (Exception e) {
             ArrayList fail = new ArrayList();
             fail.add("- no items -");
             return fail;
         }
     }
-    
-    public boolean reservarLaboratorio(String salon, int dia0, int dia1, 
-            int mes0, int mes1, int anno0, int anno1, int hora0, int hora1, 
-            String encargado){
-        try{
+
+    public boolean reservarLaboratorio(String salon, int dia0, int dia1,
+            int mes0, int mes1, int anno0, int anno1, int hora0, int hora1,
+            String encargado) {
+        try {
             return true;
-        }catch(Exception e){
+        } catch (Exception e) {
             return false;
         }
     }
-    
+
+    public boolean modificarTRecurso(int id, String nombre) {
+        try {
+            lab.modificarTRecurso(id, nombre);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    public boolean nuevoTRecurso(String nombre) {
+        try {
+            lab.insertarTRecurso(nombre);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    public boolean borrarTRecurso(String nombre) {
+        try {
+            lab.borrarTRecurso(nombre);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    public boolean borrarTRecurso(int id) {
+        try {
+            lab.borrarTRecurso(id);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    public ArrayList obtenerTRecursos() {
+        try {
+            String[] trecursos = lab.retornarTRecurso().split("/");
+            ArrayList ids = new ArrayList();
+            for (int i = 0; i < trecursos.length; i++) {
+                ids.add(trecursos[i].split(",")[0]);
+            }
+            return ids;
+        } catch (Exception e) {
+            ArrayList fail = new ArrayList();
+            fail.add("- no items -");
+            return fail;
+        }
+    }
+
+    public ArrayList obtenerTRecursosNombre() {
+        try {
+            String[] trecurso = lab.retornarTRecurso().split("/");
+            ArrayList ids = new ArrayList();
+            for (int i = 0; i < trecurso.length; i++) {
+                ids.add(trecurso[i].split(",")[1]);
+            }
+            return ids;
+        } catch (Exception e) {
+            ArrayList fail = new ArrayList();
+            fail.add("- no items -");
+            return fail;
+        }
+    }
+
+    public boolean modificarRecurso(int id, String nombre, int id2) {
+        try {
+            lab.modificarRecurso(id, nombre, id2);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    public boolean nuevoRecurso(String nombre, int id2) {
+        try {
+            lab.insertarRecurso(nombre, id2);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    public boolean borrarRecurso(String nombre) {
+        try {
+            lab.borrarRecurso(nombre);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    public boolean borrarRecurso(int id) {
+        try {
+            lab.borrarRecurso(id);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    public ArrayList obtenerRecursos() {
+        try {
+            String[] recursos = lab.retornarRecurso().split("/");
+            ArrayList ids = new ArrayList();
+            for (int i = 0; i < recursos.length; i++) {
+                ids.add(recursos[i].split(",")[0]);
+            }
+            return ids;
+        } catch (Exception e) {
+            ArrayList fail = new ArrayList();
+            fail.add("- no items -");
+            return fail;
+        }
+    }
+
+    public ArrayList obtenerRecursosNombre() {
+        try {
+            String[] recurso = lab.retornarRecurso().split("/");
+            ArrayList ids = new ArrayList();
+            for (int i = 0; i < recurso.length; i++) {
+                ids.add(recurso[i].split(",")[1]);
+            }
+            return ids;
+        } catch (Exception e) {
+            ArrayList fail = new ArrayList();
+            fail.add("- no items -");
+            return fail;
+        }
+    }
+
 }

@@ -14,12 +14,13 @@
 <html>
     <%
         //comentario     
-        String titulo = "Agregar Salon";
-        ModuloLaboratorio lab = new ModuloLaboratorio();
-        String texto = "";
+        String titulo = "Agregar Recurso";
+        ModuloLaboratorio mlab = new ModuloLaboratorio();
+        int idtiporecurso = 0;
+        String nombre = "";
     %>
     <head>
-        <title>Agregar Salon</title>
+        <title>Agregar Recurso</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link href="css/style.css" rel="stylesheet" type="text/css">
         <title><%=titulo%></title>
@@ -58,9 +59,12 @@
                         <h1>Menu Principal</h1>
                         <div class="box">
                             <ul>
-                                <li><a href="http://localhost:8084/ProyectoAYD2/agregarSalon.jsp">Agregar Salon</a></li>
-                                <li><a href="http://localhost:8084/ProyectoAYD2/modificarSalon.jsp">Modificar Salon</a></li>
-                                <li><a href="http://localhost:8084/ProyectoAYD2/eliminarSalon.jsp">Eliminar Salon</a></li>
+                                <li><a href="http://localhost:8084/ProyectoAYD2/TipoRecursoAgregar.jsp">Agregar Tipo Recurso</a></li>
+                                <li><a href="http://localhost:8084/ProyectoAYD2/TipoRecursoModificar.jsp">Modificar Tipo Recurso</a></li>
+                                <li><a href="http://localhost:8084/ProyectoAYD2/TipoRecursoEliminar.jsp">Eliminar Tipo Recurso</a></li>
+                                <li><a href="http://localhost:8084/ProyectoAYD2/RecursoAgregar.jsp">Agregar Recurso</a></li>
+                                <li><a href="http://localhost:8084/ProyectoAYD2/RecursoModificar.jsp">Modificar Recurso</a></li>
+                                <li><a href="http://localhost:8084/ProyectoAYD2/RecursoEliminar.jsp">Eliminar Recurso</a></li>
                             </ul>
                         </div>
                     </div>
@@ -69,38 +73,53 @@
                         <h1>Bienvenido!</h1>
                         <div class="box">
                             <p>Bienvenido al panel administrativo del sistema, en el cual puede modificar
-                                los Recursos</div>
+                                los recursos</div>
                     </div>
 
                 </div>
 
                 <div class="right_section">
                     <div class="common_content">
-                        <h2>Agregar Recurso</h2>
+                        <h2>Agregar Recursos</h2>
                         <hr>
+
                         <FORM NAME="FORM1" METHOD="POST" ACTION="">
                             <%
-                                if (request.getParameter("buscar") != null) {
-                                    texto = request.getParameter("nombre");
-                                }
-                                if (request.getParameter("guardar") != null) {
-                                    texto = request.getParameter("capacidad");
-                                    lab.nuevoSalon(request.getParameter("nombre"), Integer.parseInt(request.getParameter("capacidad")));
-                                }
+                                ArrayList vecID = mlab.obtenerRecursos();
+                                ArrayList vecNombres = mlab.obtenerRecursosNombre();
+                                String texto = "";
+
                             %>
 
                             <TABLE BORDER>
                                 <TR>
                                     <TD><B>Nombre</TD>
-                                    <TD><INPUT ENGINE=TEXTBOX NAME="nombre" SIZE="15" VALUE=""></TD>
+                                    <TD><INPUT ENGINE=TEXTBOX NAME="nombre" SIZE="15" VALUE="<%= nombre%>"></TD>
                                 </TR>
                                 <TR>
-                                    <TD><B>Capacidad</TD>
-                                    <TD><INPUT ENGINE=TEXTBOX NAME="capacidad" SIZE="10" VALUE=""></TD>
-                                </TR>
-                                <TR>
-                                    <TD><B>Nombre catedratico</TD>
-                                    <TD><INPUT ENGINE=TEXTBOX NAME="catedratico" SIZE="10" VALUE=""></TD>
+                                    <TD><B>ID Tipo Recurso</TD>
+
+                                    <TD><select name="idtiporecurso">
+                                            <%  for (int i = 0; i < vecID.size(); i++) {
+                                                    String option = (String) vecNombres.get(i);
+                                            %>
+                                            <option value="<%= option%>"><%= option%></option>
+                                            <% }%>
+                                        </select>
+                                    </TD>
+                                    <%  if (request.getParameter("guardar") != null) {
+
+                                            idtiporecurso = Integer.parseInt(request.getParameter("idtiporecurso"));
+                                            for (int i = 0; i < vecNombres.size(); i++) {
+                                                if (Integer.parseInt(vecNombres.get(i).toString()) == idtiporecurso) {
+                                                    nombre = vecNombres.get(i).toString();
+                                                    idtiporecurso = Integer.parseInt(vecID.get(i).toString());
+                                                }
+                                            }
+                                            nombre = request.getParameter("nombre");
+                                            mlab.nuevoRecurso(nombre, idtiporecurso);
+                                        }
+                                    %>
                                 </TR>
                             </TABLE>
                             <P></P>

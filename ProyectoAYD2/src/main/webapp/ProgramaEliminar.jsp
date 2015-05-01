@@ -47,10 +47,10 @@
                         <li><a href="http://localhost:8084/ProyectoAYD2/salones.html">Salones</a></li>
                         <li><a href="http://localhost:8084/ProyectoAYD2/Programas.html">Programas</a></li>
                         <li><a href="http://localhost:8084/ProyectoAYD2/cursos.html">Cursos</a></li>
-                        <li><a href="#">Recursos</a></li>
-                        <li><a href="#">Asignacion Programas</a></li>
-                        <li><a href="#">Reservaciones</a></li>
-                        <li><a href="#">Reportes</a></li>
+                        <li><a href="http://localhost:8084/ProyectoAYD2/Recurso.html">Recursos</a></li>
+                        <li><a href="http://localhost:8084/ProyectoAYD2/AsignacionPrograma.html">Asignacion Programas</a></li>
+                        <li><a href="http://localhost:8084/ProyectoAYD2/Reservacion.html">Reservaciones</a></li>
+                        <li><a href="http://localhost:8084/ProyectoAYD2/Reporte.html">Reportes</a></li>
                     </ul>
                 </div>
 
@@ -78,7 +78,7 @@
 
                 <div class="right_section">
                     <div class="common_content">
-                        <h2>Eliminar Curso</h2>
+                        <h2>Eliminar Programa</h2>
                         <hr>
 
                         <TABLE BORDER>
@@ -86,6 +86,7 @@
                                 <TD><B>Id Programa</TD>
                                 <TD>
                                     <%
+                                        ArrayList vecprograma = gprograma.obtenerProgramas();
                                         ArrayList vecNombres = gprograma.obtenerProgramasNombre();
                                         String texto = "";
 
@@ -111,7 +112,7 @@
                                             if (request.getParameter("buscar") != null) {
                                                 idprograma = Integer.parseInt(request.getParameter("idprograma"));
                                                 for (int i = 0; i < vecNombres.size(); i++) {
-                                                    if (Integer.parseInt(vecNombres.get(i).toString()) == idprograma) {
+                                                    if (Integer.parseInt(vecprograma.get(i).toString()) == idprograma) {
                                                         nombre = vecNombres.get(i).toString();
                                                     }
                                                 }

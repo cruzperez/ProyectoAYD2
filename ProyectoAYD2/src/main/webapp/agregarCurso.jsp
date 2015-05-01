@@ -13,7 +13,7 @@
 <!DOCTYPE html>
 <html>
     <%
-   //comentario     
+        //comentario     
         String titulo = "Agregar Curso";
         GestionCurso gcurso = new GestionCurso();
     %>
@@ -24,92 +24,91 @@
         <title><%=titulo%></title>
     </head>
     <body>
-                
+
         <div id="wrapper"> 
 
-  <div id="header"> 
+            <div id="header"> 
 
-    <div class="top_banner">
-      <h1>TechManager</h1>
-      <p>Administracion del sistema</p>
-    </div>
- 
-  </div>
+                <div class="top_banner">
+                    <h1>TechManager</h1>
+                    <p>Administracion del sistema</p>
+                </div>
 
-  <div id="page_content">
+            </div>
 
-    <div class="navigation">
-      <ul>
-        <li><a href="http://localhost:8084/ProyectoAYD2">Home</a></li>
-        <li><a href="http://localhost:8084/ProyectoAYD2/salones.html">Salones</a></li>
-        <li><a href="http://localhost:8084/ProyectoAYD2/Programas.html">Programas</a></li>
-        <li><a href="http://localhost:8084/ProyectoAYD2/cursos.html">Cursos</a></li>
-        <li><a href="#">Recursos</a></li>
-        <li><a href="#">Asignacion Programas</a></li>
-        <li><a href="#">Reservaciones</a></li>
-        <li><a href="#">Reportes</a></li>
-      </ul>
-    </div>
+            <div id="page_content">
 
-    <div class="left_side_bar"> 
+                <div class="navigation">
+                    <ul>
+                        <li><a href="http://localhost:8084/ProyectoAYD2">Home</a></li>
+                        <li><a href="http://localhost:8084/ProyectoAYD2/salones.html">Salones</a></li>
+                        <li><a href="http://localhost:8084/ProyectoAYD2/Programas.html">Programas</a></li>
+                        <li><a href="http://localhost:8084/ProyectoAYD2/cursos.html">Cursos</a></li>
+                        <li><a href="http://localhost:8084/ProyectoAYD2/Recurso.html">Recursos</a></li>
+                        <li><a href="http://localhost:8084/ProyectoAYD2/AsignacionPrograma.html">Asignacion Programas</a></li>
+                        <li><a href="http://localhost:8084/ProyectoAYD2/Reservacion.html">Reservaciones</a></li>
+                        <li><a href="http://localhost:8084/ProyectoAYD2/Reporte.html">Reportes</a></li>
+                    </ul>
+                </div>
 
-      <div class="col_1">
-        <h1>Menu Principal</h1>
-        <div class="box">
-          <ul>
-            <li><a href="http://localhost:8084/ProyectoAYD2/agregarCurso.html">Agregar Curso</a></li>
-            <li><a href="http://localhost:8084/ProyectoAYD2/modificarCurso.jsp">Modificar Curso</a></li>
-            <li><a href="http://localhost:8084/ProyectoAYD2/eliminarCurso.jsp">Eliminar Curso</a></li>
-          </ul>
+                <div class="left_side_bar"> 
+
+                    <div class="col_1">
+                        <h1>Menu Principal</h1>
+                        <div class="box">
+                            <ul>
+                                <li><a href="http://localhost:8084/ProyectoAYD2/agregarCurso.html">Agregar Curso</a></li>
+                                <li><a href="http://localhost:8084/ProyectoAYD2/modificarCurso.jsp">Modificar Curso</a></li>
+                                <li><a href="http://localhost:8084/ProyectoAYD2/eliminarCurso.jsp">Eliminar Curso</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="col_1">
+                        <h1>Bienvenido!</h1>
+                        <div class="box">
+                            <p>Bienvenido al panel administrativo del sistema, en el cual puede modificar
+                                las configuraciones de labori      </div>
+                    </div>
+
+                </div>
+
+                <div class="right_section">
+                    <div class="common_content">
+                        <h2>Agregar Curso</h2>
+                        <hr>
+
+                        <FORM NAME="FORM1" METHOD="POST" ACTION="">
+                            <%
+                                String texto = "";
+                                if (request.getParameter("guardar") != null) {
+                                    String nombre = request.getParameter("nombre");
+                                    gcurso.nuevoCurso(nombre);
+                                }
+                            %>
+                            <TABLE BORDER>
+                                <TR>
+                                    <TD><B>Nombre</TD>
+                                    <TD><INPUT ENGINE=TEXTBOX NAME="nombre" SIZE="15" VALUE=""></TD>
+                                </TR>
+                            </TABLE>
+                            <P></P>
+                            <INPUT TYPE="SUBMIT" NAME="guardar" VALUE="Guardar">
+                            <HR></HR>
+                        </FORM>
+                        <HR></HR>
+
+
+                    </div>
+
+                </div>
+
+                <div class="clear"></div>
+
+
+
+            </div>
+
         </div>
-      </div>
-      
-      <div class="col_1">
-        <h1>Bienvenido!</h1>
-        <div class="box">
-          <p>Bienvenido al panel administrativo del sistema, en el cual puede modificar
-          las configuraciones de labori      </div>
-      </div>
 
-    </div>
-
-    <div class="right_section">
-      <div class="common_content">
-        <h2>Agregar Curso</h2>
-        <hr>
-        
-        <FORM NAME="FORM1" METHOD="POST" ACTION="">
-            <%
-            String texto = "";
-            if(request.getParameter("guardar") != null)
-            {
-                String nombre = request.getParameter("nombre");
-                gcurso.nuevoCurso(nombre);
-            }
-            %>
-	   <TABLE BORDER>
-		<TR>
-		  <TD><B>Nombre</TD>
-		  <TD><INPUT ENGINE=TEXTBOX NAME="nombre" SIZE="15" VALUE=""></TD>
-		</TR>
-	   </TABLE>
-	   <P></P>
-                <INPUT TYPE="SUBMIT" NAME="guardar" VALUE="Guardar">
-	   <HR></HR>
-         </FORM>
-	   <HR></HR>
-         
-        
-        </div>
-      
-    </div>
-
-    <div class="clear"></div>
-    
-    
-        
-  </div>
-
-</div>
-        
 </html>

@@ -15,8 +15,7 @@
     <%
         //comentario     
         String titulo = "Modificar Programa";
-        GestionCurso gcurso = new GestionCurso();
-
+        ModuloProgramas mprograma = new ModuloProgramas();
         int idprograma = 0;
         String nombre = "";
     %>
@@ -47,10 +46,10 @@
                         <li><a href="http://localhost:8084/ProyectoAYD2/salones.html">Salones</a></li>
                         <li><a href="http://localhost:8084/ProyectoAYD2/Programas.html">Programas</a></li>
                         <li><a href="http://localhost:8084/ProyectoAYD2/cursos.html">Cursos</a></li>
-                        <li><a href="#">Recursos</a></li>
-                        <li><a href="#">Asignacion Programas</a></li>
-                        <li><a href="#">Reservaciones</a></li>
-                        <li><a href="#">Reportes</a></li>
+                        <li><a href="http://localhost:8084/ProyectoAYD2/Recurso.html">Recursos</a></li>
+                        <li><a href="http://localhost:8084/ProyectoAYD2/AsignacionPrograma.html">Asignacion Programas</a></li>
+                        <li><a href="http://localhost:8084/ProyectoAYD2/Reservacion.html">Reservaciones</a></li>
+                        <li><a href="http://localhost:8084/ProyectoAYD2/Reporte.html">Reportes</a></li>
                     </ul>
                 </div>
 
@@ -83,11 +82,11 @@
 
                         <TABLE BORDER>
                             <TR>
-                                <TD><B>Id Curso</TD>
+                                <TD><B>Id Programa</TD>
                                 <TD>
                                     <%
-                                        ArrayList vecProgramas = gcurso.obtenerCursos();
-                                        ArrayList vecNombres = gcurso.obtenerCursosNombre();
+                                        ArrayList vecProgramas = mprograma.obtenerProgramas();
+                                        ArrayList vecNombres = mprograma.obtenerProgramasNombre();
                                         String texto = "";
 
                                     %>
@@ -120,7 +119,7 @@
                                             if (request.getParameter("guardar") != null) {
                                                 idprograma = Integer.parseInt(request.getParameter("idprograma"));
                                                 nombre = request.getParameter("nombre");
-                                                gcurso.modificarCurso(idprograma, nombre);
+                                                mprograma.modificarPrograma(idprograma, nombre);
                                             }
                                         %>  
 
