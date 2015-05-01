@@ -62,6 +62,9 @@
                                 <li><a href="http://localhost:8084/ProyectoAYD2/ProgramaAgregar.jsp">Agregar Software</a></li>
                                 <li><a href="http://localhost:8084/ProyectoAYD2/ProgramaModificar.jsp">Modificar Software</a></li>
                                 <li><a href="http://localhost:8084/ProyectoAYD2/ProgramaEliminar.jsp">Eliminar Software</a></li>
+                                <li><a href="http://localhost:8084/ProyectoAYD2/ProgramaSalonAgregar.jsp">Agregar Software a Salon</a></li>
+                                <li><a href="http://localhost:8084/ProyectoAYD2/ProgramaSalonModificar.jsp">Modificar Software a Salon</a></li>
+                                <li><a href="http://localhost:8084/ProyectoAYD2/ProgramaSalonEliminar.jsp">Eliminar Software a Salon</a></li>
                             </ul>
                         </div>
                     </div>
