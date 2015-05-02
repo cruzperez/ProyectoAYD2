@@ -76,7 +76,7 @@
 
                 <div class="right_section">
                     <div class="common_content">
-                        <h2>Agregar Recurso</h2>
+                        <h2>Agregar Salon</h2>
                         <hr>
                         <FORM NAME="FORM1" METHOD="POST" ACTION="">
                             <%

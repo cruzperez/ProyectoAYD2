@@ -86,15 +86,6 @@
                                 <TD><B>Id Curso</TD>
                                 <TD>
                                     <%
-                                        /*
-                                         ArrayList al = new ArrayList();
-                                         al.add("C");
-                                         al.add("A");
-                                         al.add("E");
-                                         al.add("B");
-                                         al.add("D");
-                                         al.add("F");
-                                         */
                                         ArrayList vecCursos = gcurso.obtenerCursos();
                                         ArrayList vecNombres = gcurso.obtenerCursosNombre();
                                         String texto = "";
@@ -106,8 +97,9 @@
                                         <select name="idcurso">
                                             <%  for (int i = 0; i < vecCursos.size(); i++) {
                                                     String option = (String) vecCursos.get(i);
+                                                    String option2 = (String) vecNombres.get(i);
                                             %>
-                                            <option value="<%= option%>"><%= option%></option>
+                                            <option value="<%= option%>"><%= option2%></option>
                                             <% } %>
 
                                         </select>

@@ -95,16 +95,17 @@
 
                                     %>
 
-                                    <form method="POST" action="">
+                                    <form method="POST" name="buscar" action="">
 
-                                        <select  NAME = "idsalon">
+                                        <select name="idsalon">
                                             <%  for (int i = 0; i < vecSalones.size(); i++) {
                                                     String option = (String) vecSalones.get(i);
+                                                    String option2 = (String)vecNombres.get(i);
                                             %>
-                                            <option value="<%= option%>" NAME="item1"><%= option%></option>
+                                            <option value="<%= option%>"><%= option2%></option>
                                             <% } %>
 
-                                        </select>   
+                                        </select>
 
 
 

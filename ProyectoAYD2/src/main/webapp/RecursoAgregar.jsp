@@ -85,8 +85,8 @@
 
                         <FORM NAME="FORM1" METHOD="POST" ACTION="">
                             <%
-                                ArrayList vecID = mlab.obtenerRecursos();
-                                ArrayList vecNombres = mlab.obtenerRecursosNombre();
+                                ArrayList vecID = mlab.obtenerTRecursos();
+                                ArrayList vecNombres = mlab.obtenerTRecursosNombre();
                                 String texto = "";
 
                             %>
@@ -103,8 +103,9 @@
                                         <select name="idtiporecurso">
                                             <%  for (int i = 0; i < vecID.size(); i++) {
                                                     String option = (String) vecNombres.get(i);
+                                                    String option2 = (String)vecID.get(i);
                                             %>
-                                            <option value="<%= option%>"><%= option%></option>
+                                            <option value="<%= option2%>"><%= option%></option>
                                             <% }%>
                                         </select>
                                     </TD>
@@ -112,7 +113,7 @@
 
                                             idtiporecurso = Integer.parseInt(request.getParameter("idtiporecurso"));
                                             for (int i = 0; i < vecNombres.size(); i++) {
-                                                if (Integer.parseInt(vecNombres.get(i).toString()) == idtiporecurso) {
+                                                if (Integer.parseInt(vecID.get(i).toString()) == idtiporecurso) {
                                                     nombre = vecNombres.get(i).toString();
                                                     idtiporecurso = Integer.parseInt(vecID.get(i).toString());
                                                 }

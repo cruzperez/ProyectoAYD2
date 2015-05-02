@@ -19,12 +19,10 @@ public class GestionPrograma {
     private Connection conn;
 
     public void insertarPrograma(String name) {
-        System.out.println("llego aqui 2");
         nuevaConexion.crearConn();
         conn = nuevaConexion.getConn();
         Statement s = null;
         try {
-            System.out.println("llego aqui 3");
             s = conn.createStatement();
             s.executeUpdate("INSERT INTO programa values(default,'" + name + "');");
 
@@ -106,6 +104,78 @@ public class GestionPrograma {
         }
         nuevaConexion.cierraConn();
         return devolver;
+    }
+
+    public void insertarProgramaSalon(String name, String name2) {
+        nuevaConexion.crearConn();
+        conn = nuevaConexion.getConn();
+        Statement s = null;
+        try {
+            s = conn.createStatement();
+            s.executeUpdate("INSERT INTO programa_salon values(default,'" + name + "','" + name2 + "');");
+
+        } catch (Exception e) {
+            System.out.println("Problema al insertar el programa salon. " + e);
+        }
+        nuevaConexion.cierraConn();
+
+    }
+
+    public void modificarProgramaSalon(int id, int id2, int name, int name2) {
+
+        nuevaConexion.crearConn();
+        conn = nuevaConexion.getConn();
+        Statement s = null;
+        try {
+            s = conn.createStatement();
+            s.executeUpdate("UPDATE programa_salon SET programa_id='" + name + "', salon_id ='" + name2 + "' WHERE programa_id=" + id
+                    + " and salon_id =" + id2 + ";");
+
+        } catch (Exception e) {
+            System.out.println("Problema al modificar en tabla programa. " + e);
+        }
+        nuevaConexion.cierraConn();
+
+    }
+
+    public void borrarProgramaSalon(int id, int id2) {
+
+        nuevaConexion.crearConn();
+        conn = nuevaConexion.getConn();
+        Statement s = null;
+        try {
+            s = conn.createStatement();
+            s.executeUpdate("DELETE FROM programa_salon WHERE programa_id=" + id + " and salon_id =" + id2 + ";");
+
+        } catch (Exception e) {
+            System.out.println("Problema al eliminar en tabla programa. " + e);
+        }
+        nuevaConexion.cierraConn();
+    }
+
+    public void borrarProgramaSalon(String name, String name2) {
+
+        nuevaConexion.crearConn();
+        conn = nuevaConexion.getConn();
+        Statement s = null;
+        ResultSet rs = null;
+        Statement s2 = null;
+        ResultSet rs2 = null;
+        try {
+            s = conn.createStatement();
+            rs = s.executeQuery("SELECT id FROM programa WHERE nombre='" + name + "';");
+            rs.next();
+            int id = Integer.parseInt(rs.getString("id"));
+            s2 = conn.createStatement();
+            rs2 = s2.executeQuery("SELECT id FROM salon WHERE nombre='" + name + "';");
+            rs2.next();
+            int id2 = Integer.parseInt(rs2.getString("id"));
+            s.executeUpdate("DELETE FROM programa_salon WHERE programa_id=" + id + " and salon_id=" + id2 + ";");
+
+        } catch (Exception e) {
+            System.out.println("Problema al eliminar en tabla programa. " + e);
+        }
+        nuevaConexion.cierraConn();
     }
 
 }

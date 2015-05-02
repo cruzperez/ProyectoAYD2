@@ -125,7 +125,7 @@ public class GestionLaboratorio {
             s = conn.createStatement();
             //seleccionamos la tabla de la base de datos la cual lleva por nombre trabajadores
             //System.out.println("INSERT INTO curso values(default,'"+name+"');");
-            s.executeUpdate("INSERT INTO salon values(default,'" + name + "'," + capacidad + ");");
+            s.executeUpdate("INSERT INTO salon values(default,'" + name + "','" + capacidad + "');");
 
         } catch (Exception e) {
             System.out.println("Problema al insertar en salon. " + e);
@@ -141,9 +141,7 @@ public class GestionLaboratorio {
         Statement s = null;
         try {
             s = conn.createStatement();
-            //seleccionamos la tabla de la base de datos la cual lleva por nombre trabajadores
-            //System.out.println("INSERT INTO curso values(default,'"+name+"');");
-            s.executeUpdate("INSERT INTO salon values(default,'" + name + "'," + capacidad + ",'" + nombre + "');");
+            s.executeUpdate("INSERT INTO salon values(default,'" + name + "','" + capacidad + "','" + nombre + "');");
 
         } catch (Exception e) {
             System.out.println("Problema al insertar en salon. " + e);
@@ -159,8 +157,6 @@ public class GestionLaboratorio {
         Statement s = null;
         try {
             s = conn.createStatement();
-            //seleccionamos la tabla de la base de datos la cual lleva por nombre trabajadores
-            //System.out.println("INSERT INTO curso values(default,'"+name+"');");
             s.executeUpdate("UPDATE salon SET nombre='" + name + "', capacidad=" + capacidad + " WHERE id=" + id + ";");
 
         } catch (Exception e) {
@@ -177,8 +173,6 @@ public class GestionLaboratorio {
         Statement s = null;
         try {
             s = conn.createStatement();
-            //seleccionamos la tabla de la base de datos la cual lleva por nombre trabajadores
-            //System.out.println("INSERT INTO curso values(default,'"+name+"');");
             s.executeUpdate("DELETE FROM salon  WHERE id=" + id + ";");
 
         } catch (Exception e) {
@@ -260,10 +254,6 @@ public class GestionLaboratorio {
         Statement s = null;
         try {
             s = conn.createStatement();
-            //seleccionamos la tabla de la base de datos la cual lleva por nombre trabajadores
-            //System.out.println("INSERT INTO curso values(default,'"+name+"');");
-
-            //System.out.println("obtenido "+capac);
             s.executeUpdate("INSERT INTO reservacion values(default,'" + fechaIni + "','" + fechaFin + "','" + horaIni + "','" + horaFin + "'," + id + ");");
 
         } catch (Exception e) {
@@ -281,10 +271,6 @@ public class GestionLaboratorio {
         Statement s = null;
         try {
             s = conn.createStatement();
-            //seleccionamos la tabla de la base de datos la cual lleva por nombre trabajadores
-            //System.out.println("INSERT INTO curso values(default,'"+name+"');");
-
-            //System.out.println("obtenido "+capac);
             s.executeUpdate("UPDATE reservacion SET fecha_inicio='" + fechaIni + "',fecha_final='" + fechaFin + "',hora_inicio='" + horaIni + "',hora_final='" + horaFin
                     + "',salon_id=" + id + " WHERE id=" + idR + ";");
 
@@ -303,12 +289,9 @@ public class GestionLaboratorio {
         Statement s = null;
         try {
             s = conn.createStatement();
-            //seleccionamos la tabla de la base de datos la cual lleva por nombre trabajadores
-            //System.out.println("INSERT INTO curso values(default,'"+name+"');");
             rs = s.executeQuery("SELECT id FROM salon WHERE nombre='" + nombre + "';");
             rs.next();
             int id = Integer.parseInt(rs.getString("id"));
-            //System.out.println("obtenido "+capac);
             s.executeUpdate("UPDATE reservacion SET fecha_inicio='" + fechaIni + "',fecha_final='" + fechaFin + "',hora_inicio='" + horaIni
                     + "',hora_final='" + horaFin + "',salon_id=" + id + " WHERE id=" + idR + ";");
 

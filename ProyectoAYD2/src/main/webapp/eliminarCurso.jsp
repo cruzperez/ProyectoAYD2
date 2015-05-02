@@ -86,15 +86,6 @@
                                 <TD><B>Id Curso</TD>
                                 <TD>
                                     <%
-                                        /*
-                                         ArrayList al = new ArrayList();
-                                         al.add("C");
-                                         al.add("A");
-                                         al.add("E");
-                                         al.add("B");
-                                         al.add("D");
-                                         al.add("F");
-                                         */
                                         ArrayList vecCursos = gcurso.obtenerCursos();
                                         ArrayList vecNombres = gcurso.obtenerCursosNombre();
                                         String texto = "";
@@ -105,28 +96,16 @@
 
                                         <select name="idcurso">
                                             <%  for (int i = 0; i < vecCursos.size(); i++) {
-                                                    String option = (String) vecCursos.get(i);
+                                                    String option = (String) vecNombres.get(i);
+                                                    String option2 = (String) vecCursos.get(i);
                                             %>
-                                            <option value="<%= option%>"><%= option%></option>
+                                            <option value="<%= option2%>"><%= option%></option>
                                             <% } %>
 
                                         </select>
 
 
-
-
-                                        <INPUT TYPE="SUBMIT" NAME="buscar" VALUE="Buscar">
-
                                         <%
-                                            if (request.getParameter("buscar") != null) {
-                                                idcurso = Integer.parseInt(request.getParameter("idcurso"));
-                                                for (int i = 0; i < vecNombres.size(); i++) {
-                                                    if (Integer.parseInt(vecCursos.get(i).toString()) == idcurso) {
-                                                        nombre = vecNombres.get(i).toString();
-                                                    }
-                                                }
-
-                                            }
                                             if (request.getParameter("eliminar") != null) {
                                                 if (request.getParameter("eliminar") != null) {
                                                     idcurso = Integer.parseInt(request.getParameter("idcurso"));
@@ -137,31 +116,27 @@
 
                                         </TD>
                                         </TR>
-                                        <TR>
-                                            <TD><B>Nombre</TD>
-                                            <TD><INPUT ENGINE=TEXTBOX NAME="nombre" SIZE="15" VALUE="<%= nombre%>"></TD>
-                                        </TR>
-                        </TABLE>
-                        <P></P>
+                                        </TABLE>
+                                        <P></P>
 
-                        <INPUT TYPE="SUBMIT" NAME="eliminar" VALUE="Eliminar">
+                                        <INPUT TYPE="SUBMIT" NAME="eliminar" VALUE="Eliminar">
 
-                        </form>
-                        <HR></HR>
+                                    </form>
+                                    <HR></HR>
 
 
-                    </div>
+                                    </div>
 
-                </div>
+                                    </div>
 
-                <div class="clear"></div>
+                                    <div class="clear"></div>
 
 
 
-            </div>
+                                    </div>
 
-        </div>
+                                    </div>
 
 
 
-</html>
+                                    </html>

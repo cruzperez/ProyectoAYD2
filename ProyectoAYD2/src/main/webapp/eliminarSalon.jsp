@@ -100,24 +100,14 @@
                                         <select name="idsalon">
                                             <%  for (int i = 0; i < vecSalones.size(); i++) {
                                                     String option = (String) vecSalones.get(i);
+                                                    String option2 = (String) vecNombres.get(i);
                                             %>
-                                            <option value="<%= option%>"><%= option%></option>
+                                            <option value="<%= option%>"><%= option2%></option>
                                             <% } %>
 
                                         </select>
 
-                                        <INPUT TYPE="SUBMIT" NAME="buscar" VALUE="Buscar">
                                         <%
-                                            if (request.getParameter("buscar") != null) {
-                                                idsalon = Integer.parseInt(request.getParameter("idsalon"));
-                                                for (int i = 0; i < vecNombres.size(); i++) {
-                                                    if (Integer.parseInt(vecSalones.get(i).toString()) == idsalon) {
-                                                        nombre = vecNombres.get(i).toString();
-                                                        capacidad = Integer.parseInt(vecCapacidades.get(i).toString());
-                                                    }
-                                                }
-
-                                            }
                                             if (request.getParameter("eliminar") != null) {
                                                 idsalon = Integer.parseInt(request.getParameter("idsalon"));
                                                 lab.borrarSalon(idsalon);
@@ -126,30 +116,22 @@
 
                                         </TD>
                                         </TR>
-                                        <TR>
-                                            <TD><B>Nombre</TD>
-                                            <TD><INPUT ENGINE=TEXTBOX NAME="nombre" SIZE="15" VALUE="<%= nombre%>"></TD>
-                                        </TR>
-                                        <TR>
-                                            <TD><B>Capacidad</TD>
-                                            <TD><INPUT ENGINE=TEXTBOX NAME="capacidad" SIZE="10" VALUE="<%= capacidad%>"></TD>
-                                        </TR>
-                        </TABLE>
-                        <P></P>           
-                        <INPUT TYPE="SUBMIT" NAME="eliminar" VALUE="Eliminar">
-                        <HR></HR>
-                        </form>
+                                        </TABLE>
+                                        <P></P>           
+                                        <INPUT TYPE="SUBMIT" NAME="eliminar" VALUE="Eliminar">
+                                        <HR></HR>
+                                    </form>
 
-                    </div>
+                                    </div>
 
-                </div>
+                                    </div>
 
-                <div class="clear"></div>
+                                    <div class="clear"></div>
 
 
 
-            </div>
+                                    </div>
 
-        </div>
+                                    </div>
 
-</html>
+                                    </html>

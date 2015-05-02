@@ -15,9 +15,14 @@
     <%
         //comentario     
         String titulo = "Modificar Programa";
-        ModuloProgramas mprograma = new ModuloProgramas();
+        ModuloProgramas mprogramas = new ModuloProgramas();
+        ModuloLaboratorio mlab = new ModuloLaboratorio();
         int idprograma = 0;
+        int idsalon = 0;
+        int idprograma2 = 0;
+        int idsalon2 = 0;
         String nombre = "";
+        String nombre2 = "";
     %>
     <head>
         <title>Modificar Programa</title>
@@ -85,53 +90,94 @@
 
                         <TABLE BORDER>
                             <TR>
-                                <TD><B>Id Programa</TD>
+                                <TD><B>ID Programa/ID Salon</TD>
                                 <TD>
                                     <%
-                                        ArrayList vecProgramas = mprograma.obtenerProgramas();
-                                        ArrayList vecNombres = mprograma.obtenerProgramasNombre();
-                                        String texto = "";
-
+                                        ArrayList vecID = mprogramas.obtenerProgramas();
+                                        ArrayList vecNombres = mprogramas.obtenerProgramasNombre();
+                                        ArrayList vecID2 = mlab.obtenerSalones();
+                                        ArrayList vecNombres2 = mlab.obtenerSalonesNombre();
                                     %>
 
                                     <form method="POST" name="buscar" action="">
 
                                         <select name="idprograma">
-                                            <%  for (int i = 0; i < vecProgramas.size(); i++) {
-                                                    String option = (String) vecProgramas.get(i);
-                                                    String option2 = (String)vecNombres.get(i);
+                                            <%  for (int i = 0; i < vecNombres.size(); i++) {
+                                                    String option = (String) vecNombres.get(i);
+                                                    String option2 = (String)vecID.get(i);
                                             %>
-                                            <option value="<%= option%>"><%= option2%></option>
+                                            <option value="<%= option2%>"><%= option%></option>
                                             <% } %>
 
                                         </select>
 
+                                        <select name="idsalon">
+                                            <%  for (int i = 0; i < vecNombres2.size(); i++) {
+                                                    String option = (String) vecNombres2.get(i);
+                                                    String option2 = (String)vecID2.get(i);
+                                            %>
+                                            <option value="<%= option2%>"><%= option%></option>
+                                            <% } %>
+
+                                        </select>
+
+
+
                                         <INPUT TYPE="SUBMIT" NAME="buscar" VALUE="Buscar">
                                         <%
                                             if (request.getParameter("buscar") != null) {
-                                                if (request.getParameter("buscar") != null) {
-
-                                                    idprograma = Integer.parseInt(request.getParameter("idprograma"));
-                                                    for (int i = 0; i < vecNombres.size(); i++) {
-                                                        if (Integer.parseInt(vecProgramas.get(i).toString()) == idprograma) {
-                                                            nombre = vecNombres.get(i).toString();
-                                                        }
-                                                    }
-
-                                                }
-                                            }
-                                            if (request.getParameter("guardar") != null) {
                                                 idprograma = Integer.parseInt(request.getParameter("idprograma"));
-                                                nombre = request.getParameter("nombre");
-                                                mprograma.modificarPrograma(idprograma, nombre);
+                                                for (int i = 0; i < vecNombres.size(); i++) {
+                                                    if (Integer.parseInt(vecID.get(i).toString()) == idprograma) {
+                                                        nombre = vecNombres.get(i).toString();
+                                                    }
+                                                }
+                                                idsalon = Integer.parseInt(request.getParameter("idsalon"));
+                                                for (int i = 0; i < vecNombres2.size(); i++) {
+                                                    if (Integer.parseInt(vecID2.get(i).toString()) == idsalon) {
+                                                        nombre2 = vecNombres2.get(i).toString();
+                                                    }
+                                                }
+
                                             }
+
+                                            if (request.getParameter("eliminar") != null) {
+                                                idprograma = Integer.parseInt(request.getParameter("idprograma"));
+                                                idsalon = Integer.parseInt(request.getParameter("idsalon"));
+                                                idprograma2 = Integer.parseInt(request.getParameter("idprograma2"));
+                                                idsalon2 = Integer.parseInt(request.getParameter("idsalon2"));
+                                                mprogramas.modificarProgramaSalon(idprograma,idsalon,idprograma2,idsalon2);
+                                            }
+
                                         %>  
 
                                         </TD>
                                         </TR>
                                         <TR>
-                                            <TD><B>Nombre</TD>
-                                            <TD><INPUT ENGINE=TEXTBOX NAME="nombre" SIZE="15" VALUE="<%= nombre%>"></TD>
+                                            <TD><B>Modificar Programa</TD>
+                                            <TD>
+                                                <select name="idprograma2">
+                                                    <%  for (int i = 0; i < vecNombres.size(); i++) {
+                                                            String option = (String) vecNombres.get(i);
+                                                    %>
+                                                    <option value="<%= option%>"><%= option%></option>
+                                                    <% }%>
+
+                                                </select>
+                                            </TD>
+                                        </TR>
+                                        <TR>
+                                            <TD><B>Modificar Salon</TD>
+                                            <TD>
+                                                <select name="idsalon2">
+                                                    <%  for (int i = 0; i < vecNombres2.size(); i++) {
+                                                            String option = (String) vecNombres2.get(i);
+                                                    %>
+                                                    <option value="<%= option%>"><%= option%></option>
+                                                    <% }%>
+
+                                                </select>
+                                            </TD>
                                         </TR>
                         </TABLE>
                         <P></P>

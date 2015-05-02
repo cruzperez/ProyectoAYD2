@@ -4,7 +4,6 @@
     Author     : cruz
 --%>
 
-<%@page import="acceso.GestionPrograma"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.Vector"%>
 <%@page import="acceso.Conexion"%>
@@ -15,13 +14,16 @@
 <html>
     <%
         //comentario     
-        String titulo = "Eliminar Programa";
-        ModuloProgramas gprograma = new ModuloProgramas();
+        String titulo = "Agregar Software";
+        ModuloProgramas mprogramas = new ModuloProgramas();
+        ModuloLaboratorio mlab = new ModuloLaboratorio();
         int idprograma = 0;
+        int idsalon = 0;
         String nombre = "";
+        String nombre2 = "";
     %>
     <head>
-        <title>Eliminar Programa</title>
+        <title>Agregar Programa a Salon</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link href="css/style.css" rel="stylesheet" type="text/css">
         <title><%=titulo%></title>
@@ -81,51 +83,71 @@
 
                 <div class="right_section">
                     <div class="common_content">
-                        <h2>Eliminar Programa</h2>
+                        <h2>Agregar Programa a Salon</h2>
                         <hr>
 
-                        <TABLE BORDER>
-                            <TR>
-                                <TD><B>Id Programa</TD>
-                                <TD>
-                                    <%
-                                        ArrayList vecprograma = gprograma.obtenerProgramas();
-                                        ArrayList vecNombres = gprograma.obtenerProgramasNombre();
-                                        String texto = "";
+                        <FORM NAME="FORM1" METHOD="POST" ACTION="">
+                            <%
+                                ArrayList vecID = mprogramas.obtenerProgramas();
+                                ArrayList vecNombres = mprogramas.obtenerProgramasNombre();
+                                ArrayList vecID2 = mlab.obtenerSalones();
+                                ArrayList vecNombres2 = mlab.obtenerSalonesNombre();
 
-                                    %>
+                            %>
+                            <TABLE BORDER>
+                                <TR>
+                                    <TD><B>ID Programa</TD>
 
-                                    <form method="POST" name="buscar" action="">
-
+                                    <TD>
                                         <select name="idprograma">
-                                            <%  for (int i = 0; i < vecNombres.size(); i++) {
+                                            <%  for (int i = 0; i < vecID.size(); i++) {
                                                     String option = (String) vecNombres.get(i);
-                                                    String option2 = (String)vecprograma.get(i);
+                                                    String option2 = (String)vecID.get(i);
                                             %>
                                             <option value="<%= option2%>"><%= option%></option>
-                                            <% } %>
-
+                                            <% }%>
                                         </select>
+                                    </TD>
+                                </TR>
+                                <TR>
+                                    <TD><B>ID Salon</TD>
 
+                                    <TD>
+                                        <select name="idsalon">
+                                            <%  for (int i = 0; i < vecID2.size(); i++) {
+                                                    String option = (String) vecNombres2.get(i);
+                                                    String option2 = (String)vecID2.get(i);
+                                            %>
+                                            <option value="<%= option2%>"><%= option%></option>
+                                            <% }%>
+                                        </select>
+                                    </TD>
+                                    <%  if (request.getParameter("guardar") != null) {
 
-                                        <%
-                                            if (request.getParameter("eliminar") != null) {
-                                                if (request.getParameter("eliminar") != null) {
-                                                    idprograma = Integer.parseInt(request.getParameter("idprograma"));
-                                                    gprograma.borrarPrograma(idprograma);
+                                            idprograma = Integer.parseInt(request.getParameter("idprograma"));
+                                            for (int i = 0; i < vecNombres.size(); i++) {
+                                                if (Integer.parseInt(vecID.get(i).toString()) == idprograma) {
+                                                    nombre = vecNombres.get(i).toString();
+                                                    idprograma = Integer.parseInt(vecID.get(i).toString());
                                                 }
                                             }
-                                        %>
-
-                                        </TD>
-                                        </TR>
-
-                        </TABLE>
-                        <P></P>
-
-                        <INPUT TYPE="SUBMIT" NAME="eliminar" VALUE="Eliminar">
-
-                        </form>
+                                            
+                                            idsalon = Integer.parseInt(request.getParameter("idsalon"));
+                                            for (int i = 0; i < vecNombres2.size(); i++) {
+                                                if (Integer.parseInt(vecID2.get(i).toString()) == idprograma) {
+                                                    nombre2 = vecNombres2.get(i).toString();
+                                                    idsalon = Integer.parseInt(vecID2.get(i).toString());
+                                                }
+                                            }
+                                            mprogramas.nuevoProgramaSalon(""+idprograma, ""+idsalon);
+                                        }
+                                    %>
+                                </TR>
+                            </TABLE>
+                            <P></P>
+                            <INPUT TYPE="SUBMIT" NAME="guardar" VALUE="Guardar">
+                            <HR></HR>
+                        </FORM>
                         <HR></HR>
 
 
@@ -140,7 +162,5 @@
             </div>
 
         </div>
-
-
 
 </html>

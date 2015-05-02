@@ -99,8 +99,9 @@
                                         <select name="idtrecurso">
                                             <%  for (int i = 0; i < vectrecurso.size(); i++) {
                                                     String option = (String) vectrecurso.get(i);
+                                                    String option2 = (String)vectrecursonombre.get(i);
                                             %>
-                                            <option value="<%= option%>"><%= option%></option>
+                                            <option value="<%= option%>"><%= option2%></option>
                                             <% } %>
 
                                         </select>
@@ -110,7 +111,7 @@
                                             if (request.getParameter("buscar") != null) {
                                                 if (request.getParameter("buscar") != null) {
 
-                                                    idtrecurso = Integer.parseInt(request.getParameter("idprograma"));
+                                                    idtrecurso = Integer.parseInt(request.getParameter("idtrecurso"));
                                                     for (int i = 0; i < vectrecursonombre.size(); i++) {
                                                         if (Integer.parseInt(vectrecurso.get(i).toString()) == idtrecurso) {
                                                             nombre = vectrecursonombre.get(i).toString();
@@ -120,7 +121,7 @@
                                                 }
                                             }
                                             if (request.getParameter("guardar") != null) {
-                                                idtrecurso = Integer.parseInt(request.getParameter("idtiporecurso"));
+                                                idtrecurso = Integer.parseInt(request.getParameter("idtrecurso"));
                                                 nombre = request.getParameter("nombre");
                                                 mlab.modificarTRecurso(idtrecurso, nombre);
                                             }

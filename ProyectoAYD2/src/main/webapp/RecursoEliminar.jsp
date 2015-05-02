@@ -91,6 +91,7 @@
                                 <TD>
                                     <%
                                         ArrayList vecNombres = mlab.obtenerRecursosNombre();
+                                        ArrayList vecID = mlab.obtenerRecursos();
                                         String texto = "";
 
                                     %>
@@ -100,27 +101,15 @@
                                         <select name="idrecurso">
                                             <%  for (int i = 0; i < vecNombres.size(); i++) {
                                                     String option = (String) vecNombres.get(i);
+                                                    String option2 = (String)vecID.get(i);
                                             %>
-                                            <option value="<%= option%>"><%= option%></option>
+                                            <option value="<%= option2%>"><%= option%></option>
                                             <% } %>
 
                                         </select>
 
 
-
-
-                                        <INPUT TYPE="SUBMIT" NAME="buscar" VALUE="Buscar">
-
                                         <%
-                                            if (request.getParameter("buscar") != null) {
-                                                id = Integer.parseInt(request.getParameter("idrecurso"));
-                                                for (int i = 0; i < vecNombres.size(); i++) {
-                                                    if (Integer.parseInt(vecNombres.get(i).toString()) == id) {
-                                                        nombre = vecNombres.get(i).toString();
-                                                    }
-                                                }
-
-                                            }
                                             if (request.getParameter("eliminar") != null) {
                                                 if (request.getParameter("eliminar") != null) {
                                                     id = Integer.parseInt(request.getParameter("idrecurso"));
@@ -130,10 +119,6 @@
                                         %>
 
                                         </TD>
-                                        </TR>
-                                        <TR>
-                                            <TD><B>Nombre</TD>
-                                            <TD><INPUT ENGINE=TEXTBOX NAME="nombre" SIZE="15" VALUE="<%= nombre%>"></TD>
                                         </TR>
                         </TABLE>
                         <P></P>

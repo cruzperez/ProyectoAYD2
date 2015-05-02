@@ -83,4 +83,39 @@ public class ModuloProgramas {
         }
     }
 
+    public boolean modificarProgramaSalon(int id, int id2, int nombre, int nombre2) {
+        try {
+            prog.modificarProgramaSalon(id, id2, id, id2);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    public boolean nuevoProgramaSalon(String nombre, String nombre2) {
+        try {
+            prog.insertarProgramaSalon(nombre, nombre2);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    public boolean borrarProgramaSalon(String nombre, String nombre2) {
+        try {
+            prog.borrarProgramaSalon(nombre, nombre2);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    public boolean borrarProgramaSalon(int id, int id2) {
+        try {
+            prog.borrarProgramaSalon(id, id2);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
 }

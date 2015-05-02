@@ -25,8 +25,8 @@ public class Conexion {
         String connectString = "jdbc:postgresql://localhost:5432/ProyectoAYD2"; // llamamos nuestra bd
 //        String user = "postgres"; // usuario postgres
 //        String password = "cruz"; // no tiene password nuestra bd.
-        String user = ""; // usuario postgres
-        String password = ""; // no tiene password nuestra bd.
+        String user = "postgres"; // usuario postgres
+        String password = "postgres"; // no tiene password nuestra bd.
         //String devolver="";
 
         try {

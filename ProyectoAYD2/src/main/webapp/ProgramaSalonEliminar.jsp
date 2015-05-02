@@ -1,4 +1,4 @@
-<%-- 
+<%--
     Document   : modificarSalon
     Created on : Mar 10, 2015, 4:07:38 PM
     Author     : cruz
@@ -14,11 +14,14 @@
 <!DOCTYPE html>
 <html>
     <%
-        //comentario     
+        //comentario
         String titulo = "Eliminar Programa";
-        ModuloProgramas gprograma = new ModuloProgramas();
+        ModuloProgramas mprogramas = new ModuloProgramas();
+        ModuloLaboratorio mlab = new ModuloLaboratorio();
         int idprograma = 0;
+        int idsalon = 0;
         String nombre = "";
+        String nombre2 = "";
     %>
     <head>
         <title>Eliminar Programa</title>
@@ -28,9 +31,9 @@
     </head>
     <body>
 
-        <div id="wrapper"> 
+        <div id="wrapper">
 
-            <div id="header"> 
+            <div id="header">
 
                 <div class="top_banner">
                     <h1>TechManager</h1>
@@ -54,7 +57,7 @@
                     </ul>
                 </div>
 
-                <div class="left_side_bar"> 
+                <div class="left_side_bar">
 
                     <div class="col_1">
                         <h1>Menu Principal</h1>
@@ -86,21 +89,30 @@
 
                         <TABLE BORDER>
                             <TR>
-                                <TD><B>Id Programa</TD>
+                                <TD><B>ID Programa/ID Salon</TD>
                                 <TD>
                                     <%
-                                        ArrayList vecprograma = gprograma.obtenerProgramas();
-                                        ArrayList vecNombres = gprograma.obtenerProgramasNombre();
-                                        String texto = "";
+                                        ArrayList vecID = mprogramas.obtenerProgramas();
+                                        ArrayList vecNombres = mprogramas.obtenerProgramasNombre();
+                                        ArrayList vecID2 = mlab.obtenerSalones();
+                                        ArrayList vecNombres2 = mlab.obtenerSalonesNombre();
 
                                     %>
-
-                                    <form method="POST" name="buscar" action="">
 
                                         <select name="idprograma">
                                             <%  for (int i = 0; i < vecNombres.size(); i++) {
                                                     String option = (String) vecNombres.get(i);
-                                                    String option2 = (String)vecprograma.get(i);
+                                                    String option2 = (String)vecID.get(i);
+                                            %>
+                                            <option value="<%= option2%>"><%= option%></option>
+                                            <% } %>
+
+                                        </select>
+
+                                        <select name="idsalon">
+                                            <%  for (int i = 0; i < vecNombres2.size(); i++) {
+                                                    String option = (String) vecNombres2.get(i);
+                                                    String option2 = (String)vecID2.get(i);
                                             %>
                                             <option value="<%= option2%>"><%= option%></option>
                                             <% } %>
@@ -108,39 +120,42 @@
                                         </select>
 
 
+
+                                        <INPUT TYPE="SUBMIT" NAME="buscar" VALUE="Buscar">
+
                                         <%
                                             if (request.getParameter("eliminar") != null) {
                                                 if (request.getParameter("eliminar") != null) {
                                                     idprograma = Integer.parseInt(request.getParameter("idprograma"));
-                                                    gprograma.borrarPrograma(idprograma);
+                                                    idsalon = Integer.parseInt(request.getParameter("idsalon"));
+                                                    mprogramas.borrarProgramaSalon(nombre, nombre2);
                                                 }
                                             }
                                         %>
 
                                         </TD>
                                         </TR>
+                                        </TABLE>
+                                        <P></P>
 
-                        </TABLE>
-                        <P></P>
+                                        <INPUT TYPE="SUBMIT" NAME="eliminar" VALUE="Eliminar">
 
-                        <INPUT TYPE="SUBMIT" NAME="eliminar" VALUE="Eliminar">
-
-                        </form>
-                        <HR></HR>
-
-
-                    </div>
-
-                </div>
-
-                <div class="clear"></div>
+                                    </form>
+                                    <HR></HR>
 
 
+                                    </div>
 
-            </div>
+                                    </div>
 
-        </div>
+                                    <div class="clear"></div>
 
 
 
-</html>
+                                    </div>
+
+                                    </div>
+
+
+
+                                    </html>

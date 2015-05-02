@@ -91,6 +91,8 @@
                                     <%
                                         ArrayList vecID = mlab.obtenerRecursos();
                                         ArrayList vecNombres = mlab.obtenerRecursosNombre();
+                                        ArrayList vecID2 = mlab.obtenerTRecursos();
+                                        ArrayList vecNombres2 = mlab.obtenerTRecursosNombre();
                                         String texto = "";
 
                                     %>
@@ -100,8 +102,9 @@
                                         <select name="idrecurso">
                                             <%  for (int i = 0; i < vecID.size(); i++) {
                                                     String option = (String) vecID.get(i);
+                                                    String option2 = (String)vecNombres.get(i);
                                             %>
-                                            <option value="<%= option%>"><%= option%></option>
+                                            <option value="<%= option%>"><%= option2%></option>
                                             <% } %>
 
                                         </select>
@@ -139,8 +142,8 @@
 
                                             <TD>
                                                 <select name="idtiporecurso">
-                                                    <%  for (int i = 0; i < vecID.size(); i++) {
-                                                            String option = (String) vecNombres.get(i);
+                                                    <%  for (int i = 0; i < vecID2.size(); i++) {
+                                                            String option = (String) vecNombres2.get(i);
                                                     %>
                                                     <option value="<%= option%>"><%= option%></option>
                                                     <% }%>
