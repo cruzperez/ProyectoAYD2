@@ -47,9 +47,11 @@
                         <li><a href="http://localhost:8084/ProyectoAYD2/Programas.html">Programas</a></li>
                         <li><a href="http://localhost:8084/ProyectoAYD2/cursos.html">Cursos</a></li>
                         <li><a href="http://localhost:8084/ProyectoAYD2/Recurso.html">Recursos</a></li>
-                        <li><a href="http://localhost:8084/ProyectoAYD2/AsignacionPrograma.html">Asignacion Programas</a></li>
                         <li><a href="http://localhost:8084/ProyectoAYD2/Reservacion.html">Reservaciones</a></li>
                         <li><a href="http://localhost:8084/ProyectoAYD2/Reporte.html">Reportes</a></li>
+                        <li><a href="http://localhost:8084/ProyectoAYD2/RecursoSalonAgregar.jsp">Agregar Recurso a Salon</a></li>
+                        <li><a href="http://localhost:8084/ProyectoAYD2/RecursoSalonModificar.jsp">Modificar Recurso a Salon</a></li>
+                        <li><a href="http://localhost:8084/ProyectoAYD2/RecursoSalonEliminar.jsp">Eliminar Recurso a Salon</a></li>
                     </ul>
                 </div>
 
@@ -89,7 +91,7 @@
                                 <TD>
                                     <%
                                         ArrayList vectrecurso = mlab.obtenerTRecursos();
-                                        ArrayList vectrecursonombre= mlab.obtenerTRecursosNombre();
+                                        ArrayList vectrecursonombre = mlab.obtenerTRecursosNombre();
                                         String texto = "";
 
                                     %>
@@ -99,7 +101,7 @@
                                         <select name="idtrecurso">
                                             <%  for (int i = 0; i < vectrecurso.size(); i++) {
                                                     String option = (String) vectrecurso.get(i);
-                                                    String option2 = (String)vectrecursonombre.get(i);
+                                                    String option2 = (String) vectrecursonombre.get(i);
                                             %>
                                             <option value="<%= option%>"><%= option2%></option>
                                             <% } %>

@@ -238,5 +238,41 @@ public class ModuloLaboratorio {
             return fail;
         }
     }
+    
+    public boolean modificarRecursoSalon(int id, int id2, int nombre, int nombre2, int nombre3) {
+        try {
+            lab.modificarRecursoSalon(id, id2, id, id2, nombre3);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    public boolean nuevoRecursoSalon(String nombre, String nombre2, String nombre3) {
+        try {
+            lab.insertarRecursoSalon(nombre, nombre2, nombre3);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    public boolean borrarRecursoSalon(String nombre, String nombre2) {
+        try {
+            lab.borrarRecursoSalon(nombre, nombre2);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    public boolean borrarRecursoSalon(int id, int id2) {
+        try {
+            lab.borrarRecursoSalon(id, id2);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
 
 }

@@ -518,4 +518,76 @@ public class GestionLaboratorio {
         return devolver;
     }
 
+    public void insertarRecursoSalon(String name, String name2, String name3) {
+        nuevaConexion.crearConn();
+        conn = nuevaConexion.getConn();
+        Statement s = null;
+        try {
+            s = conn.createStatement();
+            s.executeUpdate("INSERT INTO salon_recurso values('" + name3 + "', '" + name + "','" + name2 + "');");
+
+        } catch (Exception e) {
+            System.out.println("Problema al insertar el recurso salon. " + e);
+        }
+        nuevaConexion.cierraConn();
+
+    }
+
+    public void modificarRecursoSalon(int id, int id2, int name, int name2, int name3) {
+
+        nuevaConexion.crearConn();
+        conn = nuevaConexion.getConn();
+        Statement s = null;
+        try {
+            s = conn.createStatement();
+            s.executeUpdate("UPDATE salon_recurso SET cantidad = '" + name3 + "', programa_id='" + name + "', salon_id ='" + name2 + "' WHERE programa_id=" + id
+                    + " and salon_id =" + id2 + ";");
+
+        } catch (Exception e) {
+            System.out.println("Problema al modificar en tabla recurso salon. " + e);
+        }
+        nuevaConexion.cierraConn();
+
+    }
+
+    public void borrarRecursoSalon(int id, int id2) {
+
+        nuevaConexion.crearConn();
+        conn = nuevaConexion.getConn();
+        Statement s = null;
+        try {
+            s = conn.createStatement();
+            s.executeUpdate("DELETE FROM salon_recurso WHERE programa_id=" + id + " and salon_id =" + id2 + ";");
+
+        } catch (Exception e) {
+            System.out.println("Problema al eliminar en tabla recurso salon. " + e);
+        }
+        nuevaConexion.cierraConn();
+    }
+
+    public void borrarRecursoSalon(String name, String name2) {
+
+        nuevaConexion.crearConn();
+        conn = nuevaConexion.getConn();
+        Statement s = null;
+        ResultSet rs = null;
+        Statement s2 = null;
+        ResultSet rs2 = null;
+        try {
+            s = conn.createStatement();
+            rs = s.executeQuery("SELECT id FROM recurso WHERE nombre='" + name + "';");
+            rs.next();
+            int id = Integer.parseInt(rs.getString("id"));
+            s2 = conn.createStatement();
+            rs2 = s2.executeQuery("SELECT id FROM salon WHERE nombre='" + name + "';");
+            rs2.next();
+            int id2 = Integer.parseInt(rs2.getString("id"));
+            s.executeUpdate("DELETE FROM salon_recurso WHERE programa_id=" + id + " and salon_id=" + id2 + ";");
+
+        } catch (Exception e) {
+            System.out.println("Problema al eliminar en tabla recurso salon. " + e);
+        }
+        nuevaConexion.cierraConn();
+    }
+
 }

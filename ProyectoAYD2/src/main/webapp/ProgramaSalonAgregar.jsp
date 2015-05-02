@@ -50,7 +50,6 @@
                         <li><a href="http://localhost:8084/ProyectoAYD2/Programas.html">Programas</a></li>
                         <li><a href="http://localhost:8084/ProyectoAYD2/cursos.html">Cursos</a></li>
                         <li><a href="http://localhost:8084/ProyectoAYD2/Recurso.html">Recursos</a></li>
-                        <li><a href="http://localhost:8084/ProyectoAYD2/AsignacionPrograma.html">Asignacion Programas</a></li>
                         <li><a href="http://localhost:8084/ProyectoAYD2/Reservacion.html">Reservaciones</a></li>
                         <li><a href="http://localhost:8084/ProyectoAYD2/Reporte.html">Reportes</a></li>
                     </ul>
@@ -134,7 +133,7 @@
                                             
                                             idsalon = Integer.parseInt(request.getParameter("idsalon"));
                                             for (int i = 0; i < vecNombres2.size(); i++) {
-                                                if (Integer.parseInt(vecID2.get(i).toString()) == idprograma) {
+                                                if (Integer.parseInt(vecID2.get(i).toString()) == idsalon) {
                                                     nombre2 = vecNombres2.get(i).toString();
                                                     idsalon = Integer.parseInt(vecID2.get(i).toString());
                                                 }

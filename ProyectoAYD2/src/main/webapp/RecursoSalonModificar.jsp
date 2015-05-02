@@ -13,22 +13,19 @@
 <!DOCTYPE html>
 <html>
     <%
-        //comentario     
-        String titulo = "Modificar Programa";
-        ModuloProgramas mprogramas = new ModuloProgramas();
         ModuloLaboratorio mlab = new ModuloLaboratorio();
-        int idprograma = 0;
+        int idRecurso = 0;
         int idsalon = 0;
-        int idprograma2 = 0;
+        int idRecurso2 = 0;
         int idsalon2 = 0;
+        int capacidad = 0;
         String nombre = "";
         String nombre2 = "";
     %>
     <head>
-        <title>Modificar Programa</title>
+        <title>Modificar Recurso a Salon</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link href="css/style.css" rel="stylesheet" type="text/css">
-        <title><%=titulo%></title>
     </head>
     <body>
 
@@ -63,12 +60,15 @@
                         <h1>Menu Principal</h1>
                         <div class="box">
                             <ul>
-                                <li><a href="http://localhost:8084/ProyectoAYD2/ProgramaAgregar.jsp">Agregar Software</a></li>
-                                <li><a href="http://localhost:8084/ProyectoAYD2/ProgramaModificar.jsp">Modificar Software</a></li>
-                                <li><a href="http://localhost:8084/ProyectoAYD2/ProgramaEliminar.jsp">Eliminar Software</a></li>
-                                <li><a href="http://localhost:8084/ProyectoAYD2/ProgramaSalonAgregar.jsp">Agregar Software a Salon</a></li>
-                                <li><a href="http://localhost:8084/ProyectoAYD2/ProgramaSalonModificar.jsp">Modificar Software a Salon</a></li>
-                                <li><a href="http://localhost:8084/ProyectoAYD2/ProgramaSalonEliminar.jsp">Eliminar Software a Salon</a></li>
+                                <li><a href="http://localhost:8084/ProyectoAYD2/TipoRecursoAgregar.jsp">Agregar Tipo Recurso</a></li>
+                                <li><a href="http://localhost:8084/ProyectoAYD2/TipoRecursoModificar.jsp">Modificar Tipo Recurso</a></li>
+                                <li><a href="http://localhost:8084/ProyectoAYD2/TipoRecursoEliminar.jsp">Eliminar Tipo Recurso</a></li>
+                                <li><a href="http://localhost:8084/ProyectoAYD2/RecursoAgregar.jsp">Agregar Recurso</a></li>
+                                <li><a href="http://localhost:8084/ProyectoAYD2/RecursoModificar.jsp">Modificar Recurso</a></li>
+                                <li><a href="http://localhost:8084/ProyectoAYD2/RecursoEliminar.jsp">Eliminar Recurso</a></li>
+                                <li><a href="http://localhost:8084/ProyectoAYD2/RecursoSalonAgregar.jsp">Agregar Recurso a Salon</a></li>
+                                <li><a href="http://localhost:8084/ProyectoAYD2/RecursoSalonModificar.jsp">Modificar Recurso a Salon</a></li>
+                                <li><a href="http://localhost:8084/ProyectoAYD2/RecursoSalonEliminar.jsp">Eliminar Recurso a Salon</a></li>
                             </ul>
                         </div>
                     </div>
@@ -77,33 +77,33 @@
                         <h1>Bienvenido!</h1>
                         <div class="box">
                             <p>Bienvenido al panel administrativo del sistema, en el cual puede modificar
-                                las configuraciones del software     </div>
+                                los Recursos    </div>
                     </div>
 
                 </div>
 
                 <div class="right_section">
                     <div class="common_content">
-                        <h2>Modificar Programa</h2>
+                        <h2>Modificar Recursos</h2>
                         <hr>
 
                         <TABLE BORDER>
                             <TR>
-                                <TD><B>ID Programa/ID Salon</TD>
+                                <TD><B>ID Recurso/ID Salon</TD>
                                 <TD>
                                     <%
-                                        ArrayList vecID = mprogramas.obtenerProgramas();
-                                        ArrayList vecNombres = mprogramas.obtenerProgramasNombre();
+                                        ArrayList vecID = mlab.obtenerRecursos();
+                                        ArrayList vecNombres = mlab.obtenerRecursosNombre();
                                         ArrayList vecID2 = mlab.obtenerSalones();
                                         ArrayList vecNombres2 = mlab.obtenerSalonesNombre();
                                     %>
 
                                     <form method="POST" name="buscar" action="">
 
-                                        <select name="idprograma">
+                                        <select name="idrecurso">
                                             <%  for (int i = 0; i < vecNombres.size(); i++) {
                                                     String option = (String) vecNombres.get(i);
-                                                    String option2 = (String)vecID.get(i);
+                                                    String option2 = (String) vecID.get(i);
                                             %>
                                             <option value="<%= option2%>"><%= option%></option>
                                             <% } %>
@@ -113,7 +113,7 @@
                                         <select name="idsalon">
                                             <%  for (int i = 0; i < vecNombres2.size(); i++) {
                                                     String option = (String) vecNombres2.get(i);
-                                                    String option2 = (String)vecID2.get(i);
+                                                    String option2 = (String) vecID2.get(i);
                                             %>
                                             <option value="<%= option2%>"><%= option%></option>
                                             <% } %>
@@ -125,9 +125,9 @@
                                         <INPUT TYPE="SUBMIT" NAME="buscar" VALUE="Buscar">
                                         <%
                                             if (request.getParameter("buscar") != null) {
-                                                idprograma = Integer.parseInt(request.getParameter("idprograma"));
+                                                idRecurso = Integer.parseInt(request.getParameter("idrecurso"));
                                                 for (int i = 0; i < vecNombres.size(); i++) {
-                                                    if (Integer.parseInt(vecID.get(i).toString()) == idprograma) {
+                                                    if (Integer.parseInt(vecID.get(i).toString()) == idRecurso) {
                                                         nombre = vecNombres.get(i).toString();
                                                     }
                                                 }
@@ -141,11 +141,12 @@
                                             }
 
                                             if (request.getParameter("eliminar") != null) {
-                                                idprograma = Integer.parseInt(request.getParameter("idprograma"));
+                                                idRecurso = Integer.parseInt(request.getParameter("idrecurso"));
                                                 idsalon = Integer.parseInt(request.getParameter("idsalon"));
-                                                idprograma2 = Integer.parseInt(request.getParameter("idprograma2"));
+                                                idRecurso2 = Integer.parseInt(request.getParameter("idrecurso2"));
                                                 idsalon2 = Integer.parseInt(request.getParameter("idsalon2"));
-                                                mprogramas.modificarProgramaSalon(idprograma,idsalon,idprograma2,idsalon2);
+                                                capacidad = Integer.parseInt(request.getParameter("capacidad"));
+                                                mlab.modificarRecursoSalon(idRecurso, idsalon, idRecurso2, idsalon2,capacidad);
                                             }
 
                                         %>  
@@ -153,9 +154,9 @@
                                         </TD>
                                         </TR>
                                         <TR>
-                                            <TD><B>Modificar Programa</TD>
+                                            <TD><B>Modificar Recurso</TD>
                                             <TD>
-                                                <select name="idprograma2">
+                                                <select name="idrecurso2">
                                                     <%  for (int i = 0; i < vecNombres.size(); i++) {
                                                             String option = (String) vecNombres.get(i);
                                                     %>
@@ -177,6 +178,10 @@
 
                                                 </select>
                                             </TD>
+                                        </TR>
+                                        <TR>
+                                            <TD><B>Cantidad</TD>
+                                            <TD><INPUT ENGINE=TEXTBOX NAME="capacidad" SIZE="15" VALUE="<%=capacidad%>"></TD>
                                         </TR>
                         </TABLE>
                         <P></P>

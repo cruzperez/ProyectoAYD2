@@ -13,17 +13,17 @@
 <!DOCTYPE html>
 <html>
     <%
-        //comentario     
-        String titulo = "Agregar Recurso";
         ModuloLaboratorio mlab = new ModuloLaboratorio();
-        int idtiporecurso = 0;
+        int idrecurso = 0;
+        int idsalon = 0;
+        int capacidad = 0;
         String nombre = "";
+        String nombre2 = "";
     %>
     <head>
-        <title>Agregar Recurso</title>
+        <title>Agregar Recurso a Salon</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link href="css/style.css" rel="stylesheet" type="text/css">
-        <title><%=titulo%></title>
     </head>
     <body>
 
@@ -75,37 +75,47 @@
                         <h1>Bienvenido!</h1>
                         <div class="box">
                             <p>Bienvenido al panel administrativo del sistema, en el cual puede modificar
-                                los recursos</div>
+                                los Recursos</div>
                     </div>
 
                 </div>
 
                 <div class="right_section">
                     <div class="common_content">
-                        <h2>Agregar Recursos</h2>
+                        <h2>Agregar Programa a Salon</h2>
                         <hr>
 
                         <FORM NAME="FORM1" METHOD="POST" ACTION="">
                             <%
-                                ArrayList vecID = mlab.obtenerTRecursos();
-                                ArrayList vecNombres = mlab.obtenerTRecursosNombre();
-                                String texto = "";
+                                ArrayList vecID = mlab.obtenerRecursos();
+                                ArrayList vecNombres = mlab.obtenerRecursosNombre();
+                                ArrayList vecID2 = mlab.obtenerSalones();
+                                ArrayList vecNombres2 = mlab.obtenerSalonesNombre();
 
                             %>
-
                             <TABLE BORDER>
                                 <TR>
-                                    <TD><B>Nombre</TD>
-                                    <TD><INPUT ENGINE=TEXTBOX NAME="nombre" SIZE="15" VALUE="<%= nombre%>"></TD>
-                                </TR>
-                                <TR>
-                                    <TD><B>ID Tipo Recurso</TD>
+                                    <TD><B>ID Recurso</TD>
 
                                     <TD>
-                                        <select name="idtiporecurso">
+                                        <select name="idrecurso">
                                             <%  for (int i = 0; i < vecID.size(); i++) {
                                                     String option = (String) vecNombres.get(i);
-                                                    String option2 = (String)vecID.get(i);
+                                                    String option2 = (String) vecID.get(i);
+                                            %>
+                                            <option value="<%= option2%>"><%= option%></option>
+                                            <% }%>
+                                        </select>
+                                    </TD>
+                                </TR>
+                                <TR>
+                                    <TD><B>ID Salon</TD>
+
+                                    <TD>
+                                        <select name="idsalon">
+                                            <%  for (int i = 0; i < vecID2.size(); i++) {
+                                                    String option = (String) vecNombres2.get(i);
+                                                    String option2 = (String) vecID2.get(i);
                                             %>
                                             <option value="<%= option2%>"><%= option%></option>
                                             <% }%>
@@ -113,17 +123,29 @@
                                     </TD>
                                     <%  if (request.getParameter("guardar") != null) {
 
-                                            idtiporecurso = Integer.parseInt(request.getParameter("idtiporecurso"));
+                                            idrecurso = Integer.parseInt(request.getParameter("idrecurso"));
                                             for (int i = 0; i < vecNombres.size(); i++) {
-                                                if (Integer.parseInt(vecID.get(i).toString()) == idtiporecurso) {
+                                                if (Integer.parseInt(vecID.get(i).toString()) == idrecurso) {
                                                     nombre = vecNombres.get(i).toString();
-                                                    idtiporecurso = Integer.parseInt(vecID.get(i).toString());
+                                                    idrecurso = Integer.parseInt(vecID.get(i).toString());
                                                 }
                                             }
-                                            nombre = request.getParameter("nombre");
-                                            mlab.nuevoRecurso(nombre, idtiporecurso);
+
+                                            idsalon = Integer.parseInt(request.getParameter("idsalon"));
+                                            for (int i = 0; i < vecNombres2.size(); i++) {
+                                                if (Integer.parseInt(vecID2.get(i).toString()) == idsalon) {
+                                                    nombre2 = vecNombres2.get(i).toString();
+                                                    idsalon = Integer.parseInt(vecID2.get(i).toString());
+                                                }
+                                            }
+                                            capacidad = Integer.parseInt(request.getParameter("capacidad"));
+                                            mlab.nuevoRecursoSalon(""+ idrecurso, "" + idsalon,"" + capacidad);
                                         }
                                     %>
+                                </TR>
+                                <TR>
+                                    <TD><B>Cantidad</TD>
+                                    <TD><INPUT ENGINE=TEXTBOX NAME="capacidad" SIZE="15" VALUE="<%=capacidad%>"></TD>
                                 </TR>
                             </TABLE>
                             <P></P>

@@ -48,7 +48,6 @@
                         <li><a href="http://localhost:8084/ProyectoAYD2/Programas.html">Programas</a></li>
                         <li><a href="http://localhost:8084/ProyectoAYD2/cursos.html">Cursos</a></li>
                         <li><a href="http://localhost:8084/ProyectoAYD2/Recurso.html">Recursos</a></li>
-                        <li><a href="http://localhost:8084/ProyectoAYD2/AsignacionPrograma.html">Asignacion Programas</a></li>
                         <li><a href="http://localhost:8084/ProyectoAYD2/Reservacion.html">Reservaciones</a></li>
                         <li><a href="http://localhost:8084/ProyectoAYD2/Reporte.html">Reportes</a></li>
                     </ul>
@@ -66,6 +65,9 @@
                                 <li><a href="http://localhost:8084/ProyectoAYD2/RecursoAgregar.jsp">Agregar Recurso</a></li>
                                 <li><a href="http://localhost:8084/ProyectoAYD2/RecursoModificar.jsp">Modificar Recurso</a></li>
                                 <li><a href="http://localhost:8084/ProyectoAYD2/RecursoEliminar.jsp">Eliminar Recurso</a></li>
+                                <li><a href="http://localhost:8084/ProyectoAYD2/RecursoSalonAgregar.jsp">Agregar Recurso a Salon</a></li>
+                                <li><a href="http://localhost:8084/ProyectoAYD2/RecursoSalonModificar.jsp">Modificar Recurso a Salon</a></li>
+                                <li><a href="http://localhost:8084/ProyectoAYD2/RecursoSalonEliminar.jsp">Eliminar Recurso a Salon</a></li>
                             </ul>
                         </div>
                     </div>
@@ -102,7 +104,7 @@
                                         <select name="idrecurso">
                                             <%  for (int i = 0; i < vecID.size(); i++) {
                                                     String option = (String) vecID.get(i);
-                                                    String option2 = (String)vecNombres.get(i);
+                                                    String option2 = (String) vecNombres.get(i);
                                             %>
                                             <option value="<%= option%>"><%= option2%></option>
                                             <% } %>
