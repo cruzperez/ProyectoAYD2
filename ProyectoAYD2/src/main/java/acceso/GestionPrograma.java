@@ -18,6 +18,11 @@ public class GestionPrograma {
     private Conexion nuevaConexion;
     private Connection conn;
 
+    public GestionPrograma() {
+        nuevaConexion = new Conexion();
+        conn = nuevaConexion.getConn();
+    }
+
     public void insertarPrograma(String name) {
         nuevaConexion.crearConn();
         conn = nuevaConexion.getConn();
@@ -94,9 +99,9 @@ public class GestionPrograma {
         try {
             s = conn.createStatement();
             //seleccionamos la tabla de la base de datos la cual lleva por nombre trabajadores
-            rs = s.executeQuery("SELECT * FROM  programas");
+            rs = s.executeQuery("SELECT * FROM  programa");
             while (rs.next()) {
-                devolver += rs.getString(1) + "," + rs.getString(2) + "," + rs.getString(3) + "/";
+                devolver += rs.getString(1) + "," + rs.getString(2)+ "/";
             }
             rs.close();
         } catch (Exception e) {
