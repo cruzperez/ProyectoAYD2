@@ -117,7 +117,7 @@ public class GestionPrograma {
         Statement s = null;
         try {
             s = conn.createStatement();
-            s.executeUpdate("INSERT INTO programa_salon values(default,'" + name + "','" + name2 + "');");
+            s.executeUpdate("INSERT INTO programa_salon values('" + name + "','" + name2 + "');");
 
         } catch (Exception e) {
             System.out.println("Problema al insertar el programa salon. " + e);
