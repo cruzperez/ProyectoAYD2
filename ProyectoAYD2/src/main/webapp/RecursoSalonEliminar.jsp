@@ -124,7 +124,7 @@
                                                 if (request.getParameter("eliminar") != null) {
                                                     idrecurso = Integer.parseInt(request.getParameter("idrecurso"));
                                                     idsalon = Integer.parseInt(request.getParameter("idsalon"));
-                                                    mlab.borrarRecursoSalon(nombre, nombre2);
+                                                    mlab.borrarRecursoSalon(idrecurso, idsalon);
                                                 }
                                             }
                                         %>
