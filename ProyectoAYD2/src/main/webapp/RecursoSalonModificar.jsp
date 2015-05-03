@@ -158,9 +158,10 @@
                                             <TD>
                                                 <select name="idrecurso2">
                                                     <%  for (int i = 0; i < vecNombres.size(); i++) {
-                                                            String option = (String) vecNombres.get(i);
+                                                            String option = (String) vecID.get(i);
+                                                            String option2 = (String) vecNombres.get(i);
                                                     %>
-                                                    <option value="<%= option%>"><%= option%></option>
+                                                    <option value="<%= option%>"><%= option2%></option>
                                                     <% }%>
 
                                                 </select>
@@ -171,9 +172,10 @@
                                             <TD>
                                                 <select name="idsalon2">
                                                     <%  for (int i = 0; i < vecNombres2.size(); i++) {
-                                                            String option = (String) vecNombres2.get(i);
+                                                            String option = (String) vecID2.get(i);
+                                                            String option2 = (String) vecNombres2.get(i);
                                                     %>
-                                                    <option value="<%= option%>"><%= option%></option>
+                                                    <option value="<%= option%>"><%= option2%></option>
                                                     <% }%>
 
                                                 </select>

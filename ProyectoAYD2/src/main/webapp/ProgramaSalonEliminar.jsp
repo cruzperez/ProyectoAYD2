@@ -85,23 +85,23 @@
                     <div class="common_content">
                         <h2>Eliminar Programa</h2>
                         <hr>
+                        <FORM NAME="FORM1" METHOD="POST" ACTION="">
+                            <TABLE BORDER>
+                                <TR>
+                                    <TD><B>ID Programa/ID Salon</TD>
+                                    <TD>
+                                        <%
+                                            ArrayList vecID = mprogramas.obtenerProgramas();
+                                            ArrayList vecNombres = mprogramas.obtenerProgramasNombre();
+                                            ArrayList vecID2 = mlab.obtenerSalones();
+                                            ArrayList vecNombres2 = mlab.obtenerSalonesNombre();
 
-                        <TABLE BORDER>
-                            <TR>
-                                <TD><B>ID Programa/ID Salon</TD>
-                                <TD>
-                                    <%
-                                        ArrayList vecID = mprogramas.obtenerProgramas();
-                                        ArrayList vecNombres = mprogramas.obtenerProgramasNombre();
-                                        ArrayList vecID2 = mlab.obtenerSalones();
-                                        ArrayList vecNombres2 = mlab.obtenerSalonesNombre();
-
-                                    %>
+                                        %>
 
                                         <select name="idprograma">
                                             <%  for (int i = 0; i < vecNombres.size(); i++) {
                                                     String option = (String) vecNombres.get(i);
-                                                    String option2 = (String)vecID.get(i);
+                                                    String option2 = (String) vecID.get(i);
                                             %>
                                             <option value="<%= option2%>"><%= option%></option>
                                             <% } %>
@@ -111,7 +111,7 @@
                                         <select name="idsalon">
                                             <%  for (int i = 0; i < vecNombres2.size(); i++) {
                                                     String option = (String) vecNombres2.get(i);
-                                                    String option2 = (String)vecID2.get(i);
+                                                    String option2 = (String) vecID2.get(i);
                                             %>
                                             <option value="<%= option2%>"><%= option%></option>
                                             <% } %>
@@ -120,37 +120,35 @@
 
                                         <%
                                             if (request.getParameter("eliminar") != null) {
-                                                if (request.getParameter("eliminar") != null) {
-                                                    idprograma = Integer.parseInt(request.getParameter("idprograma"));
-                                                    idsalon = Integer.parseInt(request.getParameter("idsalon"));
-                                                    mprogramas.borrarProgramaSalon(nombre, nombre2);
-                                                }
+                                                idprograma = Integer.parseInt(request.getParameter("idprograma"));
+                                                idsalon = Integer.parseInt(request.getParameter("idsalon"));
+                                                mprogramas.borrarProgramaSalon(idprograma, idsalon);
                                             }
                                         %>
 
-                                        </TD>
-                                        </TR>
-                                        </TABLE>
-                                        <P></P>
+                                    </TD>
+                                </TR>
+                            </TABLE>
+                            <P></P>
 
-                                        <INPUT TYPE="SUBMIT" NAME="eliminar" VALUE="Eliminar">
+                            <INPUT TYPE="SUBMIT" NAME="eliminar" VALUE="Eliminar">
 
-                                    </form>
-                                    <HR></HR>
-
-
-                                    </div>
-
-                                    </div>
-
-                                    <div class="clear"></div>
+                        </form>
+                        <HR></HR>
 
 
+                    </div>
 
-                                    </div>
+                </div>
 
-                                    </div>
+                <div class="clear"></div>
 
 
 
-                                    </html>
+            </div>
+
+        </div>
+
+
+
+</html>

@@ -59,9 +59,12 @@
                         <h1>Menu Principal</h1>
                         <div class="box">
                             <ul>
-                                <li><a href="http://localhost:8084/ProyectoAYD2/agregarCurso.html">Agregar Curso</a></li>
+                                <li><a href="http://localhost:8084/ProyectoAYD2/agregarCurso.jsp">Agregar Curso</a></li>
                                 <li><a href="http://localhost:8084/ProyectoAYD2/modificarCurso.jsp">Modificar Curso</a></li>
                                 <li><a href="http://localhost:8084/ProyectoAYD2/eliminarCurso.jsp">Eliminar Curso</a></li>
+                                <li><a href="http://localhost:8084/ProyectoAYD2/CursoSalonAgregar.jsp">Agregar Curso a Salon</a></li>
+                                <li><a href="http://localhost:8084/ProyectoAYD2/CursoSalonModificar.jsp">Modificar Curso a Salon</a></li>
+                                <li><a href="http://localhost:8084/ProyectoAYD2/CursoSalonEliminar.jsp">Eliminar Curso a Salon</a></li>
                             </ul>
                         </div>
                     </div>
@@ -70,7 +73,7 @@
                         <h1>Bienvenido!</h1>
                         <div class="box">
                             <p>Bienvenido al panel administrativo del sistema, en el cual puede modificar
-                                las configuraciones de labori      </div>
+                                las configuraciones de los cursos</div>
                     </div>
 
                 </div>

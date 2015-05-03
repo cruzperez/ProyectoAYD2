@@ -4,6 +4,7 @@
     Author     : cruz
 --%>
 
+<%@page import="acceso.GestionLaboratorio"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.Vector"%>
 <%@page import="acceso.Conexion"%>
@@ -13,15 +14,17 @@
 <!DOCTYPE html>
 <html>
     <%
-        //comentario     
-        String titulo = "Agregar Curso";
+        ModuloLaboratorio mlab = new ModuloLaboratorio();
         GestionCurso gcurso = new GestionCurso();
+        int idcurso = 0;
+        int idsalon = 0;
+        String nombre = "";
+        String nombre2 = "";
     %>
     <head>
-        <title>Agregar Curso</title>
+        <title>Agregar Curso a Salon</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link href="css/style.css" rel="stylesheet" type="text/css">
-        <title><%=titulo%></title>
     </head>
     <body>
 
@@ -70,28 +73,73 @@
                         <h1>Bienvenido!</h1>
                         <div class="box">
                             <p>Bienvenido al panel administrativo del sistema, en el cual puede modificar
-                                las configuraciones de los cursos</div>
+                                los cursos</div>
                     </div>
 
                 </div>
 
                 <div class="right_section">
                     <div class="common_content">
-                        <h2>Agregar Curso</h2>
+                        <h2>Agregar Curso a Salon</h2>
                         <hr>
 
                         <FORM NAME="FORM1" METHOD="POST" ACTION="">
                             <%
-                                String texto = "";
-                                if (request.getParameter("guardar") != null) {
-                                    String nombre = request.getParameter("nombre");
-                                    gcurso.nuevoCurso(nombre);
-                                }
+                                ArrayList vecID = gcurso.obtenerCursos();
+                                ArrayList vecNombres = gcurso.obtenerCursosNombre();
+                                ArrayList vecID2 = mlab.obtenerSalones();
+                                ArrayList vecNombres2 = mlab.obtenerSalonesNombre();
+
                             %>
                             <TABLE BORDER>
                                 <TR>
-                                    <TD><B>Nombre</TD>
-                                    <TD><INPUT ENGINE=TEXTBOX NAME="nombre" SIZE="15" VALUE=""></TD>
+                                    <TD><B>ID Curso</TD>
+
+                                    <TD>
+                                        <select name="idcurso">
+                                            <%  for (int i = 0; i < vecID.size(); i++) {
+                                                    String option = (String) vecNombres.get(i);
+                                                    String option2 = (String) vecID.get(i);
+                                            %>
+                                            <option value="<%= option2%>"><%= option%></option>
+                                            <% }%>
+                                        </select>
+                                    </TD>
+                                </TR>
+                                <TR>
+                                    <TD><B>ID Salon</TD>
+
+                                    <TD>
+                                        <select name="idsalon">
+                                            <%  for (int i = 0; i < vecID2.size(); i++) {
+                                                    String option = (String) vecNombres2.get(i);
+                                                    String option2 = (String) vecID2.get(i);
+                                            %>
+                                            <option value="<%= option2%>"><%= option%></option>
+                                            <% }%>
+                                        </select>
+                                    </TD>
+                                    <%  if (request.getParameter("guardar") != null) {
+
+                                            idcurso = Integer.parseInt(request.getParameter("idcurso"));
+                                            for (int i = 0; i < vecNombres.size(); i++) {
+                                                if (Integer.parseInt(vecID.get(i).toString()) == idcurso) {
+                                                    nombre = vecNombres.get(i).toString();
+                                                    idcurso = Integer.parseInt(vecID.get(i).toString());
+                                                }
+                                            }
+
+                                            idsalon = Integer.parseInt(request.getParameter("idsalon"));
+                                            for (int i = 0; i < vecNombres2.size(); i++) {
+                                                if (Integer.parseInt(vecID2.get(i).toString()) == idsalon) {
+                                                    nombre2 = vecNombres2.get(i).toString();
+                                                    idsalon = Integer.parseInt(vecID2.get(i).toString());
+                                                }
+                                            }
+                                            
+                                            mlab.nuevoCursoSalon("" + idsalon, "" + idcurso);
+                                        }
+                                    %>
                                 </TR>
                             </TABLE>
                             <P></P>

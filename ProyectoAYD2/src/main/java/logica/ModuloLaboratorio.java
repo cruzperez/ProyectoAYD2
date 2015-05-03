@@ -238,10 +238,10 @@ public class ModuloLaboratorio {
             return fail;
         }
     }
-    
+
     public boolean modificarRecursoSalon(int id, int id2, int nombre, int nombre2, int nombre3) {
         try {
-            lab.modificarRecursoSalon(id, id2, id, id2, nombre3);
+            lab.modificarRecursoSalon(id, id2, nombre, nombre2, nombre3);
             return true;
         } catch (Exception e) {
             return false;
@@ -269,6 +269,57 @@ public class ModuloLaboratorio {
     public boolean borrarRecursoSalon(int id, int id2) {
         try {
             lab.borrarRecursoSalon(id, id2);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    public ArrayList obtenerRecursosCapacidad() {
+        try {
+            String[] recurso = lab.retornarRecursoSalon().split("/");
+            ArrayList ids = new ArrayList();
+            for (int i = 0; i < recurso.length; i++) {
+                ids.add(recurso[i].split(",")[0]);
+            }
+            return ids;
+        } catch (Exception e) {
+            ArrayList fail = new ArrayList();
+            fail.add("- no items -");
+            return fail;
+        }
+    }
+
+    public boolean modificarCursoSalon(int id, int id2, int nombre, int nombre2) {
+        try {
+            lab.modificarCursoSalon(id, id2, nombre, nombre);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    public boolean nuevoCursoSalon(String nombre, String nombre2) {
+        try {
+            lab.insertarCursoSalon(nombre, nombre2);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    public boolean borrarCursoSalon(String nombre, String nombre2) {
+        try {
+            lab.borrarCursoSalon(nombre, nombre2);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    public boolean borrarCursoSalon(int id, int id2) {
+        try {
+            lab.borrarCursoSalon(id, id2);
             return true;
         } catch (Exception e) {
             return false;
