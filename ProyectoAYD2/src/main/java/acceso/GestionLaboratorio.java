@@ -223,123 +223,6 @@ public class GestionLaboratorio {
         return devolver;
     }
 
-    public void insertarReservacion(String fechaIni, String fechaFin, String horaIni, String horaFin, String nombre) {
-
-        nuevaConexion.crearConn();
-        conn = nuevaConexion.getConn();
-        ResultSet rs = null;
-        Statement s = null;
-        try {
-            s = conn.createStatement();
-            //seleccionamos la tabla de la base de datos la cual lleva por nombre trabajadores
-            //System.out.println("INSERT INTO curso values(default,'"+name+"');");
-            rs = s.executeQuery("SELECT id FROM salon WHERE nombre='" + nombre + "';");
-            rs.next();
-            int id = Integer.parseInt(rs.getString("id"));
-            //System.out.println("obtenido "+capac);
-            s.executeUpdate("INSERT INTO reservacion values(default,'" + fechaIni + "','" + fechaFin + "','" + horaIni + "','" + horaFin + "'," + id + ");");
-
-        } catch (Exception e) {
-            System.out.println("Problema al insertar en reservacion. " + e);
-        }
-        nuevaConexion.cierraConn();
-
-    }
-
-    public void insertarReservacion(String fechaIni, String fechaFin, String horaIni, String horaFin, int id) {
-
-        nuevaConexion.crearConn();
-        conn = nuevaConexion.getConn();
-        ResultSet rs = null;
-        Statement s = null;
-        try {
-            s = conn.createStatement();
-            s.executeUpdate("INSERT INTO reservacion values(default,'" + fechaIni + "','" + fechaFin + "','" + horaIni + "','" + horaFin + "'," + id + ");");
-
-        } catch (Exception e) {
-            System.out.println("Problema al insertar en reservacion. " + e);
-        }
-        nuevaConexion.cierraConn();
-
-    }
-
-    public void modificarReservacion(int idR, String fechaIni, String fechaFin, String horaIni, String horaFin, int id) {
-
-        nuevaConexion.crearConn();
-        conn = nuevaConexion.getConn();
-        ResultSet rs = null;
-        Statement s = null;
-        try {
-            s = conn.createStatement();
-            s.executeUpdate("UPDATE reservacion SET fecha_inicio='" + fechaIni + "',fecha_final='" + fechaFin + "',hora_inicio='" + horaIni + "',hora_final='" + horaFin
-                    + "',salon_id=" + id + " WHERE id=" + idR + ";");
-
-        } catch (Exception e) {
-            System.out.println("Problema al modificar en reservacion. " + e);
-        }
-        nuevaConexion.cierraConn();
-
-    }
-
-    public void modificarReservacion(int idR, String fechaIni, String fechaFin, String horaIni, String horaFin, String nombre) {
-
-        nuevaConexion.crearConn();
-        conn = nuevaConexion.getConn();
-        ResultSet rs = null;
-        Statement s = null;
-        try {
-            s = conn.createStatement();
-            rs = s.executeQuery("SELECT id FROM salon WHERE nombre='" + nombre + "';");
-            rs.next();
-            int id = Integer.parseInt(rs.getString("id"));
-            s.executeUpdate("UPDATE reservacion SET fecha_inicio='" + fechaIni + "',fecha_final='" + fechaFin + "',hora_inicio='" + horaIni
-                    + "',hora_final='" + horaFin + "',salon_id=" + id + " WHERE id=" + idR + ";");
-
-        } catch (Exception e) {
-            System.out.println("Problema al insertar en reservacion. " + e);
-        }
-        nuevaConexion.cierraConn();
-
-    }
-
-    public void borrarReservacion(int id) {
-
-        nuevaConexion.crearConn();
-        conn = nuevaConexion.getConn();
-        Statement s = null;
-        try {
-            s = conn.createStatement();
-            //seleccionamos la tabla de la base de datos la cual lleva por nombre trabajadores
-            //System.out.println("INSERT INTO curso values(default,'"+name+"');");
-            s.executeUpdate("DELETE FROM reservacion  WHERE id=" + id + ";");
-
-        } catch (Exception e) {
-            System.out.println("Problema al eliminar en tabla reservacion. " + e);
-        }
-        nuevaConexion.cierraConn();
-    }
-
-    public String retornarReservacion() {
-        nuevaConexion.crearConn();
-        conn = nuevaConexion.getConn();
-        ResultSet rs = null;
-        Statement s = null;
-        String devolver = "";
-        try {
-            s = conn.createStatement();
-            //seleccionamos la tabla de la base de datos la cual lleva por nombre trabajadores
-            rs = s.executeQuery("SELECT * FROM  reservacion");
-            while (rs.next()) {
-                devolver += rs.getString(1) + "," + rs.getString(2) + "," + rs.getString(3) + "," + rs.getString(4) + "," + rs.getString(5) + "," + rs.getString(6) + "/";
-            }
-            rs.close();
-        } catch (Exception e) {
-            System.out.println("Problema al consultar la tabla reservacion de la base de datos " + e);
-        }
-        nuevaConexion.cierraConn();
-        return devolver;
-    }
-
     public void insertarTRecurso(String name) {
 
         nuevaConexion.crearConn();
@@ -683,5 +566,75 @@ public class GestionLaboratorio {
         nuevaConexion.cierraConn();
     }
 
+    public void insertarReservacion(String fechainicio, String horainicio,
+            String horafin, String encargado, boolean estado, int salon) {
+
+        nuevaConexion.crearConn();
+        conn = nuevaConexion.getConn();
+        Statement s = null;
+        try {
+            s = conn.createStatement();
+            s.executeUpdate("INSERT INTO reservacion values(default,'" + fechainicio + "','" + horainicio + "','" + horafin + "','" + salon
+                    + "','" + encargado + "','" + estado + "')");
+
+        } catch (Exception e) {
+            System.out.println("Problema al insertar en reservacion. " + e);
+        }
+        nuevaConexion.cierraConn();
+    }
+
+    public void modificarReservacion(int id, String fechainicio, String horainicio,
+            String horafin, String encargado, boolean estado, int salon) {
+
+        nuevaConexion.crearConn();
+        conn = nuevaConexion.getConn();
+        Statement s = null;
+        try {
+            s = conn.createStatement();
+            s.executeUpdate("UPDATE reservacion SET fecha_inicio ='" + fechainicio + "', hora_inicio ='" + horainicio
+                    + "', hora_final ='" + horafin + "', salon_id ='" + salon + "', encargado ='" + encargado
+                    + "', estado ='" + estado + "' WHERE id=" + id + ";");
+
+        } catch (Exception e) {
+            System.out.println("Problema al modificar en tabla recurso. " + e);
+        }
+        nuevaConexion.cierraConn();
+    }
+
+    public void borrarReservacion(int id) {
+
+        nuevaConexion.crearConn();
+        conn = nuevaConexion.getConn();
+        Statement s = null;
+        try {
+            s = conn.createStatement();
+            s.executeUpdate("DELETE FROM reservacion  WHERE id=" + id + ";");
+
+        } catch (Exception e) {
+            System.out.println("Problema al eliminar en tabla reservacion. " + e);
+        }
+        nuevaConexion.cierraConn();
+    }
+
+    public String retornarReservacion() {
+        nuevaConexion.crearConn();
+        conn = nuevaConexion.getConn();
+        ResultSet rs = null;
+        Statement s = null;
+        String devolver = "";
+        try {
+            s = conn.createStatement();
+            //seleccionamos la tabla de la base de datos la cual lleva por nombre trabajadores
+            rs = s.executeQuery("SELECT * FROM  reservacion");
+            while (rs.next()) {
+                devolver += rs.getString(1) + "," + rs.getString(2) + "," + rs.getString(3) + "," + rs.getString(4) + "," + rs.getString(5) + "," + rs.getString(6) + "/";
+            }
+            rs.close();
+        } catch (Exception e) {
+            System.out.println("Problema al consultar la tabla reservacion de la base de datos " + e);
+        }
+        nuevaConexion.cierraConn();
+        return devolver;
+    }
 
 }

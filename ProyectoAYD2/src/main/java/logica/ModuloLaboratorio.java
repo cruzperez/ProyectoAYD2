@@ -97,16 +97,6 @@ public class ModuloLaboratorio {
         }
     }
 
-    public boolean reservarLaboratorio(String salon, int dia0, int dia1,
-            int mes0, int mes1, int anno0, int anno1, int hora0, int hora1,
-            String encargado) {
-        try {
-            return true;
-        } catch (Exception e) {
-            return false;
-        }
-    }
-
     public boolean modificarTRecurso(int id, String nombre) {
         try {
             lab.modificarTRecurso(id, nombre);
@@ -320,6 +310,16 @@ public class ModuloLaboratorio {
     public boolean borrarCursoSalon(int id, int id2) {
         try {
             lab.borrarCursoSalon(id, id2);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    public boolean reservarLaboratorio(String fechainicio, String horainicio, 
+            String horafin, String encargado, String estado, int salon) {
+        try {
+            
             return true;
         } catch (Exception e) {
             return false;
