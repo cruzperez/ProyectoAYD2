@@ -20,31 +20,30 @@ import java.util.regex.Pattern;
  */
 public class PFAgregarSalonTest extends SeleneseTestBase {
     
-//  private Selenium selenium;
-//
-//	@Before
-//	public void setUp() throws Exception {
-//		selenium = new DefaultSelenium("localhost", 4444, "*chrome", "http://localhost:8084/PruebaProyecto/Operacion");
-//		selenium.start();
-//	}
-//
-//	@Test
-//	public void testPFAgregarSalon() throws Exception {
-//		selenium.open("/ProyectoAYD2/index.html");
-//		selenium.click("link=Salones");
-//		selenium.waitForPageToLoad("30000");
-//		selenium.click("link=Agregar Salon");
-//		selenium.waitForPageToLoad("30000");
-//		selenium.type("name=nombre", "Korea center2");
-//		selenium.type("name=capacidad", "20");
-//		selenium.click("name=guardar");
-//		selenium.waitForPageToLoad("30000");
-//	}
-//
-//	@After
-//	public void tearDown() throws Exception {
-//		selenium.stop();
-//	}
-//    
-//}
+  private Selenium selenium;
+
+	@Before
+	public void setUp() throws Exception {
+		selenium = new DefaultSelenium("localhost", 4444, "*chrome", "http://localhost:8084/PruebaProyecto/Operacion");
+		selenium.start();
+	}
+
+	@Test
+	public void testPFAgregarSalon() throws Exception {
+		selenium.open("/ProyectoAYD2/index.html");
+		selenium.click("link=Salones");
+		selenium.waitForPageToLoad("30000");
+		selenium.click("link=Agregar Salon");
+		selenium.waitForPageToLoad("30000");
+		selenium.type("name=nombre", "Korea center2");
+		selenium.type("name=capacidad", "20");
+		selenium.click("name=guardar");
+		selenium.waitForPageToLoad("30000");
+	}
+
+	@After
+	public void tearDown() throws Exception {
+		selenium.stop();
+	}
+    
 }
