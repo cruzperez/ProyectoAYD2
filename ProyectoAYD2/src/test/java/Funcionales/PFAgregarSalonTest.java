@@ -18,7 +18,7 @@ import java.util.regex.Pattern;
  *
  * @author bray
  */
-public class PFAgregarSalon extends SeleneseTestBase {
+public class PFAgregarSalonTest extends SeleneseTestBase {
     
   private Selenium selenium;
 
@@ -30,8 +30,9 @@ public class PFAgregarSalon extends SeleneseTestBase {
 
 	@Test
 	public void testPFAgregarSalon() throws Exception {
-		selenium.open("/ProyectoAYD2/index.html");
-		selenium.click("link=Salones");
+		//selenium.open("/ProyectoAYD2/index.html");
+            selenium.open("/ProyectoAYD2/salones.html");
+		//selenium.click("link=Salones");
 		selenium.waitForPageToLoad("30000");
 		selenium.click("link=Agregar Salon");
 		selenium.waitForPageToLoad("30000");
