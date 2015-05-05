@@ -13,17 +13,19 @@
 <!DOCTYPE html>
 <html>
     <%
-        //comentario     
-        String titulo = "Modificar Programa";
-        ModuloProgramas mprograma = new ModuloProgramas();
-        int idprograma = 0;
-        String nombre = "";
+        ModuloLaboratorio mlab = new ModuloLaboratorio();
+        String fechainicio = "";
+        String horainicio = "";
+        String horafin = "";
+        String encargado = "";
+        String estado = "";
+        int salon = 0;
+        int idreservacion = 0;
     %>
     <head>
-        <title>Modificar Programa</title>
+        <title>Aprobar Reservacion / Modificar Reservacion</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link href="css/style.css" rel="stylesheet" type="text/css">
-        <title><%=titulo%></title>
     </head>
     <body>
 
@@ -76,65 +78,147 @@
 
                 <div class="right_section">
                     <div class="common_content">
-                        <h2>Modificar Reservacion</h2>
+                        <h2>Aprobar Reservacion / Modificar Reservacion</h2>
                         <hr>
 
-                        <TABLE BORDER>
-                            <TR>
-                                <TD><B>Id Reservacion</TD>
-                                <TD>
-                                    <%
-                                        ArrayList vecProgramas = mprograma.obtenerProgramas();
-                                        ArrayList vecNombres = mprograma.obtenerProgramasNombre();
-                                        String texto = "";
+                        <FORM NAME="FORM1" METHOD="POST" ACTION="">
+                            <article id="content">
+                                <div class="wrapper">
+                                    <br>
+                                    <div class="row">
+                                        <table border="1" style="margin: 0 auto; width:100%; border-color: #ffffff">
+                                            <tr>
+                                                <td style="border: #000 1px solid; margin: 0 auto; width:33%;">
+                                                    <br>
+                                                    <br>
+                                                    <font color="red">* Campos Obligatorios</font>
+                                                    <form method="post" autocomplete="off" name="buscar">
+                                                        <%
+                                                            ArrayList vecID = mlab.obtenerSalones();
+                                                            ArrayList vecNombres = mlab.obtenerSalonesNombre();
+                                                            ArrayList vecID2 = mlab.obtenerReservaciones();
+                                                            ArrayList vecFecha = mlab.obtenerReservacionesFecha();
+                                                            ArrayList vecHoraini = mlab.obtenerReservacionesHorainicio();
+                                                            ArrayList vecHoraFin = mlab.obtenerReservacionesHorafin();
+                                                            ArrayList vecEncargado = mlab.obtenerReservacionesEncargado();
+                                                            ArrayList vecEstado = mlab.obtenerReservacionesEstado();
+                                                            ArrayList vecSalon = mlab.obtenerReservacionesSalon();
+                                                        %>
+                                                        <center>
+                                                            <select name="idreservacion">
+                                                                <%  for (int i = 0; i < vecID2.size(); i++) {
+                                                                        String option = (String) vecID2.get(i);
+                                                                %>
+                                                                <option value="<%= option%>"><%= option%></option>
+                                                                <% }%>
 
-                                    %>
+                                                            </select>
+                                                            <INPUT TYPE="SUBMIT" NAME="buscar" VALUE="Buscar">
+                                                            <div class="grid_12">
+                                                                <table style="border: #000 1px solid; margin: 0 auto; width:100%;">
+                                                                    <tr>
+                                                                        <th style="border: #000 1px solid; margin: 0 auto; width:33%; color: #000; background-color: #FFFFFF">
+                                                                            Listado de salones/Laboratorios
+                                                                        </th>
+                                                                        <th style="border: #000 1px solid; margin: 0 auto; width:33%; color: #000; background-color: #FFFFFF">
+                                                                            [<select name="idsalon">
+                                                                                <%  for (int i = 0; i < vecNombres.size(); i++) {
+                                                                                        salon = Integer.parseInt(vecID.get(i).toString());
+                                                                                        String option2 = (String) vecNombres.get(i);
+                                                                                %>
+                                                                                <option value="<%= salon%>"><%= option2%></option>
+                                                                                <% }%>
 
-                                    <form method="POST" name="buscar" action="">
+                                                                            </select>]<font color="red"> *</font>
+                                                                        </th>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <th style="border: #000 1px solid; margin: 0 auto; width:33%; color: #000; background-color: #FFFFFF">
+                                                                            Fecha de Reservación
+                                                                        </th>
+                                                                        <th style="border: #000 1px solid; margin: 0 auto; width:33%; color: #000; background-color: #FFFFFF">
+                                                                            [<input type="date" name="fecha" VALUE="<%= fechainicio%>">] <font color="red">*</font>
+                                                                        </th>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <th style="border: #000 1px solid; margin: 0 auto; width:33%; color: #000; background-color: #FFFFFF">
+                                                                            Hora de Inicio
+                                                                        </th>
+                                                                        <th style="border: #000 1px solid; margin: 0 auto; width:33%; color: #000; background-color: #FFFFFF">
+                                                                            [<input type="time" name="horainicio" VALUE="<%= horainicio%>">] <font color="red">*</font> 
+                                                                        </th>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <th style="border: #000 1px solid; margin: 0 auto; width:33%; color: #000; background-color: #FFFFFF">
+                                                                            Hora de Finalización
+                                                                        </th>
+                                                                        <th style="border: #000 1px solid; margin: 0 auto; width:33%; color: #000; background-color: #FFFFFF">
+                                                                            [<input type="time" name="horafin" VALUE="<%= horafin%>" >] <font color="red">*</font>
+                                                                        </th>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <th style="border: #000 1px solid; margin: 0 auto; width:33%; color: #000; background-color:#FFFFFF">
+                                                                            Nombre Solicitante
+                                                                        </th>
+                                                                        <th style="border: #000 1px solid; margin: 0 auto; width:33%; color: #000; background-color: #FFFFFF">
+                                                                            [<input type="text" name="encargado" VALUE="<%= encargado%>">] <font color="red">*</font>
+                                                                        </th>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <th style="border: #000 1px solid; margin: 0 auto; width:33%; color: #000; background-color: #FFFFFF">
+                                                                            Estado de Reservacion
+                                                                        </th>
+                                                                        <th style="border: #000 1px solid; margin: 0 auto; width:33%; color: #000; background-color: #FFFFFF">
+                                                                            [<select name="estado">
+                                                                                <%                                                                                    ArrayList vec = new ArrayList();
+                                                                                    vec.add("No Reservado");
+                                                                                    vec.add("Reservado");
+                                                                                    for (int i = 0; i < vec.size(); i++) {
+                                                                                        estado = (String) vec.get(i);
+                                                                                %>
+                                                                                <option value="<%= estado%>"><%= estado%></option>
+                                                                                <% }%>
 
-                                        <select name="idprograma">
-                                            <%  for (int i = 0; i < vecProgramas.size(); i++) {
-                                                    String option = (String) vecProgramas.get(i);
-                                                    String option2 = (String)vecNombres.get(i);
-                                            %>
-                                            <option value="<%= option%>"><%= option2%></option>
-                                            <% } %>
+                                                                            </select>]<font color="red"> *</font>
+                                                                        </th>
+                                                                    </tr>
+                                                                </table>
+                                                            </div>
+                                                        </center>
+                                                        <INPUT TYPE="SUBMIT" NAME="enviar" VALUE="Enviar">
+                                                        <%
+                                                            if (request.getParameter("buscar") != null) {
 
-                                        </select>
+                                                                idreservacion = Integer.parseInt(request.getParameter("idreservacion"));
+                                                                for (int i = 0; i < vecID2.size(); i++) {
+                                                                    if (Integer.parseInt(vecID2.get(i).toString()) == idreservacion) {
+                                                                        fechainicio = vecFecha.get(i).toString();
+                                                                        horainicio = vecHoraini.get(i).toString();
+                                                                        horafin = vecHoraFin.get(i).toString();
+                                                                        encargado = vecEncargado.get(i).toString();
+                                                                        estado = vecEstado.get(i).toString();
+                                                                        salon = Integer.parseInt(vecSalon.get(i).toString());
+                                                                    }
+                                                                }
 
-                                        <INPUT TYPE="SUBMIT" NAME="buscar" VALUE="Buscar">
-                                        <%
-                                            if (request.getParameter("buscar") != null) {
-                                                if (request.getParameter("buscar") != null) {
-
-                                                    idprograma = Integer.parseInt(request.getParameter("idprograma"));
-                                                    for (int i = 0; i < vecNombres.size(); i++) {
-                                                        if (Integer.parseInt(vecProgramas.get(i).toString()) == idprograma) {
-                                                            nombre = vecNombres.get(i).toString();
-                                                        }
-                                                    }
-
-                                                }
-                                            }
-                                            if (request.getParameter("guardar") != null) {
-                                                idprograma = Integer.parseInt(request.getParameter("idprograma"));
-                                                nombre = request.getParameter("nombre");
-                                                mprograma.modificarPrograma(idprograma, nombre);
-                                            }
-                                        %>  
-
-                                        </TD>
-                                        </TR>
-                                        <TR>
-                                            <TD><B>Nombre</TD>
-                                            <TD><INPUT ENGINE=TEXTBOX NAME="nombre" SIZE="15" VALUE="<%= nombre%>"></TD>
-                                        </TR>
-                        </TABLE>
-                        <P></P>
-
-                        <INPUT TYPE="SUBMIT" NAME="guardar" VALUE="Guardar">
-
-                        </form>
+                                                            }
+                                                            if (request.getParameter("enviar") != null) {
+                                                                fechainicio = request.getParameter("fecha");
+                                                                horainicio = request.getParameter("horainicio");
+                                                                horafin = request.getParameter("horafin");
+                                                                encargado = request.getParameter("encargado");
+                                                                estado = request.getParameter("estado");
+                                                                salon = Integer.parseInt(request.getParameter("idsalon"));
+                                                                mlab.reservarLaboratorio(fechainicio, horainicio, horafin, encargado, estado, salon);
+                                                            }
+                                                        %>
+                                                    </form>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                        </FORM>
                         <HR></HR>
 
 

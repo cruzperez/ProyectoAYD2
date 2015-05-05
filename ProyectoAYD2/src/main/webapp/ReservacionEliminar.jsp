@@ -14,17 +14,13 @@
 <!DOCTYPE html>
 <html>
     <%
-        //comentario     
-        String titulo = "Eliminar Programa";
-        ModuloProgramas gprograma = new ModuloProgramas();
-        int idprograma = 0;
-        String nombre = "";
+        ModuloLaboratorio mlab = new ModuloLaboratorio();
+        int idreserva = 0;
     %>
     <head>
-        <title>Eliminar Programa</title>
+        <title>Eliminar Reservacion</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link href="css/style.css" rel="stylesheet" type="text/css">
-        <title><%=titulo%></title>
     </head>
     <body>
 
@@ -77,40 +73,35 @@
 
                 <div class="right_section">
                     <div class="common_content">
-                        <h2>Eliminar Programa</h2>
+                        <h2>Eliminar Reservacion</h2>
                         <hr>
 
                         <TABLE BORDER>
                             <TR>
-                                <TD><B>Id Programa</TD>
+                                <TD><B>Id Reservacion</TD>
                                 <TD>
                                     <%
-                                        ArrayList vecprograma = gprograma.obtenerProgramas();
-                                        ArrayList vecNombres = gprograma.obtenerProgramasNombre();
-                                        String texto = "";
+                                        ArrayList vecID = mlab.obtenerReservaciones();
 
                                     %>
 
-                                    <form method="POST" name="buscar" action="">
+                                    <form method="POST" name="eliminar" action="">
 
-                                        <select name="idprograma">
-                                            <%  for (int i = 0; i < vecNombres.size(); i++) {
-                                                    String option = (String) vecNombres.get(i);
-                                                    String option2 = (String)vecprograma.get(i);
+                                        <select name="idreservacion">
+                                            <%  for (int i = 0; i < vecID.size(); i++) {
+                                                    String option = (String) vecID.get(i);
                                             %>
-                                            <option value="<%= option2%>"><%= option%></option>
+                                            <option value="<%= option%>"><%= option%></option>
                                             <% } %>
 
                                         </select>
 
 
                                         <%
-                                            if (request.getParameter("eliminar") != null) {
                                                 if (request.getParameter("eliminar") != null) {
-                                                    idprograma = Integer.parseInt(request.getParameter("idprograma"));
-                                                    gprograma.borrarPrograma(idprograma);
+                                                    idreserva = Integer.parseInt(request.getParameter("idreservacion"));
+                                                    mlab.borrarReservacion(idreserva);
                                                 }
-                                            }
                                         %>
 
                                         </TD>
