@@ -584,7 +584,7 @@ public class GestionLaboratorio {
     }
 
     public void modificarReservacion(int id, String fechainicio, String horainicio,
-            String horafin, String encargado, boolean estado, int salon) {
+            String horafin, String encargado, String estado, int salon) {
 
         nuevaConexion.crearConn();
         conn = nuevaConexion.getConn();

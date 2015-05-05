@@ -114,6 +114,44 @@
 
                                                             </select>
                                                             <INPUT TYPE="SUBMIT" NAME="buscar" VALUE="Buscar">
+                                                            <%
+                                                                if (request.getParameter("buscar") != null) {
+
+                                                                    idreservacion = Integer.parseInt(request.getParameter("idreservacion"));
+                                                                    for (int i = 0; i < vecID2.size(); i++) {
+                                                                        if (Integer.parseInt(vecID2.get(i).toString()) == idreservacion) {
+                                                                            fechainicio = vecFecha.get(i).toString();
+                                                                            horainicio = vecHoraini.get(i).toString();
+                                                                            horafin = vecHoraFin.get(i).toString();
+                                                                            encargado = vecEncargado.get(i).toString();
+                                                                            estado = vecEstado.get(i).toString();
+                                                                            if (estado.equals("f")) {
+                                                                                estado = "No Reservado";
+                                                            %> 
+                                                            <script>alert("Estado No Reservado ");</script> 
+                                                            <%
+                                                            } else {
+                                                                estado = "Reservado";
+                                                            %> 
+                                                            <script>alert("Estado Reservado ");</script> 
+                                                            <%
+                                                                            }
+                                                                            salon = Integer.parseInt(vecSalon.get(i).toString());
+                                                                        }
+                                                                    }
+
+                                                                }
+                                                                if (request.getParameter("enviar") != null) {
+                                                                    idreservacion = Integer.parseInt(request.getParameter("idreservacion"));
+                                                                    fechainicio = request.getParameter("fecha");
+                                                                    horainicio = request.getParameter("horainicio");
+                                                                    horafin = request.getParameter("horafin");
+                                                                    encargado = request.getParameter("encargado");
+                                                                    estado = request.getParameter("estado");
+                                                                    salon = Integer.parseInt(request.getParameter("idsalon"));
+                                                                    mlab.modificarReservacion(idreservacion, fechainicio, horainicio, horafin, encargado, estado, salon);
+                                                                }
+                                                            %>
                                                             <div class="grid_12">
                                                                 <table style="border: #000 1px solid; margin: 0 auto; width:100%;">
                                                                     <tr>
@@ -137,7 +175,7 @@
                                                                             Fecha de Reservación
                                                                         </th>
                                                                         <th style="border: #000 1px solid; margin: 0 auto; width:33%; color: #000; background-color: #FFFFFF">
-                                                                            [<input type="date" name="fecha" VALUE="<%= fechainicio%>">] <font color="red">*</font>
+                                                                            [<input type="date" name="fecha" VALUE="<%=fechainicio%>">] <font color="red">*</font>
                                                                         </th>
                                                                     </tr>
                                                                     <tr>
@@ -145,7 +183,7 @@
                                                                             Hora de Inicio
                                                                         </th>
                                                                         <th style="border: #000 1px solid; margin: 0 auto; width:33%; color: #000; background-color: #FFFFFF">
-                                                                            [<input type="time" name="horainicio" VALUE="<%= horainicio%>">] <font color="red">*</font> 
+                                                                            [<input type="time" name="horainicio" VALUE="<%=horainicio%>">] <font color="red">*</font> 
                                                                         </th>
                                                                     </tr>
                                                                     <tr>
@@ -153,7 +191,7 @@
                                                                             Hora de Finalización
                                                                         </th>
                                                                         <th style="border: #000 1px solid; margin: 0 auto; width:33%; color: #000; background-color: #FFFFFF">
-                                                                            [<input type="time" name="horafin" VALUE="<%= horafin%>" >] <font color="red">*</font>
+                                                                            [<input type="time" name="horafin" VALUE="<%=horafin%>" >] <font color="red">*</font>
                                                                         </th>
                                                                     </tr>
                                                                     <tr>
@@ -161,7 +199,7 @@
                                                                             Nombre Solicitante
                                                                         </th>
                                                                         <th style="border: #000 1px solid; margin: 0 auto; width:33%; color: #000; background-color: #FFFFFF">
-                                                                            [<input type="text" name="encargado" VALUE="<%= encargado%>">] <font color="red">*</font>
+                                                                            [<input type="text" name="encargado" VALUE="<%=encargado%>">] <font color="red">*</font>
                                                                         </th>
                                                                     </tr>
                                                                     <tr>
@@ -170,7 +208,8 @@
                                                                         </th>
                                                                         <th style="border: #000 1px solid; margin: 0 auto; width:33%; color: #000; background-color: #FFFFFF">
                                                                             [<select name="estado">
-                                                                                <%                                                                                    ArrayList vec = new ArrayList();
+                                                                                <%
+                                                                                    ArrayList vec = new ArrayList();
                                                                                     vec.add("No Reservado");
                                                                                     vec.add("Reservado");
                                                                                     for (int i = 0; i < vec.size(); i++) {
@@ -186,32 +225,7 @@
                                                             </div>
                                                         </center>
                                                         <INPUT TYPE="SUBMIT" NAME="enviar" VALUE="Enviar">
-                                                        <%
-                                                            if (request.getParameter("buscar") != null) {
 
-                                                                idreservacion = Integer.parseInt(request.getParameter("idreservacion"));
-                                                                for (int i = 0; i < vecID2.size(); i++) {
-                                                                    if (Integer.parseInt(vecID2.get(i).toString()) == idreservacion) {
-                                                                        fechainicio = vecFecha.get(i).toString();
-                                                                        horainicio = vecHoraini.get(i).toString();
-                                                                        horafin = vecHoraFin.get(i).toString();
-                                                                        encargado = vecEncargado.get(i).toString();
-                                                                        estado = vecEstado.get(i).toString();
-                                                                        salon = Integer.parseInt(vecSalon.get(i).toString());
-                                                                    }
-                                                                }
-
-                                                            }
-                                                            if (request.getParameter("enviar") != null) {
-                                                                fechainicio = request.getParameter("fecha");
-                                                                horainicio = request.getParameter("horainicio");
-                                                                horafin = request.getParameter("horafin");
-                                                                encargado = request.getParameter("encargado");
-                                                                estado = request.getParameter("estado");
-                                                                salon = Integer.parseInt(request.getParameter("idsalon"));
-                                                                mlab.reservarLaboratorio(fechainicio, horainicio, horafin, encargado, estado, salon);
-                                                            }
-                                                        %>
                                                     </form>
                                                 </td>
                                             </tr>

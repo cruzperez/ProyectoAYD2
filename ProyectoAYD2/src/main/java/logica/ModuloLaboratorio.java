@@ -332,6 +332,22 @@ public class ModuloLaboratorio {
         }
     }
     
+        public boolean modificarReservacion(int id, String fechainicio, String horainicio, 
+            String horafin, String encargado, String estado, int salon) {
+        String estados = "FALSE";
+        try {
+            if(estado.equals("Reservado")){
+                estados = "TRUE";
+            }else{
+                estados = "FALSE";
+            }
+            lab.modificarReservacion(id, fechainicio, horainicio, horafin, encargado, estados, salon);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+    
     public ArrayList obtenerReservaciones() {
         try {
             String[] salones = lab.retornarReservacion().split("/");
