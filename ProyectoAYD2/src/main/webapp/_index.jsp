@@ -4,6 +4,10 @@
     Author     : cruz
 --%>
 
+<%@page import="net.sf.jasperreports.engine.JasperRunManager"%>
+<%@page import="java.util.Map"%>
+<%@page import="java.util.HashMap"%>
+<%@page import="java.io.File"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.Vector"%>
 <%@page import="acceso.Conexion"%>
@@ -20,6 +24,7 @@
         String encargado = "";
         String estado = "";
         int salon = 0;
+        String idreservacion = "";
     %>
     <head>
         <title>Pre Reservacion</title>
@@ -82,6 +87,13 @@
                                                         <%
                                                             ArrayList vecID = mlab.obtenerSalones();
                                                             ArrayList vecNombres = mlab.obtenerSalonesNombre();
+                                                            ArrayList vecID2 = mlab.obtenerReservaciones();
+                                                            ArrayList vecFecha = mlab.obtenerReservacionesFecha();
+                                                            ArrayList vecHoraini = mlab.obtenerReservacionesHorainicio();
+                                                            ArrayList vecHoraFin = mlab.obtenerReservacionesHorafin();
+                                                            ArrayList vecEncargado = mlab.obtenerReservacionesEncargado();
+                                                            ArrayList vecEstado = mlab.obtenerReservacionesEstado();
+                                                            ArrayList vecSalon = mlab.obtenerReservacionesSalon();
 
                                                         %>
                                                         <center>
@@ -135,24 +147,7 @@
                                                                             [<input type="text" name="encargado" required>] <font color="red">*</font>
                                                                         </th>
                                                                     </tr>
-                                                                    <tr>
-                                                                        <th style="border: #000 1px solid; margin: 0 auto; width:33%; color: #000; background-color: #FFFFFF">
-                                                                            Estado de Reservacion
-                                                                        </th>
-                                                                        <th style="border: #000 1px solid; margin: 0 auto; width:33%; color: #000; background-color: #FFFFFF">
-                                                                            [<select name="estado">
-                                                                                <%                                                                                    ArrayList vec = new ArrayList();
-                                                                                    vec.add("No Reservado");
-                                                                                    vec.add("Reservado");
-                                                                                    for (int i = 0; i < vec.size(); i++) {
-                                                                                        String option = (String) vec.get(i);
-                                                                                %>
-                                                                                <option value="<%= option%>"><%= option%></option>
-                                                                                <% }%>
 
-                                                                            </select>]<font color="red"> *</font>
-                                                                        </th>
-                                                                    </tr>
                                                                 </table>
                                                             </div>
                                                         </center>
@@ -163,9 +158,59 @@
                                                                 horainicio = request.getParameter("horainicio");
                                                                 horafin = request.getParameter("horafin");
                                                                 encargado = request.getParameter("encargado");
-                                                                estado = request.getParameter("estado");
+                                                                estado = "No Reservado";
                                                                 salon = Integer.parseInt(request.getParameter("idsalon"));
                                                                 mlab.reservarLaboratorio(fechainicio, horainicio, horafin, encargado, estado, salon);
+                                                                vecID2 = mlab.obtenerReservaciones();
+                                                                vecFecha = mlab.obtenerReservacionesFecha();
+                                                                vecHoraini = mlab.obtenerReservacionesHorainicio();
+                                                                vecHoraFin = mlab.obtenerReservacionesHorafin();
+                                                                vecEncargado = mlab.obtenerReservacionesEncargado();
+                                                                vecEstado = mlab.obtenerReservacionesEstado();
+                                                                vecSalon = mlab.obtenerReservacionesSalon();
+                                                                for (int i = 0; i < vecFecha.size(); i++) {
+                                                                    if (vecFecha.get(i).equals(fechainicio)) {
+                                                                        for (int j = 0; j < vecHoraini.size(); j++) {
+                                                                            if (vecHoraini.get(j).equals(horainicio)) {
+                                                                                for (int k = 0; k < vecHoraFin.size(); k++) {
+                                                                                    if (vecHoraFin.get(k).equals(horafin)) {
+                                                                                        for (int l = 0; l < vecSalon.size(); l++) {
+                                                                                            if (Integer.parseInt(vecSalon.get(l).toString())==salon) {
+                                                                                                idreservacion = vecID2.get(i).toString();
+                                                                                                /*Importamos la clase "Conexion_Postgresql" y la instanciamos por el nombre conexion
+                                                                                                 con la siguiente linea de codigo*/
+                                                                                                //Conexion conexion = new Conexion();
+                                                                                                /*Establecemos la ruta del reporte*/
+                                                                                                //File reportFile = new File("D:\\Dropbox\\Análisis y Diseño de Sistemas 2\\ProyectoAYD2\\ProyectoAYD2\\src\\main\\webapp\\Reportes\\solicitud.jasper");
+                                                                                                /*Enviamos parámetros porque nuestro reporte los necesita asi que escriba 
+                                                                                                 y seguiremos el formato del método runReportToPdf*/
+                                                                                                /*Con Map y el HaspMap nos servira para crear los paramentros*/
+                                                                                                //Map parameters = new HashMap();
+                                                                                                /*Capturamos el valor de nuestra formulario que es el codigo del cliente que es un
+                                                                                                 varchar(5), lo almacenamos en una String*/
+                                                                                                /*Digitamos la siguiente linea de codigo entre parentesis ira el parametro que agregamos en nuestro reporte
+                                                                                                 llamado $P{CODIGO}, pero solo se escribira "CODIGO", el String que capturamos lo colocamos, en este caso el 
+                                                                                                 reporte solo nos pide un parametro*/
+                                                                                                //parameters.put("id", idreservacion);
+                                                                                                /*Enviamos la ruta del reporte, los parámetros y la conexión(objeto Connection)*/
+                                                                                                //byte[] bytes = JasperRunManager.runReportToPdf(reportFile.getPath(), parameters, conexion.getConn());
+                                                                                                /*Indicamos que la respuesta va a ser en formato PDF*/ 
+                                                                                                //response.setContentType("application/pdf");
+                                                                                                //response.setContentLength(bytes.length);
+                                                                                                //ServletOutputStream ouputStream = response.getOutputStream();
+                                                                                                //ouputStream.write(bytes, 0, bytes.length); /*Limpiamos y cerramos flujos de salida*/ ouputStream.flush();
+                                                                                                //ouputStream.close();
+                                                                                            }
+
+                                                                                        }
+
+                                                                                    }
+                                                                                }
+                                                                            }
+
+                                                                        }
+                                                                    }
+                                                                }
                                                             }
                                                         %>
                                                     </form>

@@ -21,6 +21,7 @@
         String encargado = "";
         String estado = "";
         int salon = 0;
+        
     %>
     <head>
         <title>Agregar Programa</title>
@@ -181,6 +182,7 @@
                                                                 estado = request.getParameter("estado");
                                                                 salon = Integer.parseInt(request.getParameter("idsalon"));
                                                                 mlab.reservarLaboratorio(fechainicio, horainicio, horafin, encargado, estado, salon);
+                                                                
                                                             }
                                                         %>
                                                     </form>
