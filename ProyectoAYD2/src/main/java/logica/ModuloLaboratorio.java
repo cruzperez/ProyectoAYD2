@@ -318,11 +318,147 @@ public class ModuloLaboratorio {
 
     public boolean reservarLaboratorio(String fechainicio, String horainicio, 
             String horafin, String encargado, String estado, int salon) {
+        boolean estados = false;
         try {
-            
+            if(estado.equals("Reservado")){
+                estados = true;
+            }else{
+                estados = false;
+            }
+            lab.insertarReservacion(fechainicio, horainicio, horafin, encargado, estados, salon);
             return true;
         } catch (Exception e) {
             return false;
+        }
+    }
+    
+        public boolean modificarReservacion(int id, String fechainicio, String horainicio, 
+            String horafin, String encargado, String estado, int salon) {
+        String estados = "FALSE";
+        try {
+            if(estado.equals("Reservado")){
+                estados = "TRUE";
+            }else{
+                estados = "FALSE";
+            }
+            lab.modificarReservacion(id, fechainicio, horainicio, horafin, encargado, estados, salon);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+    
+    public ArrayList obtenerReservaciones() {
+        try {
+            String[] salones = lab.retornarReservacion().split("/");
+            ArrayList ids = new ArrayList();
+            for (int i = 0; i < salones.length; i++) {
+                ids.add(salones[i].split(",")[0]);
+            }
+            return ids;
+        } catch (Exception e) {
+            ArrayList fail = new ArrayList();
+            fail.add("- no items -");
+            return fail;
+        }
+    }
+    
+    public boolean borrarReservacion(int id) {
+        try {
+            lab.borrarReservacion(id);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+    
+    public ArrayList obtenerReservacionesFecha() {
+        try {
+            String[] salones = lab.retornarReservacion().split("/");
+            ArrayList ids = new ArrayList();
+            for (int i = 0; i < salones.length; i++) {
+                ids.add(salones[i].split(",")[1]);
+            }
+            return ids;
+        } catch (Exception e) {
+            ArrayList fail = new ArrayList();
+            fail.add("- no items -");
+            return fail;
+        }
+    }
+    
+    public ArrayList obtenerReservacionesHorainicio() {
+        try {
+            String[] salones = lab.retornarReservacion().split("/");
+            ArrayList ids = new ArrayList();
+            for (int i = 0; i < salones.length; i++) {
+                ids.add(salones[i].split(",")[2]);
+            }
+            return ids;
+        } catch (Exception e) {
+            ArrayList fail = new ArrayList();
+            fail.add("- no items -");
+            return fail;
+        }
+    }
+    
+    public ArrayList obtenerReservacionesHorafin() {
+        try {
+            String[] salones = lab.retornarReservacion().split("/");
+            ArrayList ids = new ArrayList();
+            for (int i = 0; i < salones.length; i++) {
+                ids.add(salones[i].split(",")[3]);
+            }
+            return ids;
+        } catch (Exception e) {
+            ArrayList fail = new ArrayList();
+            fail.add("- no items -");
+            return fail;
+        }
+    }
+    
+    public ArrayList obtenerReservacionesSalon() {
+        try {
+            String[] salones = lab.retornarReservacion().split("/");
+            ArrayList ids = new ArrayList();
+            for (int i = 0; i < salones.length; i++) {
+                ids.add(salones[i].split(",")[4]);
+            }
+            return ids;
+        } catch (Exception e) {
+            ArrayList fail = new ArrayList();
+            fail.add("- no items -");
+            return fail;
+        }
+    }
+    
+    public ArrayList obtenerReservacionesEncargado() {
+        try {
+            String[] salones = lab.retornarReservacion().split("/");
+            ArrayList ids = new ArrayList();
+            for (int i = 0; i < salones.length; i++) {
+                ids.add(salones[i].split(",")[5]);
+            }
+            return ids;
+        } catch (Exception e) {
+            ArrayList fail = new ArrayList();
+            fail.add("- no items -");
+            return fail;
+        }
+    }
+    
+    public ArrayList obtenerReservacionesEstado() {
+        try {
+            String[] salones = lab.retornarReservacion().split("/");
+            ArrayList ids = new ArrayList();
+            for (int i = 0; i < salones.length; i++) {
+                ids.add(salones[i].split(",")[6]);
+            }
+            return ids;
+        } catch (Exception e) {
+            ArrayList fail = new ArrayList();
+            fail.add("- no items -");
+            return fail;
         }
     }
 

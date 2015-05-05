@@ -181,9 +181,9 @@
                                                                 fechainicio = request.getParameter("fecha");
                                                                 horainicio = request.getParameter("horainicio");
                                                                 horafin = request.getParameter("horafin");
-                                                                encargado = request.getParameter("fecha");
+                                                                encargado = request.getParameter("encargado");
                                                                 estado = request.getParameter("estado");
-                                                                salon = Integer.parseInt(request.getParameter("estado"));
+                                                                salon = Integer.parseInt(request.getParameter("idsalon"));
                                                                 mlab.reservarLaboratorio(fechainicio, horainicio, horafin, encargado, estado, salon);
                                                             }
                                                         %>

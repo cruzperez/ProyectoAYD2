@@ -584,7 +584,7 @@ public class GestionLaboratorio {
     }
 
     public void modificarReservacion(int id, String fechainicio, String horainicio,
-            String horafin, String encargado, boolean estado, int salon) {
+            String horafin, String encargado, String estado, int salon) {
 
         nuevaConexion.crearConn();
         conn = nuevaConexion.getConn();
@@ -627,7 +627,7 @@ public class GestionLaboratorio {
             //seleccionamos la tabla de la base de datos la cual lleva por nombre trabajadores
             rs = s.executeQuery("SELECT * FROM  reservacion");
             while (rs.next()) {
-                devolver += rs.getString(1) + "," + rs.getString(2) + "," + rs.getString(3) + "," + rs.getString(4) + "," + rs.getString(5) + "," + rs.getString(6) + "/";
+                devolver += rs.getString(1) + "," + rs.getString(2) + "," + rs.getString(3) + "," + rs.getString(4) + "," + rs.getString(5) + "," + rs.getString(6) + "," + rs.getString(7) + "/";
             }
             rs.close();
         } catch (Exception e) {
