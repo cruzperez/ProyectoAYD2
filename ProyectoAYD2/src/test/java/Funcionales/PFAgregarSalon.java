@@ -18,7 +18,7 @@ import java.util.regex.Pattern;
  *
  * @author bray
  */
-public class PFAgregarSalonTest extends SeleneseTestBase {
+public class PFAgregarSalon extends SeleneseTestBase {
     
   private Selenium selenium;
 

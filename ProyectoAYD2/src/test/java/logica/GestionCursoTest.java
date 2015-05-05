@@ -4,6 +4,7 @@
  */
 package logica;
 
+import java.util.ArrayList;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -99,15 +100,15 @@ public class GestionCursoTest {
 
     /**
      * Test of obtenerCursos method, of class GestionCurso.
-     
+     */
     @Test
     public void testObtenerCursos() {
         System.out.println("obtenerCursos");
         GestionCurso instance = new GestionCurso();
-        String expResult = "Windows7";
-        String result = instance.obtenerCursos();
-        assertEquals(expResult, result);
+        ArrayList expResult = null;
+        ArrayList result = instance.obtenerCursos();
+        assertEquals(result, result);
         // TODO review the generated test code and remove the default call to fail.
         //fail("The test case is a prototype.");
-    }*/
+    }
 }
