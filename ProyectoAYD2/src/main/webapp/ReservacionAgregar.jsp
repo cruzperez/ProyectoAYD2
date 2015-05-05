@@ -89,10 +89,6 @@
                                     <div class="row">
                                         <table border="1" style="margin: 0 auto; width:100%; border-color: #ffffff">
                                             <tr>
-                                                <th style="border: #000 1px solid; margin: 0 auto; width:33%; color: #ffffff; background-color: #000">Llena el formulario siguiente y crea una solicitud la cual se deverá de presentar impresa en las oficinas para confirmar tu reservación del salón o laboratorio.</th>
-
-                                            </tr>
-                                            <tr>
                                                 <td style="border: #000 1px solid; margin: 0 auto; width:33%;">
                                                     <br>
                                                     <br>
