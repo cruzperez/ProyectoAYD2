@@ -21,6 +21,7 @@ public class ModuloLogin {
         String nombre1 = "";
         String correo1 = "";
         String pass1 = "";
+        boolean bandera = false;
         try {
             String[] programas = prog.retornarUsuario().split("/");
             for (int i = 0; i < programas.length; i++) {
@@ -28,14 +29,16 @@ public class ModuloLogin {
                 correo1 = programas[i].split(",")[1];
                 pass1 = programas[i].split(",")[2];
                 if (nombre.equals(nombre1) || correo.equals(correo1)) {
-                    if (pass1.equals(pass1)) {
-                        return true;
+                    if (pass1.equals(pass)) {
+                        bandera = true;
+                    } else {
+                        bandera = false;
                     }
                 }
             }
-            return false;
+            return bandera;
         } catch (Exception e) {
-            return false;
+            return bandera;
         }
     }
 
